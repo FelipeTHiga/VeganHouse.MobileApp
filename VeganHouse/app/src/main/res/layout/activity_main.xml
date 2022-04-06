@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         >
 
-        // Banner - start
+        <!-- Banner - start -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -24,47 +24,43 @@
             />
 
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="106dp"
             android:layout_height="106dp"
-            android:background="@drawable/logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
-            android:id="@+id/logo"
-            />
-        // Banner - end
+            android:background="@drawable/logo" />
+        <!--Banner - end -->
 
-        //Navbar - start
+        <!--Navbar - start -->
         <RelativeLayout
+            android:id="@+id/containerNavbar"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:background="#BEF6A588"
-            android:id="@+id/containerNavbar"
-            >
+            android:background="#BEF6A588">
 
             <ImageButton
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/icon_menu"
-                android:layout_centerVertical="true"
-                android:onClick="showMenu"
-                />
+                android:onClick="showMenu" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textAlignment="center"
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
-                />
+                android:text="Home"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </RelativeLayout>
-        //Navbar - end
+        <!-- Navbar - end -->
 
-        // Body - start
+        <!-- Body - start -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -98,7 +94,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/btn_bg_acessories"
-                android:layout_gravity="left" />
+                android:layout_gravity="left"
+                android:onClick="testPayment"/>
 
             <ImageButton
                 android:layout_width="100dp"
@@ -155,7 +152,7 @@
 
 
         </RelativeLayout>
-        // Body - end
+        <!-- Body - end -->
 
     </RelativeLayout>
 </ScrollView>

@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Vegan House</string>
+
+    <!-- Payment Result -->
+    <string name="payment">Pagamento</string>
+
+    <string name="payment_result_sucess">Compra finalizada!</string>
+    <string name="payment_result_error">Falha no processamento.</string>
+
+    <string name="payment_result_msg_sucess">Seu pedido será entrege em breve.</string>
+    <string name="payment_result_msg_error">Não foi possivel processar o pagamento.</string>
+
+    <string name="payment_result_msg_sucess_resume">Obrigado por sua compra.</string>
+    <string name="payment_result_msg_error_resume">Erro ao finalizar a compra.</string>
+
+    <string name="payment_result_return">Voltar às compras</string>
+
 </resources>

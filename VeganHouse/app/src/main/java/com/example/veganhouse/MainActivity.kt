@@ -1,5 +1,6 @@
 package com.example.veganhouse
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,5 +14,10 @@ class MainActivity : AppCompatActivity() {
     
     fun showMenu(v:View){
         Toast.makeText(this, "Mostrando menu", Toast.LENGTH_SHORT).show()
+    }
+
+    fun testPayment(v:View){
+        val telaPaymentResult = Intent(this, PaymentResult::class.java)
+        startActivity(telaPaymentResult)
     }
 }
