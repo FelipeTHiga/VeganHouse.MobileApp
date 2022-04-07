@@ -133,21 +133,13 @@
                 android:layout_below="@+id/gridCategories"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="@drawable/banner_product"
+                android:background="@drawable/banner_product_bg"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
                 android:weightSum="100"
                 android:padding="5dp"
+                android:elevation="3dp"
             >
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_weight="50"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/banner_product_img1"
-                    android:layout_gravity="center_vertical"
-                    />
-
             </LinearLayout>
 
 

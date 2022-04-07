@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
     }
     
     fun showMenu(v:View){
+        val login = Intent(this,Login::class.java)
+        startActivity(login)
         Toast.makeText(this, "Mostrando menu", Toast.LENGTH_SHORT).show()
     }
 
