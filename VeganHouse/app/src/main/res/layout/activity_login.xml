@@ -46,7 +46,7 @@
             android:layout_below="@id/containerNavbar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:text="Não tem uma conta"
+            android:text="Não tem uma conta?"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -72,7 +72,7 @@
             android:drawableLeft="@drawable/icon_email"
             android:drawablePadding="5dp"
             android:paddingLeft="5dp"
-            android:textColorHint="604D4D"
+            android:textColorHint="#604D4D"
             android:layout_marginTop="30dp"
             style="@style/CardView.Light"
             />
@@ -89,7 +89,7 @@
             android:drawableLeft="@drawable/icon_lock"
             android:drawablePadding="5dp"
             android:paddingLeft="5dp"
-            android:textColorHint="604D4D"
+            android:textColorHint="#604D4D"
             style="@style/CardView.Light"
             android:layout_marginTop="15dp"
             />
@@ -112,10 +112,9 @@
             android:layout_below="@id/btn_login"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/btn_rounded_format_pink"
-            app:shapeAppearanceOverlay="@drawable/btn_rounded_format_pink"
+            android:background="@drawable/btn_rounded_format_white"
+            android:theme="@style/Theme.ButtonPink"
             android:text="Cadastrar"
-            android:textColor="@color/white"
             android:layout_marginTop="10dp"
             />
 
