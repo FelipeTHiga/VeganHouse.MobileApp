@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Signin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/signin_bg_color"
+        >
+        <!--   Header     -->
+        <RelativeLayout
+            android:id="@+id/containerNavbar"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/icon_arrow_back_pink" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="Cadastro"
+                android:textAlignment="center"
+                android:textColor="@color/beige"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <!--   Header     -->
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/containerNavbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="Preencha seus dados para cadastro"
+            android:textAlignment="center"
+            android:textColor="@color/beige"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="Nome"
+            android:drawableLeft="@drawable/icon_user_brown"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="30dp"
+            style="@style/CardView.Light"
+            />
+
+        <EditText
+            android:id="@+id/et_surname"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/et_name"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="Sobrenome"
+            android:drawableLeft="@drawable/icon_user_brown"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="20dp"
+            style="@style/CardView.Light"
+            />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/et_surname"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="E-mail"
+            android:drawableLeft="@drawable/icon_mail_outline_brown"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="20dp"
+            style="@style/CardView.Light"
+            />
+
+        <EditText
+            android:id="@+id/et_cpf"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/et_email"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="CPF"
+            android:drawableLeft="@drawable/icon_id_document_brown"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="20dp"
+            style="@style/CardView.Light"
+            />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/et_cpf"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="Senha"
+            android:drawableLeft="@drawable/icon_lock"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="20dp"
+            style="@style/CardView.Light"
+            />
+
+        <Button
+            android:id="@+id/btn_signin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_rounded_format_white"
+            android:text="Cadastrar"
+            android:theme="@style/Theme.ButtonPink" />
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
