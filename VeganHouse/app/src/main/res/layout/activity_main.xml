@@ -17,11 +17,10 @@
 
         <!-- Banner - start -->
         <ImageView
+            android:id="@+id/imgBanner"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/banner"
-            android:id="@+id/imgBanner"
-            />
+            android:background="@drawable/banner" />
 
         <ImageView
             android:id="@+id/logo"
