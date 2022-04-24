@@ -12,6 +12,8 @@ interface ApiLogin {
     fun postLogin(@Body user: UserLogin) : Call<User>
     //local storage -
     companion object {
+        // 10.0.2.2 ip coringa para testar com a API local
+        // 52.207.48.19 ip da máquina na AWS que está com o backend
         var BASE_URL = "http://10.0.2.2:8080/"
 
         fun criar () : ApiLogin {

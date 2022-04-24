@@ -43,6 +43,7 @@ class Login : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
+                t.printStackTrace()
                 Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
             }
 
@@ -54,5 +55,10 @@ class Login : AppCompatActivity() {
         val home = Intent(this, MainActivity::class.java)
         startActivity(home)
         Toast.makeText(baseContext, "Login realizado!", Toast.LENGTH_SHORT).show()
+    }
+
+    fun redirectSignin(v:View){
+        val signin = Intent(this, Signin::class.java)
+        startActivity(signin)
     }
 }

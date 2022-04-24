@@ -97,14 +97,15 @@
         <Button
             android:id="@+id/btn_login"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
             android:layout_below="@id/et_password"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
             android:background="@drawable/btn_rounded_format_white"
+            app:shapeAppearanceOverlay="@drawable/btn_rounded_format_white"
             android:text="Entrar"
-            android:onClick="redirectHome"
-            app:shapeAppearanceOverlay="@drawable/btn_rounded_format_white" />
+            android:layout_marginTop="20dp"
+            android:onClick="login"
+            />
 
         <Button
             android:id="@+id/btn_signin"
@@ -115,7 +116,8 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_rounded_format_white"
             android:text="Cadastrar"
-            android:theme="@style/Theme.ButtonPink" />
+            android:theme="@style/Theme.ButtonPink"
+            android:onClick="redirectSignin"/>
 
     </RelativeLayout>
 
