@@ -14,5 +14,7 @@
     <string name="payment_result_msg_error_resume">Erro ao finalizar a compra.</string>
 
     <string name="payment_result_return">Voltar às compras</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
