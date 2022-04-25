@@ -41,8 +41,4 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Mostrando menu", Toast.LENGTH_SHORT).show()
     }
 
-    fun testPayment(v:View){
-        val telaPaymentResult = Intent(this, PaymentResult::class.java)
-        startActivity(telaPaymentResult)
-    }
 }
