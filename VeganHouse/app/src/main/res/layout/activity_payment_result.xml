@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentResult">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FAB4B4">
+
+        <TextView
+            android:id="@+id/tv_payment_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:text="@string/payment_result_sucess"
+            android:textColor="@color/white"
+            android:textSize="33sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/rounded_container_white"
+            android:layout_below="@id/tv_payment_result"
+            android:id="@+id/rounded_container"
+            android:layout_marginTop="120dp"/>
+
+        <ImageView
+            android:id="@+id/iv_result"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/sucesso"
+            android:layout_marginTop="150dp"
+            android:layout_height="89dp"
+            android:layout_width="89dp"
+            android:layout_below="@id/tv_payment_result"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_result"
+            android:layout_marginTop="20dp"
+            android:text="@string/payment_result_msg_sucess_resume"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:textSize="21sp"
+            android:id="@+id/tv_payment_result_msg_resume"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_payment_result_msg_resume"
+            android:text="@string/payment_result_msg_sucess"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:id="@+id/tv_payment_result_msg"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_payment_result_msg"
+            android:width="250dp"
+            android:height="50dp"
+            android:backgroundTint="#FAB4B4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="@string/payment_result_return"
+            android:textSize="15sp"
+            android:textAllCaps="false"/>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
