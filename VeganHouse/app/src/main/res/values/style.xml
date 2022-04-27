@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ContainerFilters">
+        <item name="android:layout_height">100dp</item>
+        <item name="android:background">@drawable/container_filters</item>
+    </style>
+
+    <style name="ContainerCards">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">188dp</item>
+        <item name="android:background">@drawable/container_cards</item>
+    </style>
+
+</resources>
