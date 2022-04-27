@@ -1,17 +1,32 @@
-package com.example.veganhouse
+package com.example.veganhouse.fragments
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.veganhouse.ApiProduct
+import com.example.veganhouse.ProductCardAdapter
+import com.example.veganhouse.R
 import com.example.veganhouse.data.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.reflect.Field
 
-class Catalog : AppCompatActivity() {
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [CatalogFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class CatalogFragment : Fragment() {
 
     lateinit var btnFilters: ImageButton
     lateinit var containerFilters: View
@@ -29,19 +44,30 @@ class Catalog : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_catalog)
+        arguments?.let {
+        }
 
-        btnFilters = findViewById(R.id.btn_filters)
-        containerFilters = findViewById(R.id.container_filters)
-        containerCategoryFilters = findViewById(R.id.container_category_filters)
-        containerOrderbyFilters = findViewById(R.id.container_orderby_filters)
-        spinnerCategory = findViewById(R.id.spinner_category)
-        spinnerOrderby = findViewById(R.id.spinner_orderBy)
-        progressBar = findViewById(R.id.progress_bar)
-        categoryPosition = intent.getIntExtra("categoryPosition", 0)
-        categoryValue = intent.getStringExtra("categoryValue").toString()
+    }
 
-        val product_card = findViewById<RecyclerView>(R.id.products_component)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val v = inflater.inflate(R.layout.fragment_catalog, container, false)
+
+        btnFilters = v.findViewById(R.id.btn_filters)
+        containerFilters = v.findViewById(R.id.container_filters)
+        containerCategoryFilters = v.findViewById(R.id.container_category_filters)
+        containerOrderbyFilters = v.findViewById(R.id.container_orderby_filters)
+        spinnerCategory = v.findViewById(R.id.spinner_category)
+        spinnerOrderby = v.findViewById(R.id.spinner_orderBy)
+        progressBar = v.findViewById(R.id.progress_bar)
+
+        categoryPosition = arguments?.getInt("categoryPosition")!!
+        categoryValue = arguments?.getString("categoryValue").toString()
+
+        val product_card = v.findViewById<RecyclerView>(R.id.products_component)
         product_card.adapter = adapter
 
         if (categoryValue == "Todos") this.getAllProducts() else this.getProductByCategory()
@@ -50,11 +76,14 @@ class Catalog : AppCompatActivity() {
         this.setupOrderbySpinner()
         this.limitDropDownHeight(spinnerCategory)
 
+        Toast.makeText(context, "$categoryValue", Toast.LENGTH_SHORT).show()
+
+        return v
     }
 
     private fun setupOrderbySpinner() {
         val adapter = ArrayAdapter.createFromResource(
-            this@Catalog,
+            requireContext(),
             R.array.order_by,
             android.R.layout.simple_spinner_item
         )
@@ -89,7 +118,7 @@ class Catalog : AppCompatActivity() {
     private fun setupCategorySpinner() {
 
         val adapter = ArrayAdapter.createFromResource(
-            this@Catalog,
+            requireContext(),
             R.array.categories,
             android.R.layout.simple_spinner_item
         )
@@ -150,7 +179,7 @@ class Catalog : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -160,13 +189,13 @@ class Catalog : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -187,7 +216,7 @@ class Catalog : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -197,13 +226,13 @@ class Catalog : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -252,7 +281,7 @@ class Catalog : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -262,13 +291,13 @@ class Catalog : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -288,7 +317,7 @@ class Catalog : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -298,13 +327,13 @@ class Catalog : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -325,7 +354,7 @@ class Catalog : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -335,15 +364,16 @@ class Catalog : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(baseContext, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
 
 }

@@ -36,14 +36,14 @@ class ProductCardAdapter(private val products: List<Product>) :
                 val tv_product_price = findViewById<TextView>(R.id.product_price)
                 val tv_product_score = findViewById<TextView>(R.id.product_score)
 
-//                product_image.setImageResource(R.drawable.product_without_image)
 //                if (data.image_url1.size == 0) product_image.setImageResource(R.drawable.product_without_image) else
 //                    product_image.setImageBitmap(BitmapFactory.decodeByteArray(data.image_url1, 0, data.image_url1.size))
 
-                var byteArray: ByteArray = data.image_url1.encodeToByteArray()
-                if (byteArray.size == 0) product_image.setImageResource(R.drawable.product_without_image) else
-                    product_image.setImageBitmap(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size))
+//                var byteArray: ByteArray = data.image_url1.encodeToByteArray()
+//                if (byteArray.size == 0) product_image.setImageResource(R.drawable.product_without_image) else
+//                    product_image.setImageBitmap(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size))
 
+                product_image.setImageResource(R.drawable.product_without_image)
                 tv_product_name.text = data.name
                 tv_product_price.text = data.price.toString()
                 tv_product_score.text = 4.5.toString()
