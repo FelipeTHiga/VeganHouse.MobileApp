@@ -11,29 +11,41 @@
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21666666666666667" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/icon_email.xml" value="0.11041666666666666" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/icon_lock.xml" value="0.11041666666666666" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/icon_mail_outline_brown.xml" value="0.14114583333333333" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/icon_search.xml" value="0.14114583333333333" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/icon_shopping_bag.xml" value="0.14114583333333333" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/icon_user_brown.xml" value="0.21666666666666667" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/icon_user_gray.xml" value="0.14114583333333333" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/input_login_bg.xml" value="0.11041666666666666" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/input_singin_bg.xml" value="0.11041666666666666" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/login_bg_color.xml" value="0.11041666666666666" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/signin_bg_color.xml" value="0.16666666666666666" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_payment_result.xml" value="0.1" />
+        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_main.xml" value="0.20052083333333334" />
         <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_signin.xml" value="0.3333333333333333" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_home.xml" value="0.3333333333333333" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_login.xml" value="0.20052083333333334" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_signin.xml" value="0.20052083333333334" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/menu/bottom_menu.xml" value="0.22" />
-        <entry key="..\:/SPTECH/VeganHouse.MobileApp/VeganHouse/app/src/main/res/menu/nav_menu.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/Felipe/AndroidStudioProjects/VeganHouse/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Felipe/AndroidStudioProjects/VeganHouse/app/src/main/res/drawable/custom_input.xml" value="0.21875" />
         <entry key="..\:/Users/Felipe/AndroidStudioProjects/VeganHouse/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Felipe/AndroidStudioProjects/VeganHouse/app/src/main/res/drawable/icon_search.xml" value="0.3171875" />
         <entry key="..\:/Users/Felipe/AndroidStudioProjects/VeganHouse/app/src/main/res/layout/activity_main.xml" value="0.39332659251769464" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/banner_product_bg.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/container_cards.xml" value="0.27314814814814814" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/container_filters.xml" value="0.27314814814814814" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/icon_filter_bg.xml" value="0.27314814814814814" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/progress_bg.xml" value="0.19739583333333333" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/spinner_bg.xml" value="0.27314814814814814" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_catalog.xml" value="0.22" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_login.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_payment_result.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_signin.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_catalog.xml" value="0.25729166666666664" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_home.xml" value="0.25729166666666664" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_product_card.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/product_item.xml" value="0.5" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/menu/bottom_menu.xml" value="0.25729166666666664" />
+        <entry key="..\:/Users/miguel.assuncao/Documents/Projeto PI - 4ADSA/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/btn_rounded_format_pink.xml" value="0.1" />
+        <entry key="..\:/Users/miguel.assuncao/Documents/Projeto PI - 4ADSA/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/custom_input.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/miguel.assuncao/Documents/Projeto PI - 4ADSA/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/rounded_container_white.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/miguel.assuncao/Documents/Projeto PI - 4ADSA/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/miguel.assuncao/Documents/Projeto PI - 4ADSA/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/miguel.assuncao/Documents/Projeto PI - 4ADSA/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_payment_result.xml" value="0.22" />
       </map>
     </option>
   </component>

@@ -1,10 +1,13 @@
 package com.example.veganhouse.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.veganhouse.Catalog
 import com.example.veganhouse.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +41,47 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+//    fun telaCatalog(button: View) {
+//
+//        val bundle = Bundle()
+//        val catalogFragment = CatalogFragment()
+//        var categoryPosition = 0
+//        var categoryValue = ""
+//
+//        when (button.id) {
+//            R.id.btn_acessories -> {
+//                categoryPosition = 1
+//                categoryValue = "Acessórios"
+//            }
+//            R.id.btn_food -> {
+//                categoryPosition = 2
+//                categoryValue = "Alimentos"
+//            }
+//            R.id.btn_cosmetics -> {
+//                categoryPosition = 3
+//                categoryValue = "Cosméticos"
+//            }
+//            R.id.btn_health -> {
+//                categoryPosition = 4
+//                categoryValue = "Saúde"
+//            }
+//            R.id.btn_clothes -> {
+//                categoryPosition = 5
+//                categoryValue = "Vestimenta"
+//            }
+//            R.id.btn_explore -> {
+//                categoryPosition = 6
+//                categoryValue = "Todos"
+//            }
+//        }
+//
+//        bundle.putInt("categoryPosition", categoryPosition)
+//        bundle.putString("categoryValue", categoryValue)
+//        catalogFragment.arguments = bundle
+//        makeCurrentFragment(catalogFragment)
+//
+//    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -57,4 +101,5 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
 }

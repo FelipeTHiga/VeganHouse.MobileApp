@@ -139,8 +139,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/btn_rounded_format_white"
             android:text="Cadastrar"
-            android:theme="@style/Theme.ButtonPink"
-            android:onClick="registerUser"/>
+            android:theme="@style/Theme.ButtonPink" />
 
 
 
