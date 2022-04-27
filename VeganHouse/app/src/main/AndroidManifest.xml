@@ -2,12 +2,43 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.veganhouse">
 
+    <!--    Permissão para usar internet no app                -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.VeganHouse">
+        <activity
+            android:name=".background"
+            android:exported="false" />
+        <activity
+            android:name=".backgroud"
+            android:exported="false" />
+        <activity
+            android:name=".CatalogProduct"
+            android:exported="false" />
+        <activity
+            android:name=".Product"
+            android:exported="false" />
+        android:theme="@style/Theme.VeganHouse">
+        <activity
+            android:name=".Catalog"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentResult"
+            android:exported="false" />
+        <activity
+            android:name=".Signin"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
         android:theme="@style/Theme.VeganHouse">
         <activity
             android:name=".MainActivityCartDetails"
