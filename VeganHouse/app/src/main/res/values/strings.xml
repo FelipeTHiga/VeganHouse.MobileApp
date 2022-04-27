@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Vegan House</string>
+    <string name="select">Selos</string>
+
+
 
     <!--    Main        -->
     <string name="hint_search_bar">Pesquise um produto aqui</string>

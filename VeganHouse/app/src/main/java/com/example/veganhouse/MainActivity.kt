@@ -13,6 +13,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,6 +47,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(login)
         Toast.makeText(this, "Mostrando menu", Toast.LENGTH_SHORT).show()
     }
+
+    fun abrirTelaProduto(v:View){
+        val telaProduto = Intent(this, Product()::class.java)
+        startActivity((telaProduto))
+    }
+
 
         fun telaCatalog(button: View) {
 

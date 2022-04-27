@@ -136,7 +136,8 @@
                             android:id="@+id/product_banner_img"
                             android:layout_width="185dp"
                             android:layout_height="180dp"
-                            android:background="@drawable/banner_product_img1" />
+                            android:background="@drawable/banner_product_img1"
+                            android:onClick="abrirTelaProduto"/>
 
                         <RelativeLayout
                             android:layout_width="match_parent"
