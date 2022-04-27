@@ -138,18 +138,18 @@
                 style="@style/CardView.Light"
                 />
 
-            <Button
-                android:id="@+id/btn_signin"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_password"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="100dp"
-                android:background="@drawable/btn_rounded_format_white"
-                android:text="Cadastrar"
-                android:theme="@style/Theme.ButtonPink"
-                android:onClick="registerUser"/>
+                <Button
+                    android:id="@+id/btn_signin"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/et_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="100dp"
+                    android:background="@drawable/btn_rounded_format_white"
+                    android:onClick="registerUser"
+                    android:text="Cadastrar"
+                    android:theme="@style/Theme.ButtonPink" />
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>

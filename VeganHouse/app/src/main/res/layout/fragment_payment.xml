@@ -164,6 +164,8 @@
                         android:layout_weight=".50"
                         android:layout_height="35dp"
                         android:layout_below="@id/tv_expire_date"
+                        android:paddingHorizontal="10dp"
+                        android:hint="000"
                         android:background="@drawable/custom_input_radius_5"                />
                 </LinearLayout>
 
@@ -183,7 +185,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_below="@id/tv_card_name"
-                    android:background="@drawable/custom_input_radius_5" />
+                    android:background="@drawable/custom_input_radius_5"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Seu nome"/>
 
                 <Button
                     android:id="@+id/btn_payment_result"

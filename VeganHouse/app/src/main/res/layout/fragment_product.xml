@@ -170,8 +170,11 @@
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="700dp"
-                android:backgroundTint="#FF7272"
-                android:text="Adicionar ao Carrinho" />
+                android:backgroundTint="#F5A4A4"
+                android:text="Adicionar ao Carrinho"
+                android:textColor="#FFFF"
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:id="@+id/tv_selos"

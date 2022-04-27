@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             R.id.icon_home -> makeCurrentFragment(homeFragment);
             R.id.icon_user -> makeCurrentFragment(loginFragment)
             R.id.icon_shopping_bag -> makeCurrentFragment(cartFragment)
-            R.id.icon_search -> makeCurrentFragment(catalogFragment)
+            // R.id.icon_search -> makeCurrentFragment(catalogFragment)
         }
         true
         }
