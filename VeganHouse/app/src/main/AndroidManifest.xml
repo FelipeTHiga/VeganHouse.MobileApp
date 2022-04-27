@@ -15,15 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VeganHouse">
         <activity
-            android:name=".background"
-            android:exported="false" />
-        <activity
-            android:name=".backgroud"
-            android:exported="false" />
-        <activity
-            android:name=".CatalogProduct"
-            android:exported="false" />
-        <activity
             android:name=".Product"
             android:exported="false" />
         android:theme="@style/Theme.VeganHouse">
@@ -40,9 +31,6 @@
             android:name=".Login"
             android:exported="false" />
         android:theme="@style/Theme.VeganHouse">
-        <activity
-            android:name=".MainActivityCartDetails"
-            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.actions"

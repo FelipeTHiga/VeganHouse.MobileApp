@@ -186,15 +186,15 @@
                     android:background="@drawable/custom_input_radius_5" />
 
                 <Button
+                    android:id="@+id/btn_payment_result"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Finalizar compra"
-                    android:layout_centerHorizontal="true"
-                    android:theme="@style/Theme.ButtonPink"
                     android:layout_below="@id/et_card_name"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="100dp"
-                    />
+                    android:text="Finalizar compra"
+                    android:theme="@style/Theme.ButtonPink" />
 
             </RelativeLayout>
 

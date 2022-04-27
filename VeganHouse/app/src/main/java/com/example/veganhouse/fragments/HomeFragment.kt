@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import com.example.veganhouse.Catalog
 import com.example.veganhouse.R
 
@@ -38,7 +42,22 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val v = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val btnProduct: RelativeLayout = v.findViewById(R.id.rl_product)
+
+        btnProduct.setOnClickListener {
+            redirectProduct()
+        }
+
+        return v
+    }
+
+    fun redirectProduct(){
+        val productFragment = ProductFragment()
+        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.fl_wrapper, productFragment)
+        transaction.commit()
     }
 
 //    fun telaCatalog(button: View) {
@@ -81,6 +100,7 @@ class HomeFragment : Fragment() {
 //        makeCurrentFragment(catalogFragment)
 //
 //    }
+
 
     companion object {
         /**

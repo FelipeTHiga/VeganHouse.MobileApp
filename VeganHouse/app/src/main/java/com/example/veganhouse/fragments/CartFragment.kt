@@ -16,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [PaymentFragment.newInstance] factory method to
+ * Use the [CartFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PaymentFragment : Fragment() {
+class CartFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,21 +36,22 @@ class PaymentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v = inflater.inflate(R.layout.fragment_payment, container, false)
+        // Inflate the layout for this fragment
+        val v = inflater.inflate(R.layout.fragment_cart, container, false)
 
-        val btnPaymentResult: Button = v.findViewById(R.id.btn_payment_result)
+        val btnPayment: Button = v.findViewById(R.id.btn_payment)
 
-        btnPaymentResult.setOnClickListener {
-            redirectPaymentResult()
+        btnPayment.setOnClickListener {
+            redirectPayment()
         }
 
         return v
     }
 
-    fun redirectPaymentResult(){
-        val paymentResultFragment = PaymentResultFragment()
+    fun redirectPayment(){
+        val paymentFragment = PaymentFragment()
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fl_wrapper, paymentResultFragment)
+        transaction.replace(R.id.fl_wrapper, paymentFragment)
         transaction.commit()
     }
 
@@ -61,12 +62,12 @@ class PaymentFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment PaymentFragment.
+         * @return A new instance of fragment CartFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            PaymentFragment().apply {
+            CartFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

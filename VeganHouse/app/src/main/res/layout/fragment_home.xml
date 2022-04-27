@@ -129,6 +129,7 @@
                     app:strokeWidth="0.5dp">
 
                     <RelativeLayout
+                        android:id="@+id/rl_product"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -137,7 +138,7 @@
                             android:layout_width="185dp"
                             android:layout_height="180dp"
                             android:background="@drawable/banner_product_img1"
-                            android:onClick="abrirTelaProduto"/>
+                            />
 
                         <RelativeLayout
                             android:layout_width="match_parent"

@@ -16,7 +16,8 @@ interface ApiUser {
         // 10.0.2.2 ip coringa para testar com a API local
         // 52.207.48.19 ip da máquina na AWS que está com o backend
         //var BASE_URL = "http://10.0.2.2:8080/"
-        var BASE_URL = "http://174.129.13.249:8080/"
+        //var BASE_URL = "http://174.129.13.249:8080/"
+        var BASE_URL = "http://10.0.2.2:8080/"
 
         fun criar () : ApiUser {
             val retrofit = Retrofit.Builder()
