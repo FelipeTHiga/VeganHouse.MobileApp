@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Catalog"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/icon_menu"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_menu_2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/catalog_title"
+            android:textColor="#F6A588"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/logo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <TextView
+            android:id="@+id/tv_catalogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/categories"
+            android:textColor="#604D4D"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/icon_menu"
+            app:layout_constraintTop_toBottomOf="@+id/icon_menu"></TextView>
+
+        <HorizontalScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:scrollbars="none"
+            app:layout_constraintLeft_toLeftOf="@+id/icon_menu"
+            app:layout_constraintTop_toBottomOf="@+id/tv_catalogo">
+
+            <GridLayout
+                android:id="@+id/gridCategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="6"
+                android:rowCount="1">
+
+                <ImageButton
+                    android:id="@+id/btn_acessories"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/btn_bg_acessories"
+                    android:onClick="getProductByCategory" />
+
+                <ImageButton
+                    android:id="@+id/btn_clothes"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/btn_bg_clothes"
+                    android:onClick="getProductByCategory" />
+
+                <ImageButton
+                    android:id="@+id/btn_cosmetics"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/btn_bg_cosmetics"
+                    android:onClick="getProductByCategory" />
+
+                <ImageButton
+                    android:id="@+id/btn_food"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/btn_bg_food"
+                    android:onClick="getProductByCategory" />
+
+                <ImageButton
+                    android:id="@+id/btn_health"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/btn_bg_health"
+                    android:onClick="getProductByCategory" />
+
+                <ImageButton
+                    android:id="@+id/btn_explore"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="35dp"
+                    android:background="@drawable/btn_bg_explore"
+                    android:onClick="getProductByCategory" />
+
+            </GridLayout>
+
+        </HorizontalScrollView>
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_input"
+            android:drawableLeft="@drawable/icon_search"
+            android:drawablePadding="6dp"
+            android:hint="@string/hint_search_bar_catalog"
+            android:paddingStart="10dp"
+            app:layout_constraintLeft_toLeftOf="@+id/icon_menu"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+
+        <ImageButton
+            android:id="@+id/btn_filters"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/icon_filter_bg"
+            android:onClick="showContainerFilters"
+            android:src="@drawable/icon_filters"
+            app:layout_constraintRight_toRightOf="@+id/logo"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView"></ImageButton>
+
+        <View
+            android:id="@+id/container_filters"
+            style="@style/ContainerFilters"
+            android:layout_width="0dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="@+id/icon_menu"
+            app:layout_constraintRight_toRightOf="@+id/logo"
+            app:layout_constraintTop_toBottomOf="@+id/search_bar"></View>
+
+        <LinearLayout
+            android:id="@+id/container_category_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="@+id/container_filters"
+            app:layout_constraintTop_toTopOf="@id/container_filters">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/filter_by"
+                android:textColor="#604D4D"
+                android:textSize="12sp"></TextView>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_category"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/spinner_bg"
+                android:spinnerMode="dropdown"></androidx.appcompat.widget.AppCompatSpinner>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_orderby_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintRight_toRightOf="@+id/container_filters"
+            app:layout_constraintTop_toTopOf="@id/container_filters">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="50dp"
+                android:text="@string/order_by"
+                android:textColor="#604D4D"
+                android:textSize="12sp"></TextView>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_orderBy"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/spinner_bg"
+                android:spinnerMode="dropdown"></androidx.appcompat.widget.AppCompatSpinner>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/products"
+            android:textColor="#604D4D"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/icon_menu"
+            app:layout_constraintTop_toBottomOf="@+id/container_orderby_filters"></TextView>
+
+        <RelativeLayout
+            android:id="@+id/rl_cards"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="@+id/icon_menu"
+            app:layout_constraintRight_toRightOf="@+id/logo"
+            app:layout_constraintTop_toBottomOf="@id/tv_products">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/products_component"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:spanCount="2"></androidx.recyclerview.widget.RecyclerView>
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/rl_cards"
+            app:layout_constraintBottom_toBottomOf="@id/rl_cards"
+            app:layout_constraintLeft_toLeftOf="@id/rl_cards"
+            app:layout_constraintRight_toRightOf="@id/rl_cards"
+            android:visibility="gone"></ProgressBar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
+<!--    style="@style/Widget.AppCompat.ProgressBar"-->

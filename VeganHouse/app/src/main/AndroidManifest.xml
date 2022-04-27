@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.veganhouse">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--    Permissão para usar internet no app                -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -13,6 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VeganHouse">
         <activity
+            android:name=".background"
+            android:exported="false" />
+        <activity
+            android:name=".backgroud"
+            android:exported="false" />
+        <activity
+            android:name=".CatalogProduct"
+            android:exported="false" />
+        <activity
+            android:name=".Product"
+            android:exported="false" />
+        android:theme="@style/Theme.VeganHouse">
+        <activity
+            android:name=".Catalog"
+            android:exported="false" />
+        <activity
             android:name=".PaymentResult"
             android:exported="false" />
         <activity
@@ -20,6 +38,18 @@
             android:exported="false" />
         <activity
             android:name=".Login"
+            android:exported="false" />
+        android:theme="@style/Theme.VeganHouse">
+        <activity
+            android:name=".MainActivityCartDetails"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/border_button" />
+
+        <activity
+            android:name=".Cart"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
