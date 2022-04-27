@@ -48,6 +48,11 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Mostrando menu", Toast.LENGTH_SHORT).show()
     }
 
+    fun abrirTelaProduto(v:View){
+        val telaProduto = Intent(this, Product()::class.java)
+        startActivity((telaProduto))
+    }
+
 
         fun telaCatalog(button: View) {
 
