@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:paddingTop="5dp"
+    tools:context=".Cart">
+
+
+    // Navbar - start
+
+    <ImageView
+        android:id="@+id/iconMenuWithBorder"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/icon_menu_with_border" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/title_cart"
+        android:textAlignment="center"
+        android:textColor="@color/purple_title"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/logo"
+        android:id="@+id/iv_logo_navbar"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:id="@+id/sv_details"
+        android:paddingTop="10dp"
+        android:layout_below="@id/iv_logo_navbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:elevation="20dp"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/box_shadow_white">
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/iv_item"
+                android:background="@drawable/ic_close" />
+
+            <ImageView
+                android:id="@+id/iv_item"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bath_kit" />
+
+            <TextView
+                android:id="@+id/tv_text_item"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/iv_item"
+                android:text="@string/title_product_cart"
+                android:textColor="#604D4D"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/tv_text_item"
+                android:layout_toRightOf="@id/iv_item"
+                android:text="@string/price_product_cart"
+                android:textColor="#604D4D"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_text_item"
+                android:layout_marginTop="30dp"
+                android:layout_toRightOf="@id/iv_item">
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:padding="0dp"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:padding="0dp"
+                    android:text="+"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_subtotal"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_text_item"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="80dp"
+                android:layout_toRightOf="@id/iv_item"
+                android:text="Subtotal: R$20,00"
+                android:textColor="#604D4D"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/box_shadow_white"
+        android:orientation="vertical"
+        android:layout_below="@id/sv_details">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Detalhes"
+            android:textColor="#604D4D"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="240dp"
+                android:layout_height="30dp"
+                android:text="Produto"
+                android:textColor="@color/grey_title"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Qtd."
+                android:textColor="@color/grey_title"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:text="Subtotal"
+                android:textColor="@color/grey_title"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp">
+
+
+                <TextView
+                    android:layout_width="235dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/title_product_cart"
+                    android:textColor="@color/grey_subtitle"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="1"
+                    android:textColor="@color/grey_subtitle"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/price_product_cart"
+                    android:textColor="@color/grey_subtitle"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <View
+            android:layout_width="340dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey_subtitle"
+            android:focusable="false" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Total"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="220dp"
+                android:text="@string/price_product_cart"
+                android:textColor="#FF7272"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/purple_button"
+            android:text="Finalizar compra"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
