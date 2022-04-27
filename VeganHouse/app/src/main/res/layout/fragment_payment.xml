@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PaymentFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/payment_bg_color"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <RelativeLayout
+                android:paddingHorizontal="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/containerNavbar"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_price_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preço total"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_total_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_price_total"
+                    android:text="R$ 75,00"
+                    android:textColor="@color/pink_dark"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/tv_payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_total_payment"
+                    android:layout_marginTop="20dp"
+                    android:text="Forma de pagamento"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_payment_method"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_rounded_format_white"
+                    android:text="Crédito"
+                    android:theme="@style/Theme.ButtonPink" />
+
+                <Button
+                    android:id="@+id/btn_pix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_payment_method"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/btn_credit"
+                    android:background="@drawable/btn_rounded_format_white"
+                    android:text="Pix"
+                    android:theme="@style/Theme.ButtonBeighLight"
+
+                    />
+
+                <Button
+                    android:id="@+id/btn_boleto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_payment_method"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@id/btn_pix"
+                    android:background="@drawable/btn_rounded_format_white"
+                    android:text="Boleto"
+                    android:theme="@style/Theme.ButtonBeighLight" />
+
+                <TextView
+                    android:id="@+id/tv_card_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_credit"
+                    android:layout_marginTop="20dp"
+                    android:text="Forma de pagamento"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/tv_card_number"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/custom_input_radius_5"
+                    android:hint="**** **** **** ****"
+                    android:paddingHorizontal="10dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/ln_text_view"
+                    android:layout_below="@+id/et_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_expire_date"
+                        android:layout_width="0dp"
+                        android:layout_weight=".50"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/et_card_number"
+                        android:layout_marginTop="20dp"
+                        android:text="Validade"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_cvv"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight=".50"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_expire_date"
+                        android:layout_marginTop="20dp"
+                        android:text="CVV"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_edit_text"
+                    android:layout_below="@+id/ln_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/et_expire_date"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="0dp"
+                        android:layout_weight=".50"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/tv_expire_date"
+                        android:background="@drawable/custom_input_radius_5"
+                        android:paddingHorizontal="10dp"
+
+                        android:hint="Mês/Ano"
+                        />
+
+                    <EditText
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="0dp"
+                        android:layout_weight=".50"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/tv_expire_date"
+                        android:background="@drawable/custom_input_radius_5"                />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_card_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ln_edit_text"
+                    android:layout_marginTop="20dp"
+                    android:text="Nome no cartão"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_card_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/tv_card_name"
+                    android:background="@drawable/custom_input_radius_5" />
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Finalizar compra"
+                    android:layout_centerHorizontal="true"
+                    android:theme="@style/Theme.ButtonPink"
+                    android:layout_below="@id/et_card_name"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="100dp"
+                    />
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+        <!--   Header     -->
+        <RelativeLayout
+            android:id="@+id/containerNavbar"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/icon_arrow_back_pink" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Pagamento"
+                android:textAlignment="center"
+                android:textColor="@color/beige"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <!--   Header     -->
+
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>
