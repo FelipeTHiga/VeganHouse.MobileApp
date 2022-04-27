@@ -130,6 +130,8 @@
                 android:layout_height="100dp"
                 android:background="@drawable/btn_bg_explore"
                 android:layout_marginTop="30dp"/>
+
+
         </GridLayout>
 
             <LinearLayout
@@ -151,6 +153,8 @@
                     android:layout_gravity="center_vertical"
                     />
 
+
+
             </LinearLayout>
 
 
@@ -158,6 +162,7 @@
         // Body - end
 
     </RelativeLayout>
+
 </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
