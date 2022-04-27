@@ -8,15 +8,14 @@
         <entry key="..\:/Users/Felipe/AndroidStudioProjects/VeganHouse/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Felipe/AndroidStudioProjects/VeganHouse/app/src/main/res/drawable/icon_search.xml" value="0.3171875" />
         <entry key="..\:/Users/Felipe/AndroidStudioProjects/VeganHouse/app/src/main/res/layout/activity_main.xml" value="0.39332659251769464" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable-anydpi/ic_action_arrow.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/backgroud.xml" value="0.2" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_backgroud.xml" value="0.25" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_background.xml" value="0.25" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_catalog_product.xml" value="0.22395833333333334" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_main.xml" value="0.22395833333333334" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_product.xml" value="0.264" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/Users/rafae/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/list_item.xml" value="0.13697916666666668" />
+        <entry key="..\:/Users/Vitoria/OneDrive/Documentos/Bandtec/PI/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/box_shadow_white.xml" value="0.28489583333333335" />
+        <entry key="..\:/Users/Vitoria/OneDrive/Documentos/Bandtec/PI/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_cart.xml" value="0.33" />
+        <entry key="..\:/Users/Vitoria/OneDrive/Documentos/Bandtec/PI/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_catalog.xml" value="0.26875" />
+        <entry key="..\:/Users/Vitoria/OneDrive/Documentos/Bandtec/PI/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Vitoria/OneDrive/Documentos/Bandtec/PI/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/border_button_count.xml" value="0.2546875" />
+        <entry key="..\:/Users/Vitoria/OneDrive/Documentos/Bandtec/PI/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_header.xml" value="0.22" />
+        <entry key="..\:/Users/Vitoria/OneDrive/Documentos/Bandtec/PI/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/layout_card_cart.xml" value="0.2" />
+        <entry key="..\:/Users/Vitoria/OneDrive/Documentos/Bandtec/PI/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/layout_cart_details.xml" value="0.2546875" />
       </map>
     </option>
   </component>

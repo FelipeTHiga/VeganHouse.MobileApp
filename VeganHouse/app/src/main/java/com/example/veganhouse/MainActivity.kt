@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.veganhouse.fragments.CatalogFragment
 import com.example.veganhouse.fragments.HomeFragment
 import com.example.veganhouse.fragments.LoginFragment
+
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
