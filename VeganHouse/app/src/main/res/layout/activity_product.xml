@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Product">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+
+
+            >
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/soap"
+
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                android:background="@android:color/white"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kit Banho Vegan Health"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="270dp"
+                    android:text="R$ 75,00"
+                    android:textColor="#FF7272"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+
+                    />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="330dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vendido por Azul Cosméticos"
+                    android:textColor="#8D8A8A"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="110dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/star" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="4,5"
+                    android:textColor="#8D8A8A"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="380dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descrição"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="O Kit Banho Vegan Health é perfeito para o dia-a-dia ou para presentear as pessoas queridas."
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="75dp"
+                    android:text="Contém:"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:text="1 Saboneteira ecólogica;"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:text="1 Massageador para o corpo;"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="140dp"
+                    android:text="1 Sabonete Diário Plenitude;"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="160dp"
+                    android:text="1 Sabonete Diário Bem-Estar."
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="200dp"
+                    android:text="Não contém ativos de origem animal, parabenos e lauril sulfato de sódio, conservantes, corantes químicos e outros componentes nocivos à saúde e a natureza. Sendo assim, nossos produtos são feitos com ingredientes naturais e, por isso, podem sofrer variação de um lote para o outro."
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+
+                    />
+
+            </RelativeLayout>
+
+
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="700dp"
+                android:backgroundTint="#FF7272"
+                android:text="Adicionar ao Carrinho"
+                android:onClick="redirectCart"/>
+
+            <TextView
+                android:id="@+id/tv_selos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="780dp"
+                android:text="Selos"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="300dp"
+                android:layout_marginTop="780dp"
+                android:background="@drawable/ic_action_arrow_open"
+                android:onClick="openMenuSelos" />
+
+
+            <RelativeLayout
+                android:layout_below="@+id/tv_selos"
+                android:id="@+id/imageContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/selo1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/selo1"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:layout_centerHorizontal="true"
+
+                    android:id="@+id/textSelo1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/selo1"
+                    android:text="Selo da sociedade Vegetariana Brasileira"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+
+                    android:id="@+id/selo2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/textSelo1"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/selo2" />
+
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/textSelo2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/selo2"
+                    android:text="Selo da Vegan Societ"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+
+                    />
+
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/selo3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/textSelo2"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/selo3" />
+
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:id="@+id/textSelo3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/selo3"
+                    android:text="Certificado Vegano da Organização Veganismo Brasil"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/imageContainer"
+                android:text="Sobre o Vendador"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iconArrow"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="300dp"
+                android:layout_marginTop="20dp"
+
+                android:layout_below="@+id/imageContainer"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/ic_action_arrow_open"
+                android:onClick="openMenuRedesSociais" />
+
+            <ImageView
+                android:id="@+id/iconInstagram"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_below="@+id/iconArrow"
+                android:background="@drawable/instagram" />
+
+            <ImageView
+                android:id="@+id/iconFacebook"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="138dp"
+                android:layout_below="@+id/iconArrow"
+                android:background="@drawable/facebook" />
+
+            <ImageView
+                android:id="@+id/iconWhatsapp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="270dp"
+                android:layout_below="@+id/iconArrow"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/whatsapp" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

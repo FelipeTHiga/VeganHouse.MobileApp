@@ -1,5 +1,6 @@
 package com.example.veganhouse
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,10 +31,10 @@ class Login : AppCompatActivity() {
         val userLogin = UserLogin (etEmail.text.toString(), etPassword.text.toString())
         val loginUser = ApiLogin.criar().postLogin(userLogin);
 
-
         loginUser.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
+
                     redirectHome(v)
                 } else {
                     // etEmail.error = "Email incorreto"

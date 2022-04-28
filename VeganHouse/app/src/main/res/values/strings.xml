@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Vegan House</string>
+    <string name="title_cart">Carrinho</string>
+    <string name="title_product_cart">Kit Banho Vegan Health</string>
+    <string name="price_product_cart">R$ 75,00</string>
+    <string name="select">Selos</string>
+
+
+    <!--    Main        -->
+    <string name="hint_search_bar">Pesquise um produto aqui</string>
 
     <!-- Payment Result -->
     <string name="payment">Pagamento</string>
@@ -14,5 +22,37 @@
     <string name="payment_result_msg_error_resume">Erro ao finalizar a compra.</string>
 
     <string name="payment_result_return">Voltar às compras</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Catalog-->
+    <string name="catalog_title">Catálogo</string>
+    <string name="categories">Categorias</string>
+    <string name="hint_search_bar_catalog">Digite o que você procura</string>
+    <string name="filter_by">Filtrar por:</string>
+    <string name="order_by">Ordenar por:</string>
+    <string name="products">Produtos</string>
+
+    <string-array name="categories">
+        <item>Nome</item>
+        <item>Todos</item>
+        <item>Acessórios</item>
+        <item>Alimentos</item>
+        <item>Cosméticos</item>
+        <item>Saúde</item>
+        <item>Vestimenta</item>
+    </string-array>
+
+    <string-array name="order_by">
+        <item>Categorias</item>
+        <item>Menor preço</item>
+        <item>Maior preço</item>
+        <item>Nome</item>
+    </string-array>
+
+    <!-- Product example-->
+    <string name="product_name_example">Óleo Vegetal De Romã</string>
+    <string name="product_price_example">R$ 75,00</string>
+    <string name="product_score_example">4.5</string>
 
 </resources>
