@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.veganhouse.fragments.CatalogFragment
-import com.example.veganhouse.fragments.HomeFragment
-import com.example.veganhouse.fragments.LoginFragment
+import com.example.veganhouse.fragments.*
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,13 +22,16 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val loginFragment = LoginFragment()
         val catalogFragment = CatalogFragment()
+        val paymentFragment = PaymentFragment()
+        val cartFragment = CartFragment()
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         makeCurrentFragment(homeFragment)
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item -> when(item.itemId){
             R.id.icon_home -> makeCurrentFragment(homeFragment);
             R.id.icon_user -> makeCurrentFragment(loginFragment)
-            R.id.icon_search -> makeCurrentFragment(catalogFragment)
+            R.id.icon_shopping_bag -> makeCurrentFragment(cartFragment)
+            // R.id.icon_search -> makeCurrentFragment(catalogFragment)
         }
         true
         }
@@ -49,10 +50,10 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Mostrando menu", Toast.LENGTH_SHORT).show()
     }
 
-    fun abrirTelaProduto(v:View){
-        val telaProduto = Intent(this, Product()::class.java)
-        startActivity((telaProduto))
-    }
+//    fun abrirTelaProduto(v:View){
+//        val telaProduto = Intent(this, Product()::class.java)
+//        startActivity((telaProduto))
+//    }
 
 
         fun telaCatalog(button: View) {

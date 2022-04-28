@@ -1,15 +1,15 @@
 package com.example.veganhouse.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
-import com.example.veganhouse.ApiProduct
-import com.example.veganhouse.ProductCardAdapter
-import com.example.veganhouse.R
+import com.example.veganhouse.*
 import com.example.veganhouse.data.Product
 import retrofit2.Call
 import retrofit2.Callback
@@ -64,8 +64,8 @@ class CatalogFragment : Fragment() {
         spinnerOrderby = v.findViewById(R.id.spinner_orderBy)
         progressBar = v.findViewById(R.id.progress_bar)
 
-        categoryPosition = arguments?.getInt("categoryPosition")!!
-        categoryValue = arguments?.getString("categoryValue").toString()
+        categoryPosition = arguments?.getInt("categoryPosition", 1)!!
+        categoryValue = arguments?.getString("categoryValue", "acessorios").toString()
 
         val product_card = v.findViewById<RecyclerView>(R.id.products_component)
         product_card.adapter = adapter

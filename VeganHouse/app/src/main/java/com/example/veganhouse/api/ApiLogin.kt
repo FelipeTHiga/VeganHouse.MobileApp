@@ -16,6 +16,7 @@ interface ApiLogin {
         // 52.207.48.19 ip da máquina na AWS que está com o backend
         //var BASE_URL = "http://10.0.2.2:8080/"
         var BASE_URL = "http://174.129.13.249:8080/"
+        //var BASE_URL = "http://10.0.2.2:8080/"
 
         fun criar () : ApiLogin {
             val retrofit = Retrofit.Builder()

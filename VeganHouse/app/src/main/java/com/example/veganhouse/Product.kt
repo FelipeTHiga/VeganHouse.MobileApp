@@ -1,5 +1,6 @@
 package com.example.veganhouse
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -77,6 +78,11 @@ class Product : AppCompatActivity() {
 //            textSelo3.visibility = View.VISIBLE
 //        }
 
+    }
+
+    fun redirectCart(v:View){
+        val cartActivity = Intent(this, Cart::class.java)
+        startActivity(cartActivity)
     }
 
 
