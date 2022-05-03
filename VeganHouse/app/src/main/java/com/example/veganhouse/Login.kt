@@ -1,15 +1,14 @@
 package com.example.veganhouse
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import com.example.veganhouse.api.ApiLogin
-import com.example.veganhouse.data.User
-import com.example.veganhouse.data.UserLogin
+import com.example.veganhouse.service.SessionService
+import com.example.veganhouse.model.User
+import com.example.veganhouse.model.UserLogin
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +28,7 @@ class Login : AppCompatActivity() {
 
     fun login(v: View){
         val userLogin = UserLogin (etEmail.text.toString(), etPassword.text.toString())
-        val loginUser = ApiLogin.criar().postLogin(userLogin);
+        val loginUser = SessionService.getInstace().postLogin(userLogin);
 
         loginUser.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {

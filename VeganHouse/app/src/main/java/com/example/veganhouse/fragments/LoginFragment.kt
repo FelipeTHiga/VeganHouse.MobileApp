@@ -1,6 +1,5 @@
 package com.example.veganhouse.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +9,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
-import com.example.veganhouse.MainActivity
 import com.example.veganhouse.R
-import com.example.veganhouse.Signin
-import com.example.veganhouse.api.ApiLogin
-import com.example.veganhouse.data.User
-import com.example.veganhouse.data.UserLogin
+import com.example.veganhouse.service.SessionService
+import com.example.veganhouse.model.User
+import com.example.veganhouse.model.UserLogin
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,7 +66,7 @@ class LoginFragment : Fragment() {
 
     fun login(v: View){
         val userLogin = UserLogin (etEmail.text.toString(), etPassword.text.toString())
-        val loginUser = ApiLogin.criar().postLogin(userLogin);
+        val loginUser = SessionService.getInstace().postLogin(userLogin);
 
 
         loginUser.enqueue(object : Callback<User> {
