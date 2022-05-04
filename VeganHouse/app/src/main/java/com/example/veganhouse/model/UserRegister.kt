@@ -1,4 +1,4 @@
-package com.example.veganhouse.data
+package com.example.veganhouse.model
 
 data class UserRegister(var nameUser: String,
                         var surName: String,
