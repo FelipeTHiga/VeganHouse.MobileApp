@@ -11,6 +11,7 @@ import com.example.veganhouse.model.Product
 
 class ProductCardAdapter(private val products: List<Product>) :
     RecyclerView.Adapter<ProductCardAdapter.ContactViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.product_item, parent, false)

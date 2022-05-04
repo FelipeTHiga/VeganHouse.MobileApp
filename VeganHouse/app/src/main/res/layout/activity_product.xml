@@ -189,7 +189,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="300dp"
                 android:layout_marginTop="780dp"
-                android:background="@drawable/ic_action_arrow_open"
+                android:background="@drawable/ic_arrow_right"
                 android:onClick="openMenuSelos" />
 
 
@@ -284,15 +284,15 @@
 
                 android:layout_below="@+id/imageContainer"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/ic_action_arrow_open"
+                android:background="@drawable/ic_arrow_right"
                 android:onClick="openMenuRedesSociais" />
 
             <ImageView
                 android:id="@+id/iconInstagram"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginLeft="0dp"
                 android:layout_below="@+id/iconArrow"
+                android:layout_marginLeft="0dp"
                 android:background="@drawable/instagram" />
 
             <ImageView
