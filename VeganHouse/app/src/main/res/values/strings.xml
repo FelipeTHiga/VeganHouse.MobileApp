@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Vegan House</string>
+    <!--    IPs        -->
+    <string name="ip_api_local">http://10.0.2.2:8080/</string>
+    <string name="ip_api_maquina1">http://52.207.48.19:8080/</string>
+    <string name="ip_api_maquina2">http://174.129.13.249:8080/</string>
+
+
     <string name="title_cart">Carrinho</string>
     <string name="title_product_cart">Kit Banho Vegan Health</string>
     <string name="price_product_cart">R$ 75,00</string>

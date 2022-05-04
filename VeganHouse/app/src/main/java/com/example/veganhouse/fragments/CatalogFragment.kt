@@ -1,16 +1,15 @@
 package com.example.veganhouse.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.*
-import com.example.veganhouse.data.Product
+import com.example.veganhouse.adapter.ProductCardAdapter
+import com.example.veganhouse.model.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -168,7 +167,7 @@ class CatalogFragment : Fragment() {
 
     fun getAllProducts() {
 
-        val getAllProducts = ApiProduct.criar().getAllProducts()
+        val getAllProducts = ProductService.getInstance().getAllProducts()
         progressBar.visibility = View.VISIBLE
 
         getAllProducts.enqueue(object : Callback<List<Product>> {
@@ -204,7 +203,7 @@ class CatalogFragment : Fragment() {
     fun getProductByCategory() {
 
         var category = categoryValue
-        val getProductByCategory = ApiProduct.criar().getProductByCategory(category)
+        val getProductByCategory = ProductService.getInstance().getProductByCategory(category)
 
         progressBar.visibility = View.VISIBLE
 
@@ -269,7 +268,7 @@ class CatalogFragment : Fragment() {
             }
         }
 
-        val getProductByCategory = ApiProduct.criar().getProductByCategory(categoryValue)
+        val getProductByCategory = ProductService.getInstance().getProductByCategory(categoryValue)
 
         progressBar.visibility = View.VISIBLE
 
@@ -305,7 +304,7 @@ class CatalogFragment : Fragment() {
     fun getProductByCategory(spinnerCategory: String) {
 
         var category = spinnerCategory
-        val getProductByCategory = ApiProduct.criar().getProductByCategory(category)
+        val getProductByCategory = ProductService.getInstance().getProductByCategory(category)
 
         progressBar.visibility = View.VISIBLE
 
@@ -342,7 +341,7 @@ class CatalogFragment : Fragment() {
         var orderBy = orderBy
         var category = spinnerCategorySelected
         //var category = if (spinnerCategorySelected != "name") spinnerCategorySelected else "Todos"
-        val getProductOrderBy = ApiProduct.criar().getProductOrderBy(orderBy, category)
+        val getProductOrderBy = ProductService.getInstance().getProductOrderBy(orderBy, category)
 
         progressBar.visibility = View.VISIBLE
 

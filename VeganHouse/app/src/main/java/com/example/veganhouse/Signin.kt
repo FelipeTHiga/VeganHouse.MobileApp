@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import com.example.veganhouse.api.ApiUser
-import com.example.veganhouse.data.User
-import com.example.veganhouse.data.UserRegister
+import com.example.veganhouse.service.UserService
+import com.example.veganhouse.model.User
+import com.example.veganhouse.model.UserRegister
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +42,7 @@ class Signin : AppCompatActivity() {
             false
         )
 
-        val apiRegister = ApiUser.criar().resgiterUser(newUser)
+        val apiRegister = UserService.getInstance().resgiterUser(newUser)
 
         apiRegister.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
