@@ -1,4 +1,4 @@
-package com.example.veganhouse.data
+package com.example.veganhouse.model
 
 import retrofit2.http.Url
 
