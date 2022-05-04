@@ -22,12 +22,12 @@
             android:textSize="33sp" />
 
         <ImageView
+            android:id="@+id/rounded_container"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/rounded_container_white"
             android:layout_below="@id/tv_payment_result"
-            android:id="@+id/rounded_container"
-            android:layout_marginTop="120dp"/>
+            android:layout_marginTop="120dp"
+            android:background="@drawable/rounded_container_white" />
 
         <ImageView
             android:id="@+id/iv_result"
@@ -64,14 +64,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_payment_result_msg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
             android:width="250dp"
             android:height="50dp"
             android:backgroundTint="#FAB4B4"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
             android:text="@string/payment_result_return"
-            android:textSize="15sp"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:textSize="15sp" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
