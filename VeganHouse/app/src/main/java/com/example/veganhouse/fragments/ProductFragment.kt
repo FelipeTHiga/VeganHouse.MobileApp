@@ -12,11 +12,11 @@ import android.widget.*
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.CertificationItemAdapter
-import com.example.veganhouse.ProductCardAdapter
+import com.example.veganhouse.adapter.ProductCardAdapter
 import com.example.veganhouse.R
 import com.example.veganhouse.api.ApiSellerCertified
-import com.example.veganhouse.data.Certification
-import com.example.veganhouse.data.Product
+import com.example.veganhouse.model.Certification
+import com.example.veganhouse.model.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
