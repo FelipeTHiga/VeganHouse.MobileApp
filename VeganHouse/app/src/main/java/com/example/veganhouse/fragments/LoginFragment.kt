@@ -1,5 +1,6 @@
 package com.example.veganhouse.fragments
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.example.veganhouse.R
 import com.example.veganhouse.service.SessionService
@@ -30,6 +32,7 @@ private const val ARG_PARAM2 = "param2"
 class LoginFragment : Fragment() {
     lateinit var etEmail: EditText
     lateinit var etPassword: EditText
+    lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,7 @@ class LoginFragment : Fragment() {
         val btnLogin: Button = v.findViewById(R.id.btn_login)
         etEmail = v.findViewById(R.id.et_email)
         etPassword = v.findViewById(R.id.et_password)
+        preferences = activity?.baseContext?.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)!!
 
         btnSignin.setOnClickListener {
             val signinFragment = SigninFragment()
@@ -68,11 +72,11 @@ class LoginFragment : Fragment() {
         val userLogin = UserLogin (etEmail.text.toString(), etPassword.text.toString())
         val loginUser = SessionService.getInstace().postLogin(userLogin);
 
-
         loginUser.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
                     redirectHome(v)
+                    //setar o atributo da activty userFragment() = ProfileFragment()
                 } else {
                     // etEmail.error = "Email incorreto"
                     // etPassword.error = "Senha incorreta"

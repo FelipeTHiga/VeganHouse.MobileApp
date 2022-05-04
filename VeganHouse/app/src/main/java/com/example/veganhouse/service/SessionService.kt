@@ -1,5 +1,7 @@
 package com.example.veganhouse.service
 
+import android.content.res.Resources
+import com.example.veganhouse.R
 import com.example.veganhouse.model.User
 import com.example.veganhouse.model.UserLogin
 import retrofit2.Call
@@ -10,13 +12,10 @@ import retrofit2.http.*
 interface SessionService {
     @POST("session/login")
     fun postLogin(@Body user: UserLogin) : Call<User>
-    //local storage -
-    companion object {
-        // 10.0.2.2 ip coringa para testar com a API local
-        // 52.207.48.19 ip da máquina na AWS que está com o backend
-        //var BASE_URL = "http://10.0.2.2:8080/"
-        var BASE_URL = "http://174.129.13.249:8080/"
-        //var BASE_URL = "http://10.0.2.2:8080/"
+
+
+        companion object {
+            var BASE_URL = Resources.getSystem().getString(R.string.ip_api_local)
 
         fun getInstace () : SessionService {
             val retrofit = Retrofit.Builder()
