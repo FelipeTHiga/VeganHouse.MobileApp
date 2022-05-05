@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import com.example.veganhouse.data.Product
+import com.example.veganhouse.adapter.ProductCardAdapter
+import com.example.veganhouse.model.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -139,7 +140,7 @@ class Catalog : AppCompatActivity() {
 
     fun getAllProducts() {
 
-        val getAllProducts = ApiProduct.criar().getAllProducts()
+        val getAllProducts = ProductService.getInstance().getAllProducts()
         progressBar.visibility = View.VISIBLE
 
         getAllProducts.enqueue(object : Callback<List<Product>> {
@@ -175,7 +176,7 @@ class Catalog : AppCompatActivity() {
     fun getProductByCategory() {
 
         var category = categoryValue
-        val getProductByCategory = ApiProduct.criar().getProductByCategory(category)
+        val getProductByCategory = ProductService.getInstance().getProductByCategory(category)
 
         progressBar.visibility = View.VISIBLE
 
@@ -240,7 +241,7 @@ class Catalog : AppCompatActivity() {
             }
         }
 
-        val getProductByCategory = ApiProduct.criar().getProductByCategory(categoryValue)
+        val getProductByCategory = ProductService.getInstance().getProductByCategory(categoryValue)
 
         progressBar.visibility = View.VISIBLE
 
@@ -276,7 +277,7 @@ class Catalog : AppCompatActivity() {
     fun getProductByCategory(spinnerCategory: String) {
 
         var category = spinnerCategory
-        val getProductByCategory = ApiProduct.criar().getProductByCategory(category)
+        val getProductByCategory = ProductService.getInstance().getProductByCategory(category)
 
         progressBar.visibility = View.VISIBLE
 
@@ -313,7 +314,7 @@ class Catalog : AppCompatActivity() {
         var orderBy = orderBy
         var category = spinnerCategorySelected
         //var category = if (spinnerCategorySelected != "name") spinnerCategorySelected else "Todos"
-        val getProductOrderBy = ApiProduct.criar().getProductOrderBy(orderBy, category)
+        val getProductOrderBy = ProductService.getInstance().getProductOrderBy(orderBy, category)
 
         progressBar.visibility = View.VISIBLE
 

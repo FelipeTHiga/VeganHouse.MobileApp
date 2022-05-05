@@ -195,14 +195,13 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="20dp"
                     >
+
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card1"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:background="@drawable/banner_product_bg"
                         android:layout_centerVertical="true"
-                        >
-                    </com.google.android.material.card.MaterialCardView>
+                        android:background="@drawable/banner_product_bg"></com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card2"

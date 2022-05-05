@@ -1,15 +1,25 @@
 package com.example.veganhouse.fragments
 
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.RelativeLayout
+import android.widget.*
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.RecyclerView
+import com.example.veganhouse.CertificationItemAdapter
+import com.example.veganhouse.adapter.ProductCardAdapter
 import com.example.veganhouse.R
+import com.example.veganhouse.api.ApiSellerCertified
+import com.example.veganhouse.model.Certification
+import com.example.veganhouse.model.Product
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +35,8 @@ class ProductFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var arrayCertification: ArrayList<Certification> = arrayListOf()
+    private var adapter = CertificationItemAdapter(arrayCertification)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +44,7 @@ class ProductFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        this.getSellerCertified()
     }
 
     override fun onCreateView(
@@ -40,88 +53,105 @@ class ProductFragment : Fragment() {
     ): View? {
         val v = inflater.inflate(R.layout.fragment_product, container, false)
 
-        val btnOpenMenuRedesSociais: ImageView = v.findViewById(R.id.iconArrow)
-        val btnOpenMenuSelos: ImageView = v.findViewById(R.id.iv_menu_selos)
-        val btnRedirectCart: Button = v.findViewById(R.id.btn_redirect_cart)
+        val btnOpenContainerCertifications: ImageView =
+            v.findViewById(R.id.arrow_container_certifications)
+        val btnOpenContainerSeller: ImageView = v.findViewById(R.id.arrow_container_seller)
+        val btnRedirectCart: Button = v.findViewById(R.id.btn_add_cart)
 
-        btnOpenMenuRedesSociais.setOnClickListener {
-            openMenuRedesSociais(v)
+        v.findViewById<ImageView>(R.id.arrow_container_certifications)
+            .setImageResource(R.drawable.ic_arrow_right)
+        v.findViewById<ImageView>(R.id.arrow_container_seller)
+            .setImageResource(R.drawable.ic_arrow_right)
+
+        val recyclerView = v.findViewById<RecyclerView>(R.id.certifications_component)
+        recyclerView.adapter = adapter
+
+        btnOpenContainerCertifications.setOnClickListener {
+            btnOpenContainerCertifications(v)
         }
+
+        btnOpenContainerSeller.setOnClickListener {
+            btnOpenContainerSeller(v)
+        }
+
         btnRedirectCart.setOnClickListener {
             redirectCart()
-        }
-        btnOpenMenuSelos.setOnClickListener {
-            openMenuSelos(v)
         }
 
         return v
     }
 
-    fun openMenuRedesSociais(v:View){
 
-        var arrow = v.findViewById<ImageView>(R.id.iconArrow)
-        var instagram = v.findViewById<ImageView>(R.id.iconInstagram)
-        var facebook = v.findViewById<ImageView>(R.id.iconFacebook)
-        var whatsapp = v.findViewById<ImageView>(R.id.iconWhatsapp)
+    fun btnOpenContainerCertifications(v: View) {
 
-        if(instagram.visibility == View.VISIBLE){
-            instagram.visibility = View.GONE
-            facebook.visibility = View.GONE
-            whatsapp.visibility = View.GONE
+        var arrow = v.findViewById<ImageView>(R.id.arrow_container_certifications)
+        var containerCertification = v.findViewById<RelativeLayout>(R.id.rl_container_certification)
+
+        if (containerCertification.visibility == View.VISIBLE) {
+            containerCertification.visibility = View.GONE
+            arrow.setImageResource(R.drawable.ic_arrow_right)
         } else {
-            instagram.visibility = View.VISIBLE
-            facebook.visibility = View.VISIBLE
-            whatsapp.visibility = View.VISIBLE
+            containerCertification.visibility = View.VISIBLE
+            arrow.setImageResource(R.drawable.ic_arrow_down)
         }
-    }
-
-
-    fun openMenuSelos(v:View){
-
-        var arrow = v.findViewById<ImageView>(R.id.iconArrow)
-
-        var containerImage = v.findViewById<RelativeLayout>(R.id.imageContainer)
-
-        if (containerImage.visibility == View.VISIBLE){
-            containerImage.visibility = View.GONE
-        } else {
-            containerImage.visibility = View.VISIBLE
-        }
-
-//        var selo1 = findViewById<ImageView>(R.id.selo1)
-//        var selo2 = findViewById<ImageView>(R.id.selo2)
-//        var selo3 = findViewById<ImageView>(R.id.selo3)
-//
-//        var textSelo1 = findViewById<TextView>(R.id.textSelo1)
-//        var textSelo2 = findViewById<TextView>(R.id.textSelo2)
-//        var textSelo3 = findViewById<TextView>(R.id.textSelo3)
-//
-//        if(selo1.visibility == View.VISIBLE){
-//            selo1.visibility = View.GONE
-//            selo2.visibility = View.GONE
-//            selo3.visibility = View.GONE
-//
-//            textSelo1.visibility = View.GONE
-//            textSelo2.visibility = View.GONE
-//            textSelo3.visibility = View.GONE
-//
-//        } else {
-//            selo1.visibility = View.VISIBLE
-//            selo2.visibility = View.VISIBLE
-//            selo3.visibility = View.VISIBLE
-//
-//            textSelo1.visibility = View.VISIBLE
-//            textSelo2.visibility = View.VISIBLE
-//            textSelo3.visibility = View.VISIBLE
-//        }
 
     }
 
-    fun redirectCart(){
+    fun btnOpenContainerSeller(v: View) {
+
+        var arrow = v.findViewById<ImageView>(R.id.arrow_container_seller)
+        var containerSocialMidia =
+            v.findViewById<GridLayout>(R.id.grid_container_seller_social_midia)
+
+        if (containerSocialMidia.visibility == View.VISIBLE) {
+            containerSocialMidia.visibility = View.GONE
+            arrow.setImageResource(R.drawable.ic_arrow_right)
+        } else {
+            containerSocialMidia.visibility = View.VISIBLE
+            arrow.setImageResource(R.drawable.ic_arrow_down)
+        }
+    }
+
+    fun redirectCart() {
         val cartFragment = CartFragment()
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.fl_wrapper, cartFragment)
         transaction.commit()
+    }
+
+    fun getSellerCertified() {
+
+        val getSellerCertified = ApiSellerCertified.criar().getSellerCertified(1)
+        //val homedateList: List<HomeDate> = gson.fromJson(body, Array<HomeDate>::class.java).toList()
+
+        getSellerCertified.enqueue(object : Callback<List<Certification>> {
+
+            override fun onResponse(
+                call: Call<List<Certification>>,
+                response: Response<List<Certification>>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.code() == 204 || response.body() == null) {
+                        Toast.makeText(context, "Sem certificados", Toast.LENGTH_SHORT).show()
+                        return
+                    }
+                    if (arrayCertification.isNotEmpty()) arrayCertification.clear()
+                    response.body()?.forEach { certified ->
+                        arrayCertification.add(certified)
+                    }
+                    adapter.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(context, "Sem certificados", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Certification>>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
     }
 
     companion object {

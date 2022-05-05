@@ -1,6 +1,7 @@
 package com.example.veganhouse
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,12 +14,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-
-
+ // localstorage
+ lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        preferences = getSharedPreferences("user", MODE_PRIVATE)
+        val auth = preferences.getString("id", null)
+
+        if (!auth.isNullOrEmpty()) {
+            var userFragment = when {
+                !auth.isNullOrEmpty() -> LoginFragment()
+                else -> HomeFragment() //ProfileFragment()
+            }
+        }
+
         val homeFragment = HomeFragment()
         val loginFragment = LoginFragment()
         val catalogFragment = CatalogFragment()
@@ -28,8 +40,8 @@ class MainActivity : AppCompatActivity() {
         makeCurrentFragment(homeFragment)
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item -> when(item.itemId){
-            R.id.icon_home -> makeCurrentFragment(homeFragment);
-            R.id.icon_user -> makeCurrentFragment(loginFragment)
+            R.id.icon_home -> makeCurrentFragment(homeFragment)
+            R.id.icon_user ->  makeCurrentFragment(loginFragment)
             R.id.icon_shopping_bag -> makeCurrentFragment(cartFragment)
             // R.id.icon_search -> makeCurrentFragment(catalogFragment)
         }

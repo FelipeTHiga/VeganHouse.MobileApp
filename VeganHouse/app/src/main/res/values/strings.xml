@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Vegan House</string>
+    <!--    IPs        -->
+    <string name="ip_api_local">http://10.0.2.2:8080/</string>
+    <string name="ip_api_maquina1">http://52.207.48.19:8080/</string>
+    <string name="ip_api_maquina2">http://174.129.13.249:8080/</string>
+
+
     <string name="title_cart">Carrinho</string>
     <string name="title_product_cart">Kit Banho Vegan Health</string>
     <string name="price_product_cart">R$ 75,00</string>
@@ -22,10 +28,8 @@
     <string name="payment_result_msg_error_resume">Erro ao finalizar a compra.</string>
 
     <string name="payment_result_return">Voltar às compras</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- Catalog-->
+    <!-- Catalog       -->
     <string name="catalog_title">Catálogo</string>
     <string name="categories">Categorias</string>
     <string name="hint_search_bar_catalog">Digite o que você procura</string>
@@ -50,9 +54,47 @@
         <item>Nome</item>
     </string-array>
 
-    <!-- Product example-->
+    <!-- Product Page          -->
+    <string name="product_title">Produto</string>
+    <string name="description">Descrição</string>
+    <string name="btn_add_cart">Adicionar ao carrinho</string>
+    <string name="product_name">Kit Banho Vegan Hëalth</string>
+    <string name="product_seller">Vendido por Azul Cosméticos</string>
+    <string name="product_price">R$ 75.00</string>
+    <string name="product_score">4.5</string>
+    <string name="product_description">O Kit Banho Vegan Hëalth é perfeito para o dia-a-dia ou para presentear as pessoas queridas.
+                                        Contém:
+
+                                        1 Saboneteira ecológica;
+                                        1 Massageador para o corpo;
+                                        1 Sabonete Diário Plenitude;
+                                        1 Sabonete Diário Bem-Estar.
+                                        Não contém ativos de origem animal, parabenos e lauril sulfato de sódio, conservantes, corantes químicos e outros componentes nocivos à saúde e à natureza. Sendo assim, nossos produtos são feitos com ingredientes naturais e, por isso, podem sofrer variação de um lote para o outro.</string>
+    <string name="seller_certifications">Certificações</string>
+    <string name="seller_social_midias">Sobre o vendedor</string>
+
+    <string name="certified_name">Selo da sociedade Vegetariana Brasileira</string>
+    <string name="seller_instagram">_joaaoRoupas</string>
+    <string name="seller_facebook">_joaaoRoupas</string>
+    <string name="seller_whatsapp">(11)95877-5674</string>
+
+    <!-- Product example       -->
     <string name="product_name_example">Óleo Vegetal De Romã</string>
     <string name="product_price_example">R$ 75,00</string>
     <string name="product_score_example">4.5</string>
+
+
+    <!-- Cart Page             -->
+    <string name="cart_title">Carrinho</string>
+    <string name="product_quantity">1</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="subtotal_price">Subtotal: R$20,00</string>
+    <string name="details">Detalhes</string>
+    <string name="product">Produto</string>
+    <string name="qtd">Qtd.</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="product_desc">Tênis Rapé Trama em Lona de Garrafa PET</string>
+    <string name="total">Total</string>
 
 </resources>
