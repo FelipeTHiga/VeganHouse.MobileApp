@@ -16,4 +16,13 @@
             <stroke android:color="#FF7E7E" android:width="1dp" />
         </shape>
     </item>
+
+    <item android:state_enabled="false" >
+        <shape android:shape="rectangle">
+
+            <solid android:color="#BCBCBC" />
+            <corners android:radius="5dp" />
+            <stroke android:color="#302E2E" android:width="1dp" />
+        </shape>
+    </item>
 </selector>
