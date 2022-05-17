@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ProfileAdressData">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="57dp">
+        <!--   Header     -->
+        <RelativeLayout
+            android:id="@+id/containerNavbar"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginBottom="20dp"
+            >
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/icon_arrow_back_pink" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="Perfil"
+                android:textAlignment="center"
+                android:textColor="@color/pink"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <!--   Header     -->
+
+
+        <!-- Menu -->
+        <ImageButton
+            android:id="@+id/btn_personal_data"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_below="@+id/containerNavbar"
+            android:background="@drawable/btn_bg_personal_data" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_below="@+id/containerNavbar"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_bg_user_orders" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_below="@+id/containerNavbar"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_bg_adress_data_selected" />
+        <!-- Menu -->
+
+
+        <TextView
+            android:id="@+id/tv_section_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_personal_data"
+            android:layout_marginTop="40dp"
+            android:text="Endereço"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_tv_cep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="CEP"
+            android:layout_below="@id/tv_section_title"
+            />
+
+        <EditText
+            android:id="@+id/profile_et_cep"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/profile_tv_cep"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="CEP"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="5dp"
+            style="@style/CardView.Light"
+            />
+
+        <LinearLayout
+            android:id="@+id/ln_text_view"
+            android:layout_below="@+id/profile_et_cep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/profile_tv_state"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_card_number"
+                android:layout_marginTop="20dp"
+                android:text="Estado"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/profile_tv_city"
+                android:layout_marginLeft="10dp"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_expire_date"
+                android:layout_marginTop="20dp"
+                android:text="Cidade"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_edit_text"
+            android:layout_below="@+id/ln_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/et_expire_date"
+                android:layout_marginTop="5dp"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="35dp"
+                android:layout_below="@id/tv_expire_date"
+                android:background="@drawable/input_signin_bg"
+                android:paddingHorizontal="10dp"
+
+                android:hint="Estado"
+                />
+
+            <EditText
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="35dp"
+                android:layout_below="@id/tv_expire_date"
+                android:paddingHorizontal="10dp"
+                android:hint="Cidade"
+                android:background="@drawable/input_signin_bg"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/profile_tv_neighborhood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Bairro"
+            android:layout_below="@id/ln_edit_text"
+            />
+
+        <EditText
+            android:id="@+id/profile_et_neighborhood"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/profile_tv_neighborhood"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="Bairro"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="5dp"
+            style="@style/CardView.Light"
+            />
+
+        <TextView
+            android:id="@+id/profile_tv_adressLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Rua"
+            android:layout_below="@id/profile_et_neighborhood"
+            />
+
+        <EditText
+            android:id="@+id/profile_et_adressline"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/profile_tv_adressLine"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="Rua"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="5dp"
+            style="@style/CardView.Light"
+            />
+
+        <TextView
+            android:id="@+id/profile_tv_adressNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Complemento"
+            android:layout_below="@id/profile_et_adressline"
+            />
+
+        <EditText
+            android:id="@+id/profile_et_adressNote"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/profile_tv_adressNote"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/input_signin_bg"
+            android:hint="Complemento"
+            android:drawablePadding="5dp"
+            android:paddingLeft="5dp"
+            android:textColorHint="#604D4D"
+            android:layout_marginTop="5dp"
+            style="@style/CardView.Light"
+            />
+
+
+        <Button
+            android:id="@+id/btn_signin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_et_adressNote"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/btn_rounded_format_white"
+            android:onClick="registerUser"
+            android:text="Salvar"
+            android:theme="@style/Theme.ButtonPink" />
+    </RelativeLayout>
+    </ScrollView>
+</FrameLayout>
