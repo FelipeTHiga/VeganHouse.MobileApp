@@ -17,25 +17,25 @@
             android:name=".NoConnection"
             android:exported="false" />
         <activity
-            android:name=".Signin"
+            android:name=".Activities.Signin"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".Activities.Login"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Catalog"
+            android:name=".Activities.Catalog"
             android:exported="false" />
         <activity
-            android:name=".Product"
+            android:name=".Activities.Product"
             android:exported="false" />
         <activity
-            android:name=".Cart"
+            android:name=".Activities.Cart"
             android:exported="false" />
         <activity
-            android:name=".PaymentResult"
+            android:name=".Activities.PaymentResult"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
