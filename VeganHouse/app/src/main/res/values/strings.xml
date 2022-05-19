@@ -2,8 +2,8 @@
     <string name="app_name">Vegan House</string>
     <!--    IPs        -->
     <string name="ip_api_local">http://10.0.2.2:8080/</string>
-    <string name="ip_api_maquina1">http://52.207.48.19:8080/</string>
-    <string name="ip_api_maquina2">http://174.129.13.249:8080/</string>
+    <string name="ip_api_vm1">http://52.207.48.19:8080/</string>
+    <string name="ip_api_vm2">http://174.129.13.249:8080/</string>
 
 
     <string name="title_cart">Carrinho</string>
@@ -11,9 +11,21 @@
     <string name="price_product_cart">R$ 75,00</string>
     <string name="select">Selos</string>
 
+    <!-- Title, Message, btnText of Alerts   -->
+    <string name="attention">Atenção</string>
+    <string name="api_error_message">Sistema indisponível no momento. Por favor, tente mais tarde.</string>
+    <string name="ok">Ok, entendi!</string>
 
-    <!--    Main        -->
+
+    <!--    Main / Home        -->
+    <string name="home_title">Home</string>
     <string name="hint_search_bar">Pesquise um produto aqui</string>
+    <string name="news">Novidades</string>
+
+    <!--    No Connection     -->
+    <string name="no_connection_title">Ops... algo deu errado</string>
+    <string name="no_connection_message">Verifique sua conexão</string>
+    <string name="btn_close">Fechar</string>
 
     <!-- Payment Result -->
     <string name="payment">Pagamento</string>
@@ -58,6 +70,8 @@
     <string name="product_title">Produto</string>
     <string name="description">Descrição</string>
     <string name="btn_add_cart">Adicionar ao carrinho</string>
+    <string name="btn_unavailable">Indisponível</string>
+    <string name="notify_user"><u>Avise-me quando chegar</u></string>
     <string name="product_name">Kit Banho Vegan Hëalth</string>
     <string name="product_seller">Vendido por Azul Cosméticos</string>
     <string name="product_price">R$ 75.00</string>

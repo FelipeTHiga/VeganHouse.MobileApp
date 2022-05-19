@@ -1,7 +1,7 @@
 package com.example.veganhouse.model
 
 data class Product(
-    val id: Int,
+    var id: Int,
     var name: String,
     var price: Double,
     var category: String,

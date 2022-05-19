@@ -1,4 +1,4 @@
-package com.example.veganhouse
+package com.example.veganhouse.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.veganhouse.data.Certification
+import com.example.veganhouse.R
+import com.example.veganhouse.model.Certification
 
-class CertificationItemAdapter(private val certifications: List<Certification>) :
+class CertificationItemAdapter(private val certifications: ArrayList<Certification>) :
     RecyclerView.Adapter<CertificationItemAdapter.CertificationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CertificationViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

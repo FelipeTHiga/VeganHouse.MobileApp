@@ -12,7 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.lang.reflect.Field
 
-class Catalog : AppCompatActivity() {
+class Catalog : AppCompatActivity(), ProductCardAdapter.OnItemClickListener {
 
     lateinit var btnFilters: ImageButton
     lateinit var containerFilters: View
@@ -21,12 +21,14 @@ class Catalog : AppCompatActivity() {
     lateinit var spinnerCategory: Spinner
     lateinit var spinnerOrderby: Spinner
     lateinit var progressBar: ProgressBar
+    lateinit var product_card : RecyclerView
 
-    var categoryPosition = 0
+    var topViewRv = 0
+    var categoryPostion = 0
     var categoryValue = ""
     var spinnerCategorySelected = ""
     var arrayProduct: ArrayList<Product> = arrayListOf()
-    var adapter = ProductCardAdapter(arrayProduct)
+    var adapter = ProductCardAdapter(arrayProduct, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +41,10 @@ class Catalog : AppCompatActivity() {
         spinnerCategory = findViewById(R.id.spinner_category)
         spinnerOrderby = findViewById(R.id.spinner_orderBy)
         progressBar = findViewById(R.id.progress_bar)
-        categoryPosition = intent.getIntExtra("categoryPosition", 0)
+        categoryPostion = intent.getIntExtra("categoryPosition", 0)
         categoryValue = intent.getStringExtra("categoryValue").toString()
 
-        val product_card = findViewById<RecyclerView>(R.id.products_component)
+        product_card = findViewById(R.id.products_component)
         product_card.adapter = adapter
 
         if (categoryValue == "Todos") this.getAllProducts() else this.getProductByCategory()
@@ -50,7 +52,6 @@ class Catalog : AppCompatActivity() {
         this.setupCategorySpinner()
         this.setupOrderbySpinner()
         this.limitDropDownHeight(spinnerCategory)
-
     }
 
     private fun setupOrderbySpinner() {
@@ -346,5 +347,26 @@ class Catalog : AppCompatActivity() {
             }
         })
     }
+
+    fun scrollToTop(btn: View) {
+            product_card.scrollToPosition(topViewRv)
+    }
+//    private fun makeCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply{
+//        replace(R.id.fl_wrapper, fragment)
+//        commit()
+//    }
+
+//    override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+//        //intent.putExtra("productId", arrayProduct[position].id)
+//        //makeCurrentFragment(productFragment)
+//        Toast.makeText(baseContext, "oi", Toast.LENGTH_SHORT).show()
+//    }
+
+    override fun onItemClick(position: Int) {
+        //Toast.makeText(context, "$position", Toast.LENGTH_SHORT).show()
+        //intent.putExtra("productId", arrayProduct[position].id)
+        //makeCurrentFragment(productFragment)
+    }
+
 
 }

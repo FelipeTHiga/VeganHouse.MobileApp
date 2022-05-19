@@ -84,48 +84,42 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginRight="15dp"
-                        android:background="@drawable/btn_bg_acessories"
-                        android:onClick="getProductByCategory" />
+                        android:background="@drawable/btn_bg_acessories" />
 
                     <ImageButton
                         android:id="@+id/btn_clothes"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginRight="15dp"
-                        android:background="@drawable/btn_bg_clothes"
-                        android:onClick="getProductByCategory" />
+                        android:background="@drawable/btn_bg_clothes" />
 
                     <ImageButton
                         android:id="@+id/btn_cosmetics"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginRight="15dp"
-                        android:background="@drawable/btn_bg_cosmetics"
-                        android:onClick="getProductByCategory" />
+                        android:background="@drawable/btn_bg_cosmetics" />
 
                     <ImageButton
                         android:id="@+id/btn_food"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginRight="15dp"
-                        android:background="@drawable/btn_bg_food"
-                        android:onClick="getProductByCategory" />
+                        android:background="@drawable/btn_bg_food" />
 
                     <ImageButton
                         android:id="@+id/btn_health"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginRight="15dp"
-                        android:background="@drawable/btn_bg_health"
-                        android:onClick="getProductByCategory" />
+                        android:background="@drawable/btn_bg_health" />
 
                     <ImageButton
                         android:id="@+id/btn_explore"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginRight="35dp"
-                        android:background="@drawable/btn_bg_explore"
-                        android:onClick="getProductByCategory" />
+                        android:background="@drawable/btn_bg_explore" />
 
                 </GridLayout>
 
@@ -140,6 +134,8 @@
                 android:drawableLeft="@drawable/icon_search"
                 android:drawablePadding="6dp"
                 android:hint="@string/hint_search_bar_catalog"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
                 android:paddingStart="10dp"
                 app:layout_constraintLeft_toLeftOf="@+id/icon_menu"
                 app:layout_constraintTop_toBottomOf="@+id/scrollView" />
@@ -238,7 +234,7 @@
             <RelativeLayout
                 android:id="@+id/rl_cards"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="220dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintLeft_toLeftOf="@+id/icon_menu"
                 app:layout_constraintRight_toRightOf="@+id/logo"
@@ -258,12 +254,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:indeterminateDrawable="@drawable/progress_bg"
+                android:indeterminateTint="#F8C8B8"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/rl_cards"
                 app:layout_constraintLeft_toLeftOf="@id/rl_cards"
                 app:layout_constraintRight_toRightOf="@id/rl_cards"
                 app:layout_constraintTop_toTopOf="@id/rl_cards"></ProgressBar>
+
+            <ImageView
+                android:id="@+id/btn_scroll"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/btn_scroll_to_top"
+                app:layout_constraintBottom_toBottomOf="@id/rl_cards"
+                app:layout_constraintRight_toRightOf="@id/rl_cards"></ImageView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -271,5 +275,4 @@
 
 </FrameLayout>
 
-
-<!--    style="@style/Widget.AppCompat.ProgressBar"-->
+    <!--    android:indeterminateDrawable="@drawable/progress_bg"-->

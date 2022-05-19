@@ -1,6 +1,7 @@
 package com.example.veganhouse.adapter
 
 import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,21 +9,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.R
+import com.example.veganhouse.fragments.HomeFragment
 import com.example.veganhouse.model.Product
-import android.util.Base64
-import com.example.veganhouse.fragments.CatalogFragment
 
+class NewProductCardAdapter(private val products: List<Product>, homeFragment: HomeFragment) :
+    RecyclerView.Adapter<NewProductCardAdapter.ProductViewHolder>() {
 
-class ProductCardAdapter(private val products: List<Product>, private val listener: OnItemClickListener) :
-    RecyclerView.Adapter<ProductCardAdapter.ProductViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): NewProductCardAdapter.ProductViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.product_item, parent, false)
+        val view = layoutInflater.inflate(R.layout.new_product_item, parent, false)
         return ProductViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NewProductCardAdapter.ProductViewHolder, position: Int) {
         holder.bind(products[position])
     }
 
@@ -30,7 +32,7 @@ class ProductCardAdapter(private val products: List<Product>, private val listen
         return products.size
     }
 
-    inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: Product) {
             with(itemView) {
@@ -38,11 +40,9 @@ class ProductCardAdapter(private val products: List<Product>, private val listen
                 val product_image = findViewById<ImageView>(R.id.product_image)
                 val tv_product_name = findViewById<TextView>(R.id.product_name)
                 val tv_product_price = findViewById<TextView>(R.id.product_price)
-                val tv_product_score = findViewById<TextView>(R.id.product_score)
 
                 tv_product_name.text = data.name
                 tv_product_price.text = data.price.toString()
-                tv_product_score.text = 4.5.toString()
 
                 if (data.image_url1 == null) {
                     product_image.setImageResource(R.drawable.product_without_image)
@@ -54,21 +54,5 @@ class ProductCardAdapter(private val products: List<Product>, private val listen
                 }
             }
         }
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(p0: View?) {
-            val position: Int = adapterPosition
-            if(position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(position)
-            }
-        }
     }
-
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-    }
-
 }

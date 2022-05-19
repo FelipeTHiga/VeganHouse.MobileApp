@@ -17,10 +17,21 @@ interface ProductService {
     @GET("products/filter/{filter}/{category}")
     fun getProductOrderBy(@Path("filter") filter:String, @Path("category") category:String) : Call<List<Product>>
 
+    @GET("products/{id}")
+    fun getProductById(@Path("id") id:Int) : Call<Product>
+
+    @GET("products/name/{name}")
+    fun getProductByName(@Path("name") name:String) : Call<List<Product>>
+
+    @GET("products/last-new-products")
+    fun getNewProducts() : Call<List<Product>>
+
+    @GET("products/featured-product")
+    fun getFeaturedProduct() : Call<Product>
+
+
     companion object {
-        //var BASE_URL = "http://10.0.2.2:8080/" // IP "Coringa", identifica o localhost do Notebook em que esta conectado
         var BASE_URL = "http://174.129.13.249:8080/"
-        //var BASE_URL = "http://10.0.2.2:8080/"
 
         fun getInstance() : ProductService {
             val retrofit = Retrofit.Builder()

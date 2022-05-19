@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Catalog"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".Catalog">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -242,6 +242,7 @@
                 android:id="@+id/products_component"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="scrollToTop"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:spanCount="2"></androidx.recyclerview.widget.RecyclerView>
 
@@ -249,18 +250,26 @@
 
         <ProgressBar
             android:id="@+id/progress_bar"
-            android:indeterminate="true"
-            android:indeterminateDrawable="@drawable/progress_bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/rl_cards"
+            android:indeterminate="true"
+            android:indeterminateTint="#F8C8B8"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/rl_cards"
             app:layout_constraintLeft_toLeftOf="@id/rl_cards"
             app:layout_constraintRight_toRightOf="@id/rl_cards"
-            android:visibility="gone"></ProgressBar>
+            app:layout_constraintTop_toTopOf="@id/rl_cards"></ProgressBar>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:onClick="scrollToTop"
+            android:src="@drawable/btn_scroll_to_top"
+            app:layout_constraintBottom_toBottomOf="@id/rl_cards"
+            app:layout_constraintRight_toRightOf="@id/rl_cards"></ImageView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
 
-<!--    style="@style/Widget.AppCompat.ProgressBar"-->
+    <!--    android:indeterminateDrawable="@drawable/progress_bg"-->
