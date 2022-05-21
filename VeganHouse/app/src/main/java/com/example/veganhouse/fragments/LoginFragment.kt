@@ -15,6 +15,7 @@ import com.example.veganhouse.R
 import com.example.veganhouse.service.SessionService
 import com.example.veganhouse.model.User
 import com.example.veganhouse.model.UserLogin
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,6 +76,17 @@ class LoginFragment : Fragment() {
         loginUser.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
+                    preferences.edit().putInt("user_id", response.body()!!.id).apply()
+
+                    val bottomNavigationView: BottomNavigationView = v.findViewById(R.id.bottom_navigation)
+
+                    bottomNavigationView.setOnNavigationItemSelectedListener { item -> when(item.itemId){
+                        R.id.icon_user ->  makeCurrentFragment(LoginFragment())
+                        // settar com a fragment do perfil (profilefragment)
+                    }
+                        true
+                    }
+
                     redirectHome(v)
                     //setar o atributo da activty userFragment() = ProfileFragment()
                 } else {
@@ -91,6 +103,11 @@ class LoginFragment : Fragment() {
 
         })
 
+    }
+
+    private fun makeCurrentFragment(fragment: Fragment) = activity?.supportFragmentManager?.beginTransaction()?.apply{
+        replace(R.id.fl_wrapper, fragment)!!
+        commit()
     }
 
     fun redirectHome(v:View){
@@ -122,5 +139,4 @@ class LoginFragment : Fragment() {
                 }
             }
     }
-
 }

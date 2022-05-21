@@ -23,11 +23,12 @@ class MainActivity : AppCompatActivity() {
 
         preferences = getSharedPreferences("user", MODE_PRIVATE)
         val auth = preferences.getString("id", null)
+        var userFragment = Fragment()
 
         if (!auth.isNullOrEmpty()) {
-            var userFragment = when {
+            userFragment = when {
                 !auth.isNullOrEmpty() -> LoginFragment()
-                else -> HomeFragment() //ProfileFragment()
+                else -> HomeFragment() // ProfileFragment()
             }
         }
 
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item -> when(item.itemId){
             R.id.icon_home -> makeCurrentFragment(homeFragment)
-            R.id.icon_user ->  makeCurrentFragment(loginFragment)
+            R.id.icon_user ->  makeCurrentFragment(userFragment)
             R.id.icon_shopping_bag -> makeCurrentFragment(cartFragment)
             // R.id.icon_search -> makeCurrentFragment(catalogFragment)
         }
@@ -49,6 +50,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
 
     private fun makeCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply{
         replace(R.id.fl_wrapper, fragment)
