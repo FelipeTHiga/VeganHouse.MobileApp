@@ -5,11 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.veganhouse.Activities.Login
 import com.example.veganhouse.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -19,9 +16,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
 
     val homeFragment = HomeFragment()
-    val loginFragment = LoginFragment()
     val catalogFragment = CatalogFragment()
-    val paymentFragment = PaymentFragment()
+    val loginFragment = LoginFragment()
     val cartFragment = CartFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +27,12 @@ class MainActivity : AppCompatActivity() {
         preferences = getSharedPreferences("user", MODE_PRIVATE)
         val auth = preferences.getString("id", null)
 
-        if (!auth.isNullOrEmpty()) {
-            var userFragment = when {
-                !auth.isNullOrEmpty() -> LoginFragment()
-                else -> HomeFragment() //ProfileFragment()
-            }
-        }
+//        if (!auth.isNullOrEmpty()) {
+//            var userFragment = when {
+//                !auth.isNullOrEmpty() -> LoginFragment()
+//                else -> ProfilePersonalData()
+//            }
+//        }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
@@ -72,12 +68,6 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fl_wrapper, fragment)
             commit()
         }
-
-    fun showMenu(v: View) {
-        val login = Intent(this, Login::class.java)
-        startActivity(login)
-        Toast.makeText(this, "Mostrando menu", Toast.LENGTH_SHORT).show()
-    }
 
 }
 

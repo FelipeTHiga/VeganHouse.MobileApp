@@ -5,6 +5,35 @@
     <string name="ip_api_vm1">http://52.207.48.19:8080/</string>
     <string name="ip_api_vm2">http://174.129.13.249:8080/</string>
 
+    <!--    Sign In -->
+    <string name="login_title">Login</string>
+    <string name="do_not_have_account">Não tem uma conta?</string>
+    <string name="click_to_sing_up"><u>Toque em Cadastrar</u></string>
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="btn_enter">Entrar</string>
+    <string name="btn_sing_up">Cadastrar</string>
+    <string name="required">Campo obrigatório *</string>
+
+    <!--   Sign Up -->
+    <string name="signup_title">Cadastro</string>
+    <string name="fill_the_form">Preencha seus dados para cadastro</string>
+    <string name="name">Nome</string>
+
+    <!--  Profile Personal Data  -->
+    <string name="profile_title">Perfil</string>
+    <string name="personal_data">Dados pessoais</string>
+    <string name="btn_update">Atualizar</string>
+
+    <!--    Profile Adress Data -->
+    <string name="adress">Endereço</string>
+    <string name="cep">CEP</string>
+    <string name="state">Estado</string>
+    <string name="city">Cidade</string>
+    <string name="district">Bairro</string>
+    <string name="street">Rua</string>
+    <string name="number">Número</string>
+    <string name="complement">Complemento</string>
 
     <string name="title_cart">Carrinho</string>
     <string name="title_product_cart">Kit Banho Vegan Health</string>
@@ -110,7 +139,18 @@
     <string name="subtotal">Subtotal</string>
     <string name="product_desc">Tênis Rapé Trama em Lona de Garrafa PET</string>
     <string name="total">Total</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    Profile Oders -->
+    <string name="profile">Perfil</string>
+    <string name="my_orders">Meus pedidos</string>
+    <string name="order">Pedido</string>
+    <string name="order_id">#2940</string>
+    <string name="order_data">05/10/2022</string>
+    <string name="order_total">Total: R$ 75.00</string>
+    <string name="order_status">PAGO</string>
+    <string name="btn_save">Salvar</string>
+    <string name="surname">Sobrenome</string>
+    <string name="cpf">CPF</string>
+
 
 </resources>
