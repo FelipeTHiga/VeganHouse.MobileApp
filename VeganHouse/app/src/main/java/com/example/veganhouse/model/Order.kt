@@ -8,6 +8,6 @@ data class Order(
     val adress: String,
     val total: Double,
     val orderItems: List<CartItem>,
-    val orderDate: LocalDate?,
+    val orderDate: String?, // LocalDate
     val orderStatus: String
 )

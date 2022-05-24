@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     val catalogFragment = CatalogFragment()
     val loginFragment = LoginFragment()
     val cartFragment = CartFragment()
+    val profilePersonalData = ProfilePersonalData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.icon_home -> makeCurrentFragment(homeFragment)
-                R.id.icon_user -> makeCurrentFragment(loginFragment)
+                R.id.icon_user -> makeCurrentFragment(profilePersonalData)
                 R.id.icon_shopping_bag -> makeCurrentFragment(cartFragment)
                 R.id.icon_search -> makeCurrentFragment(catalogFragment)
             }

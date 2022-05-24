@@ -7,7 +7,7 @@ import android.widget.EditText
 class MaskCpf {
 
     companion object {
-        private fun replaceChars(cpfFull: String): String {
+        fun replaceChars(cpfFull: String): String {
             return cpfFull.replace(".", "").replace("-", "")
                 .replace("(", "").replace(")", "")
                 .replace("/", "").replace(" ", "")
@@ -68,5 +68,12 @@ class MaskCpf {
 
             return textWatcher
         }
+
+        fun mask(cpf: String): String? {
+            var cpf = cpf
+            cpf = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11)
+            return cpf
+        }
+
     }
 }

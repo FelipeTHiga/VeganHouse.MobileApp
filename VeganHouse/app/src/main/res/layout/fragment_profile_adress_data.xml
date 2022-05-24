@@ -82,13 +82,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/container_et_cep"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_section_title"
                 android:layout_marginTop="20dp"
                 android:hint="@string/cep"
-                app:boxStrokeColor="#F5A4A4"
                 app:helperText="@string/required"
                 app:helperTextTextColor="@android:color/holo_red_dark"
                 app:hintTextColor="#604D4D">
@@ -109,12 +108,11 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/container_et_state"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/state"
-                    app:boxStrokeColor="#F5A4A4"
                     app:helperText="@string/required"
                     app:helperTextTextColor="@android:color/holo_red_dark"
                     app:hintTextColor="#604D4D"
@@ -131,14 +129,13 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/container_et_city"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/container_et_state"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:hint="@string/city"
-                    app:boxStrokeColor="#F5A4A4"
                     app:helperText="@string/required"
                     app:helperTextTextColor="@android:color/holo_red_dark"
                     app:hintTextColor="#604D4D"
@@ -157,13 +154,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/container_et_district"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/container_state_city"
                 android:layout_marginTop="20dp"
                 android:hint="@string/district"
-                app:boxStrokeColor="#F5A4A4"
                 app:helperText="@string/required"
                 app:helperTextTextColor="@android:color/holo_red_dark"
                 app:hintTextColor="#604D4D">
@@ -178,13 +174,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/container_et_street"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/container_et_district"
                 android:layout_marginTop="20dp"
                 android:hint="@string/street"
-                app:boxStrokeColor="#F5A4A4"
                 app:helperText="@string/required"
                 app:helperTextTextColor="@android:color/holo_red_dark"
                 app:hintTextColor="#604D4D">
@@ -205,12 +200,11 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/container_et_number"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/number"
-                    app:boxStrokeColor="#F5A4A4"
                     app:helperText="@string/required"
                     app:helperTextTextColor="@android:color/holo_red_dark"
                     app:hintTextColor="#604D4D"
@@ -227,12 +221,11 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/container_et_complement"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="@string/complement"
-                    app:boxStrokeColor="#F5A4A4"
                     app:hintTextColor="#604D4D"
                     app:layout_constraintRight_toRightOf="@id/container_number_complement"
                     app:layout_constraintTop_toTopOf="parent">
@@ -265,7 +258,7 @@
                 android:id="@+id/btn_update"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/container_et_complement"
+                android:layout_below="@id/container_number_complement"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="100dp"

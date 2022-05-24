@@ -89,7 +89,6 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:hint="@string/name"
-                app:boxBackgroundColor="#CECECE"
                 app:hintTextColor="#604D4D"
                 app:startIconDrawable="@drawable/icon_user_brown">
 
@@ -98,9 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text" />
-
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/container_et_surname"
@@ -113,7 +110,6 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:hint="@string/surname"
-                app:boxBackgroundColor="#CECECE"
                 app:hintTextColor="#604D4D"
                 app:startIconDrawable="@drawable/icon_user_brown">
 
@@ -127,15 +123,14 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/container_et_email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/container_et_surname"
                 android:layout_marginTop="20dp"
                 android:hint="@string/email"
-                app:boxStrokeColor="#F5A4A4"
-                app:hintTextColor="#604D4D"
                 app:boxBackgroundMode="outline"
+                app:hintTextColor="#604D4D"
                 app:startIconDrawable="@drawable/icon_email">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -157,7 +152,6 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:hint="@string/cpf"
-                app:boxBackgroundColor="#CECECE"
                 app:hintTextColor="#604D4D"
                 app:startIconDrawable="@drawable/icon_id_document_brown">
 
@@ -186,3 +180,5 @@
     </ScrollView>
 
 </FrameLayout>
+
+<!--    app:boxBackgroundColor="#CECECE"-->

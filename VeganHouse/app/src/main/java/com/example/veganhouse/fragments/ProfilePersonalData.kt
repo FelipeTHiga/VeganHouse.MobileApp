@@ -30,6 +30,7 @@ class ProfilePersonalData : Fragment() {
     lateinit var btnSave: Button
 
     var loggedUserId = 10
+    lateinit var userData: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,11 +101,25 @@ class ProfilePersonalData : Fragment() {
 
                     var user = response.body()
 
+                    userData = User(
+                        user?.id,
+                        user?.nameUser,
+                        user?.surName,
+                        user?.cpf,
+                        user?.email,
+                        user?.passwordUser,
+                        user?.isSeller,
+                        user?.authenticated,
+                        null
+                    )
+
+                    var cep = user?.cpf
+                    var cepMask = MaskCpf.mask(cep.toString())
+
                     etName.setText(user?.nameUser)
-                    etSurname.setText(user?.surname)
+                    etSurname.setText(user?.surName)
                     etEmail.setText(user?.email)
-                    etCpf.setText(user?.cpf)
-                    etCpf.addTextChangedListener(MaskCpf.mask("###.###.###-##", etCpf))
+                    etCpf.setText(cepMask)
 
                 } else {
                     Toast.makeText(context, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
@@ -117,7 +132,7 @@ class ProfilePersonalData : Fragment() {
                     .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
                     .setCancelable(true)
                     .setPositiveButton(
-                        "Ok, entendi!",
+                        "Ok, entendi",
                         DialogInterface.OnClickListener { dialog, id ->
                             dialog.cancel()
                         }).show()
@@ -130,16 +145,21 @@ class ProfilePersonalData : Fragment() {
     private fun putUser(idUser: Int) {
 
         var userUpdate = User(
-            idUser,
-            null,
-            null,
-            null,
+            userData.id,
+            userData.nameUser,
+            userData.surName,
+            userData.cpf,
             etEmail.text.toString(),
-            null,
-            null,
-            null,
+            userData.passwordUser,
+            userData.isSeller,
+            userData.authenticated,
             null
         )
+
+//        var userUpdate = UserUpdate(
+//            idUser,
+//            etEmail.text.toString()
+//        )
 
         val putUser = UserService.getInstance().putUser(userUpdate)
         val dialogBuilder = android.app.AlertDialog.Builder(context)
@@ -152,17 +172,17 @@ class ProfilePersonalData : Fragment() {
 
                     dialogBuilder
                         .setTitle("Dados do usuário atualizados com sucesso!")
-                        .setCancelable(false)
+                        .setCancelable(true)
                         .setPositiveButton("Ok") { dialog, _ ->
-                            dialog.cancel()
+                            getUserById(loggedUserId)
                         }.show()
 
                 } else {
                     dialogBuilder
                         .setTitle("Erro ao atualizar dados do usuário")
                         .setCancelable(true)
-                        .setPositiveButton("Ok, entendi!") { dialog, _ ->
-                            dialog.cancel()
+                        .setPositiveButton("Ok, entendi") { dialog, _ ->
+                            getUserById(loggedUserId)
                         }.show()
                 }
             }
@@ -173,7 +193,7 @@ class ProfilePersonalData : Fragment() {
                     .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
                     .setCancelable(true)
                     .setPositiveButton(
-                        "Ok, entendi!",
+                        "Ok, entendi",
                         DialogInterface.OnClickListener { dialog, id ->
                             dialog.cancel()
                         }).show()
@@ -183,7 +203,4 @@ class ProfilePersonalData : Fragment() {
 
     }
 
-
-    companion object {
-    }
 }

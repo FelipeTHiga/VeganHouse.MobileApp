@@ -11,24 +11,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.veganhouse.R
 import com.example.veganhouse.model.Adress
+import com.example.veganhouse.model.Cep
 import com.example.veganhouse.service.CepService
 import com.example.veganhouse.service.UserService
+import com.example.veganhouse.utils.MaskCep
+import com.example.veganhouse.utils.MaskCpf
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileAdressData.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileAdressData : Fragment() {
 
     lateinit var etCep: TextInputEditText
@@ -50,7 +43,8 @@ class ProfileAdressData : Fragment() {
     lateinit var btnSave: Button
     lateinit var btnUpdate: Button
 
-    var loggedUserId = 10
+    var loggedUserId = 4
+    var idAdress = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +86,8 @@ class ProfileAdressData : Fragment() {
         etStreetContainer = v.findViewById(R.id.container_et_street)
         etNumberContainer = v.findViewById(R.id.container_et_number)
         etComplementContainer = v.findViewById(R.id.container_et_complement)
+
+        //etCep.addTextChangedListener(MaskCep.mask(etCep))
 
         var listBtnProfile: ArrayList<ImageButton> = arrayListOf(
             v.findViewById(R.id.btn_profile_data),
@@ -152,33 +148,55 @@ class ProfileAdressData : Fragment() {
 
         if (cep.length <= 0) {
             return "Campo obrigatório *"
-        } else if (cep.length != 8) {
+        } else if (cep.length > 9) {
             return "Cep inválido"
-        } else {
-            pullCep(cep)
+        } else if(getCep(cep)) {
+            return "Cep inválido"
         }
         return null
     }
 
-    private fun pullCep(cep: String) {
-//        try {
-//            val currentCep = CepService.getCep("123")
-//            if(currentCep.erro != null){
-//                error.value = true
-//                errorType.value = 1
-//                loading.value = false
-//            }else {
-//                cep.value = currentCep
-//                error.value = false
-//                loading.value = false
-//            }
-//        }catch (e: Exception){
-//            error.value = true
-//            errorType.value = 0
-//            loading.value = false
-//        }
-    }
+    private fun getCep(cep: String): Boolean {
 
+        val getCep = CepService.getInstance().getCep(cep)
+        val dialogBuilder = android.app.AlertDialog.Builder(context)
+        var cepInvalido = false
+
+        getCep.enqueue(object : Callback<Cep> {
+
+            override fun onResponse(call: Call<Cep>, response: Response<Cep>) {
+
+                var cepData = response.body()
+
+                if (cepData?.erro == "true") {
+                    cepInvalido = true
+                    return
+                }
+
+                etCep.setText(cepData?.cep)
+                etState.setText(cepData?.uf)
+                etCity.setText(cepData?.localidade)
+                etDistrict.setText(cepData?.bairro)
+                etStreet.setText(cepData?.logradouro)
+
+            }
+
+            override fun onFailure(call: Call<Cep>, t: Throwable) {
+                dialogBuilder
+                    .setTitle("Atenção")
+                    .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
+                    .setCancelable(true)
+                    .setPositiveButton(
+                        "Ok, entendi",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            dialog.cancel()
+                        }).show()
+            }
+        })
+
+        return cepInvalido
+
+    }
 
     private fun stateFocusListener() {
         etState.setOnFocusChangeListener { _, focused ->
@@ -334,7 +352,7 @@ class ProfileAdressData : Fragment() {
         dialogBuilder
             .setTitle("Cadastro inválido")
             .setMessage(message)
-            .setPositiveButton("Ok, entendi!") { dialog, _ ->
+            .setPositiveButton("Ok, entendi") { dialog, _ ->
                 dialog.cancel()
             }.show()
     }
@@ -359,8 +377,11 @@ class ProfileAdressData : Fragment() {
                     }
 
                     var adress = response.body()
+                    idAdress = adress?.idAdress!!
+                    var cep = adress?.cep
+                    var cepMask = MaskCep.mask(cep.toString())
 
-                    etCep.setText(adress?.cep)
+                    etCep.setText(cepMask)
                     etState.setText(adress?.state)
                     etCity.setText(adress?.city)
                     etDistrict.setText(adress?.district)
@@ -386,7 +407,7 @@ class ProfileAdressData : Fragment() {
                     .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
                     .setCancelable(true)
                     .setPositiveButton(
-                        "Ok, entendi!",
+                        "Ok, entendi",
                         DialogInterface.OnClickListener { dialog, id ->
                             dialog.cancel()
                         }).show()
@@ -394,62 +415,7 @@ class ProfileAdressData : Fragment() {
         })
     }
 
-
-    private fun putUserAdress() {
-
-        var adressUpdate = Adress(
-            null,
-            etStreet.text.toString(),
-            etNumber.text.toString(),
-            etState.text.toString(),
-            etCity.text.toString(),
-            etComplement.text.toString(),
-            etCep.text.toString(),
-            etDistrict.text.toString(),
-            loggedUserId
-        )
-
-        val putUserAdress = UserService.getInstance().putUserAdress(loggedUserId, adressUpdate)
-        val dialogBuilder = android.app.AlertDialog.Builder(context)
-
-        putUserAdress.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful) {
-
-                    dialogBuilder
-                        .setTitle("Dados do usuário atualizados com sucesso!")
-                        .setCancelable(false)
-                        .setPositiveButton("Ok") { dialog, _ ->
-                            dialog.cancel()
-                        }.show()
-
-                } else {
-                    dialogBuilder
-                        .setTitle("Erro ao atualizar dados do usuário")
-                        .setCancelable(true)
-                        .setPositiveButton("Ok, entendi!") { dialog, _ ->
-                            dialog.cancel()
-                        }.show()
-                }
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                dialogBuilder
-                    .setTitle("Atenção")
-                    .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
-                    .setCancelable(true)
-                    .setPositiveButton(
-                        "Ok, entendi!",
-                        DialogInterface.OnClickListener { dialog, id ->
-                            dialog.cancel()
-                        }).show()
-            }
-
-        })
-
-    }
-
-    fun createUserAdress() {
+    private fun createUserAdress() {
         var newAdress = Adress(
             null,
             etStreet.text.toString(),
@@ -457,7 +423,7 @@ class ProfileAdressData : Fragment() {
             etState.text.toString(),
             etCity.text.toString(),
             etComplement.text.toString(),
-            etCep.text.toString(),
+            MaskCep.unmask(etCep.text.toString()),
             etDistrict.text.toString(),
             loggedUserId
         )
@@ -472,7 +438,7 @@ class ProfileAdressData : Fragment() {
                     dialogBuilder
                         .setTitle("Endereço cadastrado com sucesso!")
                         .setCancelable(false)
-                        .setPositiveButton("Ok, entendi!") { dialog, _ ->
+                        .setPositiveButton("Ok") { dialog, _ ->
                             getUserAdress(loggedUserId)
                         }.show()
 
@@ -480,8 +446,8 @@ class ProfileAdressData : Fragment() {
                     dialogBuilder
                         .setTitle("Erro ao cadastrar o endereço")
                         .setCancelable(true)
-                        .setPositiveButton("Ok, entendi!") { dialog, _ ->
-                            dialog.cancel()
+                        .setPositiveButton("Ok, entendi") { dialog, _ ->
+                            getUserAdress(loggedUserId)
                         }.show()
                 }
             }
@@ -492,7 +458,7 @@ class ProfileAdressData : Fragment() {
                     .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
                     .setCancelable(true)
                     .setPositiveButton(
-                        "Ok, entendi!",
+                        "Ok, entendi",
                         DialogInterface.OnClickListener { dialog, id ->
                             dialog.cancel()
                         }).show()
@@ -501,8 +467,56 @@ class ProfileAdressData : Fragment() {
         })
     }
 
+    private fun putUserAdress() {
 
-    companion object {
+        var adressUpdate = Adress(
+            null,
+            etStreet.text.toString(),
+            etNumber.text.toString(),
+            etState.text.toString(),
+            etCity.text.toString(),
+            etComplement.text.toString(),
+            MaskCep.unmask(etCep.text.toString()),
+            etDistrict.text.toString(),
+            loggedUserId
+        )
 
+        val putUserAdress = UserService.getInstance().putUserAdress(idAdress, adressUpdate)
+        val dialogBuilder = android.app.AlertDialog.Builder(context)
+
+        putUserAdress.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+
+                    dialogBuilder
+                        .setTitle("Dados do usuário atualizados com sucesso!")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok") { dialog, _ ->
+                            getUserAdress(loggedUserId)
+                        }.show()
+
+                } else {
+                    dialogBuilder
+                        .setTitle("Erro ao atualizar dados do usuário")
+                        .setCancelable(true)
+                        .setPositiveButton("Ok, entendi") { dialog, _ ->
+                            getUserAdress(loggedUserId)
+                        }.show()
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                dialogBuilder
+                    .setTitle("Atenção")
+                    .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
+                    .setCancelable(true)
+                    .setPositiveButton(
+                        "Ok, entendi",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            dialog.cancel()
+                        }).show()
+            }
+        })
     }
+
 }

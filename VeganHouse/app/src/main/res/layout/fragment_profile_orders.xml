@@ -73,16 +73,17 @@
             android:layout_below="@+id/btn_profile_data"
             android:layout_marginTop="40dp"
             android:text="@string/my_orders"
+            android:textColor="#604D4D"
             android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="#604D4D"/>
+            android:textStyle="bold" />
 
         <ScrollView
             android:id="@+id/scrollView_card_order_product"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="280dp"
             android:layout_below="@id/tv_section_title"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:scrollbars="none">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/orders_component"
@@ -92,13 +93,24 @@
 
         </ScrollView>
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_section_title"
+            android:layout_marginTop="125dp"
+            android:layout_centerHorizontal="true"
+            android:indeterminate="true"
+            android:indeterminateTint="#F8C8B8"
+            android:visibility="gone"></ProgressBar>
+
         <Button
             android:id="@+id/btn_signin"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/scrollView_card_order_product"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="100dp"
             android:background="@drawable/btn_rounded_format_white"
             android:onClick="registerUser"

@@ -1,9 +1,9 @@
 package com.example.veganhouse.model
 
 data class User(
-    val id: Int,
+    val id: Int?,
     var nameUser: String?,
-    var surname: String?,
+    var surName: String?,
     var cpf: String?,
     var email: String?,
     var passwordUser: String?,

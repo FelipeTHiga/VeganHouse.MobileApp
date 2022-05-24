@@ -5,40 +5,24 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface CepService {
 
-    @GET("json/")
-    fun getCep(): Call<Cep>
+    @GET("{cep}/json/")
+    fun getCep(@Path("cep") cep: String): Call<Cep>
 
-    class CepService(cep: String) {
+    companion object {
 
-        private val cep = cep
+        var BASE_URL = "https://viacep.com.br/ws/"
 
         fun getInstance(): CepService {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://viacep.com.br/ws/${cep}/")
+                .baseUrl(BASE_URL)
                 .build()
             return retrofit.create(CepService::class.java)
         }
-
-        //val cepService: CepService = getRetrofit().create(CepService::class.java)
-
     }
 
-//    companion object {
-//
-//        val cep = "123"
-//
-//        var BASE_URL = "https://viacep.com.br/ws/${cep}/json/"
-//
-//        fun getInstance () : CepService {
-//            val retrofit = Retrofit.Builder()
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .baseUrl(BASE_URL)
-//                .build()
-//            return retrofit.create(CepService::class.java)
-//        }
-//    }
 }

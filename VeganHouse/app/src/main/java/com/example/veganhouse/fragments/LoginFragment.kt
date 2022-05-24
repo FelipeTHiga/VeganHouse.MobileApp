@@ -152,7 +152,7 @@ class LoginFragment : Fragment() {
         dialogBuilder
             .setTitle("Login inválido")
             .setMessage(message)
-            .setPositiveButton("Ok, entendi!") { dialog, _ ->
+            .setPositiveButton("Ok, entendi") { dialog, _ ->
                 dialog.cancel()
             }.show()
     }
@@ -179,7 +179,7 @@ class LoginFragment : Fragment() {
                     dialogBuilder
                         .setTitle("Erro ao realizar o login")
                         .setCancelable(true)
-                        .setPositiveButton("Ok, entendi!") { dialog, _ ->
+                        .setPositiveButton("Ok, entendi") { dialog, _ ->
                             dialog.cancel()
                         }.show()
                 }
@@ -192,7 +192,7 @@ class LoginFragment : Fragment() {
                     .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
                     .setCancelable(true)
                     .setPositiveButton(
-                        "Ok, entendi!",
+                        "Ok, entendi",
                         DialogInterface.OnClickListener { dialog, id ->
                             dialog.cancel()
                         }).show()
