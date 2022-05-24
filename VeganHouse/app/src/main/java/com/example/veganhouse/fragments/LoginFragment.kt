@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.veganhouse.R
 import com.example.veganhouse.model.User
 import com.example.veganhouse.model.UserLogin
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.veganhouse.service.SessionService
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout

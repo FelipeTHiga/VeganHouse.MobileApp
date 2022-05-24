@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         preferences = getSharedPreferences("user", MODE_PRIVATE)
         val auth = preferences.getString("id", null)
+        var userFragment = Fragment()
 
 //        if (!auth.isNullOrEmpty()) {
 //            var userFragment = when {
