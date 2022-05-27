@@ -3,7 +3,6 @@ package com.example.veganhouse.fragments
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.*
-import com.example.veganhouse.adapter.ProductCardAdapter
+import com.example.veganhouse.adapter.ProductAdapter
 import com.example.veganhouse.model.Product
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +20,7 @@ import java.lang.reflect.Field
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 
-class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
+class CatalogFragment() : Fragment(), ProductAdapter.OnItemClickListener {
 
     lateinit var btnFilters: ImageButton
     lateinit var containerFilters: View
@@ -33,23 +32,21 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
     lateinit var productCard: RecyclerView
     lateinit var btnScroll: ImageView
     lateinit var searchBar: EditText
+    lateinit var tvDefaultMessage: TextView
 
     var categoryPosition = 1
     var categoryValue = "Todos"
     var productSearched = ""
     var spinnerCategorySelected = ""
     var arrayProduct: ArrayList<Product> = arrayListOf()
-    var adapter = ProductCardAdapter(arrayProduct, this)
+    var adapter = ProductAdapter(arrayProduct, this)
     var topViewRv = 0
-    //var title = getString(R.string.attention)
-    //var message = getString(R.string.api_error_message)
-    //var btnText = getString(R.string.ok)
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//        }
-//    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,8 +70,9 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
         progressBar = v.findViewById(R.id.progress_bar)
         btnScroll = v.findViewById(R.id.btn_scroll)
         searchBar = v.findViewById(R.id.search_bar)
+        tvDefaultMessage = v.findViewById(R.id.tv_default_message)
 
-        productCard = v.findViewById<RecyclerView>(R.id.products_component)
+        productCard = v.findViewById(R.id.products_component)
         productCard.adapter = adapter
 
         var listBtnCategory: ArrayList<ImageButton> = arrayListOf(
@@ -88,16 +86,16 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
 
         listBtnCategory.forEach { btnProduct ->
             btnProduct.setOnClickListener {
-                getProductByCategory(it)
+                this.getProductByCategory(it)
             }
         }
 
         btnFilters.setOnClickListener {
-            showContainerFilters(it)
+            this.showContainerFilters(it)
         }
 
         btnScroll.setOnClickListener {
-            scrollToTop(it)
+            this.scrollToTop(it)
         }
 
         searchBar.setOnEditorActionListener { _, actionId, _ ->
@@ -107,7 +105,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
                 searchBar.clearFocus()
                 val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(searchBar.getApplicationWindowToken(), 0)
-                getProduct()
+                this.getProduct()
                 searchBar.setText("")
             }
             true
@@ -120,7 +118,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
 
     }
 
-    private fun getProduct() {
+     fun getProduct() {
         if (productSearched != "") {
             getProductByName(productSearched)
             return
@@ -143,18 +141,18 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
         val dialogBuilder = AlertDialog.Builder(context)
 
         dialogBuilder
-            .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
+            .setMessage(getString(R.string.api_error_message))
             .setCancelable(true)
-            .setPositiveButton("Ok, entendi!", DialogInterface.OnClickListener { dialog, id ->
+            .setPositiveButton(getString(R.string.ok_got_it), DialogInterface.OnClickListener { dialog, id ->
                 dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("Atenção")
+        alert.setTitle(getString(R.string.attention))
         alert.show()
     }
 
-    private fun setupOrderbySpinner() {
+    fun setupOrderbySpinner() {
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.order_by,
@@ -187,8 +185,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
         }
     }
 
-
-    private fun setupCategorySpinner() {
+    fun setupCategorySpinner() {
 
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
@@ -239,7 +236,12 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
         popupWindow.height = (5 * resources.displayMetrics.density).toInt()
     }
 
-    fun getAllProducts() {
+    fun scrollToTop(btn: View) {
+        productCard.smoothScrollToPosition(topViewRv)
+        //productCard.smoothScrollBy(topViewRv, topViewRv, null, 5000)
+    }
+
+    private fun getAllProducts() {
 
         val getAllProducts = ProductService.getInstance().getAllProducts()
         progressBar.visibility = View.VISIBLE
@@ -252,7 +254,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
                         progressBar.visibility = View.GONE
                         return
                     }
@@ -261,24 +263,23 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
                     progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                //showAlertDialog("R.string.attention", "R.string.api_error_message", "R.string.ok")
-                //showAlertDialog(title, message, btnText)
                 showAlertDialog()
                 progressBar.visibility = View.GONE
             }
         })
     }
 
-    fun getProductByCategory() {
+    private fun getProductByCategory() {
 
         var category = categoryValue
         val getProductByCategory = ProductService.getInstance().getProductByCategory(category)
@@ -293,7 +294,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
                         progressBar.visibility = View.GONE
                         return
                     }
@@ -302,17 +303,16 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
                     progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                //showAlertDialog(R.string.attention, "R.string.api_error_message", "R.string.ok")
-                //showAlertDialog(title, message, btnText)
                 showAlertDialog()
                 progressBar.visibility = View.GONE
             }
@@ -320,7 +320,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
 
     }
 
-    fun getProductByCategory(button: View) {
+    private fun getProductByCategory(button: View) {
 
         when (button.id) {
             R.id.btn_acessories -> {
@@ -361,7 +361,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
                         progressBar.visibility = View.GONE
                         return
                     }
@@ -370,24 +370,23 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
                     progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                //showAlertDialog("R.string.attention", "R.string.api_error_message", "R.string.ok")
-                //showAlertDialog(title, message, btnText)
                 showAlertDialog()
                 progressBar.visibility = View.GONE
             }
         })
     }
 
-    fun getProductByCategory(spinnerCategory: String) {
+    private fun getProductByCategory(spinnerCategory: String) {
 
         var category = spinnerCategory
         val getProductByCategory = ProductService.getInstance().getProductByCategory(category)
@@ -402,7 +401,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
                         progressBar.visibility = View.GONE
                         return
                     }
@@ -411,24 +410,23 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
                     progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                //showAlertDialog("R.string.attention", "R.string.api_error_message", "R.string.ok")
-                //showAlertDialog(title, message, btnText)
                 showAlertDialog()
                 progressBar.visibility = View.GONE
             }
         })
     }
 
-    fun getProductOrderBy(orderBy: String) {
+    private fun getProductOrderBy(orderBy: String) {
         var orderBy = orderBy
         var category = spinnerCategorySelected
         //var category = if (spinnerCategorySelected != "name") spinnerCategorySelected else "Todos"
@@ -444,7 +442,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
                         progressBar.visibility = View.GONE
                         return
                     }
@@ -453,24 +451,23 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
                     progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                //showAlertDialog("R.string.attention", "R.string.api_error_message", "R.string.ok")
-                //showAlertDialog(title, message, btnText)
                 showAlertDialog()
                 progressBar.visibility = View.GONE
             }
         })
     }
 
-    fun getProductByName(productSearched: String) {
+    private fun getProductByName(productSearched: String) {
 
         val getProductByName = ProductService.getInstance().getProductByName(productSearched)
 
@@ -484,7 +481,7 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Produto não encontrado", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found_to, productSearched)
                         progressBar.visibility = View.GONE
                         return
                     }
@@ -496,17 +493,16 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Produto não encontrado", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found_to, productSearched)
                     progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                //showAlertDialog("R.string.attention", "R.string.api_error_message", "R.string.ok")
-                //showAlertDialog(title, message, btnText)
                 showAlertDialog()
                 progressBar.visibility = View.GONE
             }
@@ -527,11 +523,5 @@ class CatalogFragment() : Fragment(), ProductCardAdapter.OnItemClickListener {
         transaction.commit()
 
     }
-
-    fun scrollToTop(btn: View) {
-        productCard.smoothScrollToPosition(topViewRv)
-        //productCard.smoothScrollBy(topViewRv, topViewRv, null, 5000)
-    }
-
 
 }

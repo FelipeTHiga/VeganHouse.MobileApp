@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.veganhouse.R
 import com.example.veganhouse.model.User
 import com.example.veganhouse.model.UserLogin
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.veganhouse.service.SessionService
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -22,16 +21,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LoginFragment : Fragment() {
 
     lateinit var etEmail: TextInputEditText
@@ -57,8 +46,7 @@ class LoginFragment : Fragment() {
         etPassword = v.findViewById(R.id.et_password)
         etEmailContainer = v.findViewById(R.id.container_et_email)
         etPasswordContainer = v.findViewById(R.id.container_et_password)
-        preferences =
-            activity?.baseContext?.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)!!
+        preferences = activity?.baseContext?.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)!!
 
         btnSignin.setOnClickListener {
             val signinFragment = SigninFragment()
@@ -169,6 +157,8 @@ class LoginFragment : Fragment() {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
 
+                    preferences.edit().putInt("id", response.body()!!.id!!).apply()
+
                     dialogBuilder
                         .setTitle("Login realizado com sucesso!")
                         .setCancelable(false)
@@ -205,31 +195,10 @@ class LoginFragment : Fragment() {
     }
 
     fun redirectProfileFragment() {
-        val profileFragment = ProfilePersonalData()
+        val profileFragment = ProfilePersonalDataFragment()
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.fl_wrapper, profileFragment)
         transaction.commit()
-    }
-
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 
 }

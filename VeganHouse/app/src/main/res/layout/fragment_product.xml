@@ -222,7 +222,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_container_certification"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_below="@id/separator_line_certification"
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="20dp"
@@ -232,7 +232,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/certifications_component"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+                        android:layout_height="wrap_content"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
 
                 </RelativeLayout>
 
@@ -355,85 +356,8 @@
 
             </RelativeLayout>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
 
 </ScrollView>
-
-    <!--<GridLayout-->
-    <!--android:id="@+id/grid_container_seller_social_midia"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@id/scrollView_container_seller_social_midia"-->
-    <!--android:layout_marginLeft="40dp"-->
-    <!--android:layout_marginTop="20dp"-->
-    <!--android:layout_marginRight="40dp"-->
-    <!--android:columnCount="3"-->
-    <!--android:visibility="visible">-->
-
-    <!--<RelativeLayout android:layout_gravity="start">-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/iv_icon_instagram"-->
-    <!--        android:layout_width="80dp"-->
-    <!--        android:layout_height="80dp"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:background="@drawable/instagram" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_seller_instagram"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@+id/iv_icon_instagram"-->
-    <!--        android:layout_marginTop="7dp"-->
-    <!--        android:text="@string/seller_instagram"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        android:textSize="15sp" />-->
-
-    <!--</RelativeLayout>-->
-
-    <!--<RelativeLayout android:layout_gravity="center">-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/iv_icon_facebook"-->
-    <!--        android:layout_width="80dp"-->
-    <!--        android:layout_height="80dp"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:background="@drawable/facebook" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_seller_facebook"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/iv_icon_facebook"-->
-    <!--        android:layout_marginTop="7dp"-->
-    <!--        android:text="@string/seller_facebook"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        android:textSize="15sp" />-->
-
-    <!--</RelativeLayout>-->
-
-    <!--<RelativeLayout>-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/iv_icon_whatsapp"-->
-    <!--        android:layout_width="80dp"-->
-    <!--        android:layout_height="80dp"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:background="@drawable/whatsapp" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_seller_whatsapp"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@+id/iv_icon_whatsapp"-->
-    <!--        android:layout_marginTop="7dp"-->
-    <!--        android:text="@string/seller_whatsapp"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        android:textSize="15sp" />-->
-
-    <!--</RelativeLayout>-->
-
-    <!--</GridLayout>-->

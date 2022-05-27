@@ -1,6 +1,7 @@
 package com.example.veganhouse.fragments
 
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.veganhouse.R
 import com.example.veganhouse.model.Adress
@@ -15,14 +17,13 @@ import com.example.veganhouse.model.Cep
 import com.example.veganhouse.service.CepService
 import com.example.veganhouse.service.UserService
 import com.example.veganhouse.utils.MaskCep
-import com.example.veganhouse.utils.MaskCpf
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileAdressData : Fragment() {
+class ProfileAdressDataFragment : Fragment() {
 
     lateinit var etCep: TextInputEditText
     lateinit var etState: TextInputEditText
@@ -43,7 +44,8 @@ class ProfileAdressData : Fragment() {
     lateinit var btnSave: Button
     lateinit var btnUpdate: Button
 
-    var loggedUserId = 4
+    lateinit var preferences: SharedPreferences
+    var loggedUserId = 0
     var idAdress = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +64,9 @@ class ProfileAdressData : Fragment() {
 
     override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
         super.onViewCreated(v, savedInstanceState)
+
+        preferences = activity?.baseContext?.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)!!
+        loggedUserId = preferences.getInt("id", 0)
 
         getUserAdress(loggedUserId)
 
@@ -100,17 +105,17 @@ class ProfileAdressData : Fragment() {
                 when (btn.id) {
                     R.id.btn_profile_data -> transaction.replace(
                         R.id.fl_wrapper,
-                        ProfilePersonalData::class.java,
+                        ProfilePersonalDataFragment::class.java,
                         arguments
                     )
                     R.id.btn_profile_orders -> transaction.replace(
                         R.id.fl_wrapper,
-                        ProfileOrders::class.java,
+                        ProfileOrdersFragment::class.java,
                         arguments
                     )
                     R.id.btn_profile_adress -> transaction.replace(
                         R.id.fl_wrapper,
-                        ProfileAdressData::class.java,
+                        ProfileAdressDataFragment::class.java,
                         arguments
                     )
                 }
@@ -150,17 +155,16 @@ class ProfileAdressData : Fragment() {
             return "Campo obrigatório *"
         } else if (cep.length > 9) {
             return "Cep inválido"
-        } else if(getCep(cep)) {
-            return "Cep inválido"
+        } else  {
+            getCep(cep)
         }
         return null
     }
 
-    private fun getCep(cep: String): Boolean {
+    private fun getCep(cep: String) {
 
         val getCep = CepService.getInstance().getCep(cep)
         val dialogBuilder = android.app.AlertDialog.Builder(context)
-        var cepInvalido = false
 
         getCep.enqueue(object : Callback<Cep> {
 
@@ -169,7 +173,8 @@ class ProfileAdressData : Fragment() {
                 var cepData = response.body()
 
                 if (cepData?.erro == "true") {
-                    cepInvalido = true
+                    etCepContainer.helperText = "Cep inválido"
+                    resetForm()
                     return
                 }
 
@@ -178,6 +183,8 @@ class ProfileAdressData : Fragment() {
                 etCity.setText(cepData?.localidade)
                 etDistrict.setText(cepData?.bairro)
                 etStreet.setText(cepData?.logradouro)
+
+                listOf(etState, etCity, etDistrict, etStreet).forEach { it.isEnabled = true }
 
             }
 
@@ -193,8 +200,6 @@ class ProfileAdressData : Fragment() {
                         }).show()
             }
         })
-
-        return cepInvalido
 
     }
 
@@ -308,22 +313,28 @@ class ProfileAdressData : Fragment() {
 
         if (validCep && validState && validCity && validDistrict && validStreet && validNumber) {
             when(button.id) {
-                R.id.btn_save -> createUserAdress()
-                R.id.btn_update -> putUserAdress()
+                R.id.btn_save -> createUserAdress(loggedUserId)
+                R.id.btn_update -> putUserAdress(loggedUserId)
             }
         } else invalidForm()
 
     }
 
-//    private fun resetForm() {
-//
-//        etNameContainer.helperText = getString(R.string.required)
-//        etSurnameContainer.helperText = getString(R.string.required)
-//        etEmailContainer.helperText = getString(R.string.required)
-//        etCpfContainer.helperText = getString(R.string.required)
-//        etPasswordContainer.helperText = getString(R.string.required)
-//
-//    }
+    private fun resetForm() {
+
+        etState.setText("")
+        etCity.setText("")
+        etDistrict.setText("")
+        etStreet.setText("")
+
+        listOf(etState, etCity, etDistrict, etStreet).forEach { it.isEnabled = false }
+
+        etStateContainer.helperText = getString(R.string.required)
+        etCityContainer.helperText = getString(R.string.required)
+        etDistrictContainer.helperText = getString(R.string.required)
+        etStreetContainer.helperText = getString(R.string.required)
+
+    }
 
     private fun invalidForm() {
 
@@ -389,6 +400,13 @@ class ProfileAdressData : Fragment() {
                     etNumber.setText(adress?.number)
                     etComplement.setText(adress?.complement)
 
+                    etCepContainer.helperText = validCep()
+                    etStateContainer.helperText = validState()
+                    etCityContainer.helperText = validCity()
+                    etDistrictContainer.helperText = validDistrict()
+                    etStreetContainer.helperText = validStreet()
+                    etNumberContainer.helperText = validNumber()
+
                     btnSave.visibility = View.GONE
                     btnUpdate.visibility = View.VISIBLE
 
@@ -415,7 +433,7 @@ class ProfileAdressData : Fragment() {
         })
     }
 
-    private fun createUserAdress() {
+    private fun createUserAdress(idUser: Int) {
         var newAdress = Adress(
             null,
             etStreet.text.toString(),
@@ -425,7 +443,7 @@ class ProfileAdressData : Fragment() {
             etComplement.text.toString(),
             MaskCep.unmask(etCep.text.toString()),
             etDistrict.text.toString(),
-            loggedUserId
+            idUser
         )
 
         val createUserAdress = UserService.getInstance().createUserAdress(newAdress)
@@ -439,7 +457,7 @@ class ProfileAdressData : Fragment() {
                         .setTitle("Endereço cadastrado com sucesso!")
                         .setCancelable(false)
                         .setPositiveButton("Ok") { dialog, _ ->
-                            getUserAdress(loggedUserId)
+                            getUserAdress(idUser)
                         }.show()
 
                 } else {
@@ -447,7 +465,7 @@ class ProfileAdressData : Fragment() {
                         .setTitle("Erro ao cadastrar o endereço")
                         .setCancelable(true)
                         .setPositiveButton("Ok, entendi") { dialog, _ ->
-                            getUserAdress(loggedUserId)
+                            getUserAdress(idUser)
                         }.show()
                 }
             }
@@ -467,7 +485,7 @@ class ProfileAdressData : Fragment() {
         })
     }
 
-    private fun putUserAdress() {
+    private fun putUserAdress(idUser: Int) {
 
         var adressUpdate = Adress(
             null,
@@ -478,7 +496,7 @@ class ProfileAdressData : Fragment() {
             etComplement.text.toString(),
             MaskCep.unmask(etCep.text.toString()),
             etDistrict.text.toString(),
-            loggedUserId
+            idUser
         )
 
         val putUserAdress = UserService.getInstance().putUserAdress(idAdress, adressUpdate)
@@ -492,7 +510,7 @@ class ProfileAdressData : Fragment() {
                         .setTitle("Dados do usuário atualizados com sucesso!")
                         .setCancelable(false)
                         .setPositiveButton("Ok") { dialog, _ ->
-                            getUserAdress(loggedUserId)
+                            getUserAdress(idUser)
                         }.show()
 
                 } else {
@@ -500,7 +518,7 @@ class ProfileAdressData : Fragment() {
                         .setTitle("Erro ao atualizar dados do usuário")
                         .setCancelable(true)
                         .setPositiveButton("Ok, entendi") { dialog, _ ->
-                            getUserAdress(loggedUserId)
+                            getUserAdress(idUser)
                         }.show()
                 }
             }

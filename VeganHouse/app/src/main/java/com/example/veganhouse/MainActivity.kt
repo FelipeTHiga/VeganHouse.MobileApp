@@ -17,38 +17,56 @@ class MainActivity : AppCompatActivity() {
 
     val homeFragment = HomeFragment()
     val catalogFragment = CatalogFragment()
-    val loginFragment = LoginFragment()
     val cartFragment = CartFragment()
-    val profilePersonalData = ProfilePersonalData()
+    val profilePersonalData = ProfilePersonalDataFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        preferences = getSharedPreferences("user", MODE_PRIVATE)
-        val auth = preferences.getString("id", null)
-        var userFragment = Fragment()
-
-//        if (!auth.isNullOrEmpty()) {
-//            var userFragment = when {
-//                !auth.isNullOrEmpty() -> LoginFragment()
-//                else -> ProfilePersonalData()
-//            }
-//        }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.icon_home -> makeCurrentFragment(homeFragment)
-                R.id.icon_user -> makeCurrentFragment(profilePersonalData)
-                R.id.icon_shopping_bag -> makeCurrentFragment(cartFragment)
+                R.id.icon_user -> makeCurrentFragment(getFragment(profilePersonalData))
+                R.id.icon_shopping_bag -> makeCurrentFragment(getFragment(cartFragment))
                 R.id.icon_search -> makeCurrentFragment(catalogFragment)
             }
             true
         }
 
         checkNetworkConnection()
+
+    }
+
+    private fun getFragment(target: Fragment): Fragment {
+
+        preferences = getSharedPreferences("user", MODE_PRIVATE)
+        val auth = preferences.getInt("id", 0)
+
+        return when {
+            auth == 0 -> LoginFragment()
+            else -> target
+        }
+
+    }
+
+    private fun checkIsLogged(target: Fragment) {
+
+        val dialogBuilder = android.app.AlertDialog.Builder(applicationContext)
+        preferences = getSharedPreferences("user", MODE_PRIVATE)
+        val auth = preferences.getInt("id", 0)
+
+        if (auth == 0) {
+            dialogBuilder
+                .setTitle("Você precisa estar logado para acessar essa funcionalidade")
+                .setPositiveButton("Ir para Login") { dialog, _ ->
+                    makeCurrentFragment(LoginFragment())
+                }.show()
+        } else {
+            makeCurrentFragment(target)
+        }
 
     }
 

@@ -10,51 +10,33 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import androidx.core.app.ActivityCompat.finishAffinity
-import androidx.core.app.ActivityCompat.finishAfterTransition
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.ProductService
 import com.example.veganhouse.R
-import com.example.veganhouse.adapter.FeaturedProductCardAdapter
-import com.example.veganhouse.adapter.NewProductCardAdapter
+import com.example.veganhouse.adapter.FeaturedProductAdapter
+import com.example.veganhouse.adapter.NewProductAdapter
 import com.example.veganhouse.model.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     lateinit var searchBar: EditText
     lateinit var newproductCard: RecyclerView
     lateinit var featuredProductCard: RecyclerView
+    lateinit var tvDefaultMessage: TextView
+    lateinit var tvDefaultMessage2: TextView
 
     var productSearched = ""
     var arrayNewProducts: ArrayList<Product> = arrayListOf()
     var arrayFeaturedProduct: ArrayList<Product> = arrayListOf()
-    var adapterNewProducts = NewProductCardAdapter(arrayNewProducts, this)
-    var adapterFeaturedProduct = FeaturedProductCardAdapter(arrayFeaturedProduct, this)
+    var adapterNewProducts = NewProductAdapter(arrayNewProducts, this)
+    var adapterFeaturedProduct = FeaturedProductAdapter(arrayFeaturedProduct, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -71,11 +53,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(v, savedInstanceState)
 
         searchBar = v.findViewById(R.id.search_bar)
+        tvDefaultMessage = v.findViewById(R.id.tv_default_message)
+        tvDefaultMessage2 = v.findViewById(R.id.tv_default_message_2)
 
-        newproductCard = v.findViewById<RecyclerView>(R.id.new_products_component)
+        newproductCard = v.findViewById(R.id.new_products_component)
         newproductCard.adapter = adapterNewProducts
 
-        featuredProductCard = v.findViewById<RecyclerView>(R.id.featured_product_component)
+        featuredProductCard = v.findViewById(R.id.featured_product_component)
         featuredProductCard.adapter = adapterFeaturedProduct
 
         var listBtnCategory: ArrayList<ImageButton> = arrayListOf(
@@ -89,7 +73,7 @@ class HomeFragment : Fragment() {
 
         listBtnCategory.forEach { btnProduct ->
             btnProduct.setOnClickListener {
-                redirectCatalog(it, "")
+                this.redirectCatalog(it, "")
             }
         }
 
@@ -101,7 +85,7 @@ class HomeFragment : Fragment() {
                 val imm =
                     context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(searchBar.getApplicationWindowToken(), 0)
-                redirectCatalog(searchBar, productSearched)
+                this.redirectCatalog(searchBar, productSearched)
                 searchBar.setText("")
             }
             true
@@ -117,14 +101,14 @@ class HomeFragment : Fragment() {
         val dialogBuilder = AlertDialog.Builder(context)
 
         dialogBuilder
-            .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
+            .setMessage(getString(R.string.api_error_message))
             .setCancelable(true)
-            .setPositiveButton("Ok, entendi!", DialogInterface.OnClickListener { dialog, id ->
+            .setPositiveButton(getString(R.string.ok_got_it), DialogInterface.OnClickListener { dialog, id ->
                 dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("Atenção")
+        alert.setTitle(getString(R.string.attention))
         alert.show()
     }
 
@@ -174,7 +158,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    fun getNewProducts() {
+    private fun getNewProducts() {
 
         val getNewProducts = ProductService.getInstance().getNewProducts()
 
@@ -186,7 +170,7 @@ class HomeFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 404 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
                         return
                     }
                     if (arrayNewProducts.isNotEmpty()) arrayNewProducts.clear()
@@ -194,20 +178,20 @@ class HomeFragment : Fragment() {
                         arrayNewProducts.add(product)
                     }
                     adapterNewProducts.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                //showAlertDialog("R.string.attention", "R.string.api_error_message", "R.string.ok")
                 showAlertDialog()
             }
         })
     }
 
-    fun getFeaturedProduct() {
+    private fun getFeaturedProduct() {
 
         val getFeaturedProduct = ProductService.getInstance().getFeaturedProduct()
 
@@ -219,7 +203,7 @@ class HomeFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 404 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage2.text = getString(R.string.no_result_found)
                         return
                     }
                     var product = response.body()
@@ -228,22 +212,18 @@ class HomeFragment : Fragment() {
                     if (product != null) {
                         arrayFeaturedProduct.add(product)
                     }
-
                     adapterFeaturedProduct.notifyDataSetChanged()
+                    tvDefaultMessage2.text = ""
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage2.text = getString(R.string.no_result_found)
                 }
             }
 
             override fun onFailure(call: Call<Product>, t: Throwable) {
                 t.printStackTrace()
-                //showAlertDialog("R.string.attention", "R.string.api_error_message", "R.string.ok")
                 showAlertDialog()
             }
         })
-    }
-
-    companion object {
     }
 
 }

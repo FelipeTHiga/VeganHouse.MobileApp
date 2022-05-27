@@ -61,7 +61,10 @@
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_signin.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_splash_screen.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/activity_teste_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/card_order_product.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/card_product.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/certification_item.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/featured_product_card.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/featured_product_item.xml" value="0.33" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_catalog.xml" value="0.25" />
@@ -74,10 +77,10 @@
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_profile_orders.xml" value="0.22" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_profile_personal_data.xml" value="0.22" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/fragment_signin.xml" value="0.27291666666666664" />
-        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/layout_card_cart.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/layout_card_cart.xml" value="0.22" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/list_item.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/new_product_item.xml" value="0.5" />
-        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/order_product_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/order_product_item.xml" value="0.25" />
         <entry key="..\:/Users/laris/Desktop/VeganHouse.MobileApp/VeganHouse/app/src/main/res/layout/product_item.xml" value="0.67" />
         <entry key="..\:/Users/miguel.assuncao/Documents/Projeto PI - 4ADSA/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/custom_input.xml" value="0.1537037037037037" />
         <entry key="..\:/Users/miguel.assuncao/Documents/Projeto PI - 4ADSA/VeganHouse.MobileApp/VeganHouse/app/src/main/res/drawable/custom_input_radius_5.xml" value="0.1537037037037037" />

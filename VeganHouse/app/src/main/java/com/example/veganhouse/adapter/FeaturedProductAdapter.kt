@@ -12,12 +12,12 @@ import com.example.veganhouse.R
 import com.example.veganhouse.fragments.HomeFragment
 import com.example.veganhouse.model.Product
 
-class FeaturedProductCardAdapter(private val product: List<Product>, homeFragment: HomeFragment) :
-        RecyclerView.Adapter<FeaturedProductCardAdapter.ProductViewHolder>() {
+class FeaturedProductAdapter(private val product: List<Product>, homeFragment: HomeFragment) :
+        RecyclerView.Adapter<FeaturedProductAdapter.ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.featured_product_item, parent, false)
+        val view = layoutInflater.inflate(R.layout.card_featured_product, parent, false)
         return ProductViewHolder(view)
     }
 

@@ -8,13 +8,13 @@ import retrofit2.http.*
 
 interface SellerCertifiedService {
 
-    @GET("certifieds/{fkSeller}")
-    fun getSellerCertified(@Path("fkSeller") fkSeller:Int) : Call<ArrayList<Certification>>
+    @GET("certifieds/mobile/{fkSeller}")
+    fun getSellerCertified(@Path("fkSeller") fkSeller:Int) : Call<List<Certification>>
 
     companion object {
         var BASE_URL = "http://174.129.13.249:8080/"
 
-        fun criar() : SellerCertifiedService {
+        fun getInstance() : SellerCertifiedService {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BASE_URL)

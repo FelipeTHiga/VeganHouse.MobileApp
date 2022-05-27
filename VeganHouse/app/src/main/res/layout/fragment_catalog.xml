@@ -260,6 +260,18 @@
                 app:layout_constraintRight_toRightOf="@id/rl_cards"
                 app:layout_constraintTop_toTopOf="@id/rl_cards"></ProgressBar>
 
+            <TextView
+                android:id="@+id/tv_default_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#604D4D"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/rl_cards"
+                app:layout_constraintLeft_toLeftOf="@id/rl_cards"
+                app:layout_constraintRight_toRightOf="@id/rl_cards"
+                app:layout_constraintTop_toTopOf="@id/rl_cards"></TextView>
+
             <ImageView
                 android:id="@+id/btn_scroll"
                 android:layout_width="30dp"
@@ -274,4 +286,3 @@
 
 </FrameLayout>
 
-    <!--    android:indeterminateDrawable="@drawable/progress_bg"-->

@@ -10,15 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.R
 import com.example.veganhouse.model.Product
 import android.util.Base64
-import com.example.veganhouse.fragments.CatalogFragment
 
 
-class ProductCardAdapter(private val products: List<Product>, private val listener: OnItemClickListener) :
-    RecyclerView.Adapter<ProductCardAdapter.ProductViewHolder>() {
+class ProductAdapter(private val products: List<Product>, private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.product_item, parent, false)
+        val view = layoutInflater.inflate(R.layout.card_product, parent, false)
         return ProductViewHolder(view)
     }
 

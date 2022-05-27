@@ -3,7 +3,6 @@ package com.example.veganhouse.fragments
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Base64
 import android.view.LayoutInflater
@@ -15,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.ProductService
 import com.example.veganhouse.R
-import com.example.veganhouse.adapter.CertificationItemAdapter
+import com.example.veganhouse.adapter.CertificationAdapter
 import com.example.veganhouse.api.SellerCertifiedService
 import com.example.veganhouse.model.Certification
 import com.example.veganhouse.model.Product
@@ -27,16 +26,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProductFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProductFragment : Fragment() {
 
     lateinit var ivProductImage: ImageView
@@ -47,11 +36,12 @@ class ProductFragment : Fragment() {
     lateinit var tvSellerInstagram: TextView
     lateinit var tvSellerFacebook: TextView
     lateinit var tvSellerWhatsapp: TextView
+
     var productId = 1
     var productIsAvailable = true
 
     private var arrayCertification: ArrayList<Certification> = arrayListOf()
-    private var adapter = CertificationItemAdapter(arrayCertification)
+    private var adapter = CertificationAdapter(arrayCertification)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +51,7 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_product, container, false)
 
         return v
@@ -76,8 +67,7 @@ class ProductFragment : Fragment() {
 
         this.getProductById(productId)
 
-        val btnOpenContainerCertifications: ImageView =
-            v.findViewById(R.id.arrow_container_certifications)
+        val btnOpenContainerCertifications: ImageView = v.findViewById(R.id.arrow_container_certifications)
         val btnOpenContainerSeller: ImageView = v.findViewById(R.id.arrow_container_seller)
         val btnRedirectCart: Button = v.findViewById(R.id.btn_add_cart)
         val btnNotifyUser: Button = v.findViewById(R.id.btn_notify_user)
@@ -92,10 +82,8 @@ class ProductFragment : Fragment() {
         tvSellerFacebook = v.findViewById(R.id.tv_seller_facebook)
         tvSellerWhatsapp = v.findViewById(R.id.tv_seller_whatsapp)
 
-        v.findViewById<ImageView>(R.id.arrow_container_certifications)
-            .setImageResource(R.drawable.ic_arrow_right)
-        v.findViewById<ImageView>(R.id.arrow_container_seller)
-            .setImageResource(R.drawable.ic_arrow_right)
+        v.findViewById<ImageView>(R.id.arrow_container_certifications).setImageResource(R.drawable.ic_arrow_right)
+        v.findViewById<ImageView>(R.id.arrow_container_seller).setImageResource(R.drawable.ic_arrow_right)
 
         val recyclerView = v.findViewById<RecyclerView>(R.id.certifications_component)
         recyclerView.adapter = adapter
@@ -165,61 +153,23 @@ class ProductFragment : Fragment() {
         transaction.commit()
     }
 
-    fun showAlertDialog(title: String, message: String, btnText: String) {
+    fun showAlertDialog() {
 
-        val dialogBuilder = AlertDialog.Builder(context) // , R.style.AlertDialogTheme
+        val dialogBuilder = AlertDialog.Builder(context)
 
         dialogBuilder
-            .setMessage(message)
+            .setMessage(getString(R.string.api_error_message))
             .setCancelable(true)
-            .setPositiveButton(btnText, DialogInterface.OnClickListener { dialog, id ->
+            .setPositiveButton(getString(R.string.ok_got_it), DialogInterface.OnClickListener { dialog, id ->
                 dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle(title)
+        alert.setTitle(getString(R.string.attention))
         alert.show()
     }
 
-    fun getSellerCertified(idSeller: Int) {
-
-        val getSellerCertified = SellerCertifiedService.criar().getSellerCertified(idSeller)
-        //val homedateList: List<HomeDate> = gson.fromJson(body, Array<HomeDate>::class.java).toList()
-
-        getSellerCertified.enqueue(object : Callback<ArrayList<Certification>> {
-
-            override fun onResponse(
-                call: Call<ArrayList<Certification>>,
-                response: Response<ArrayList<Certification>>
-            ) {
-                if (response.isSuccessful) {
-                    if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem certificados", Toast.LENGTH_SHORT).show()
-                        return
-                    }
-                    if (arrayCertification.isNotEmpty()) arrayCertification.clear()
-                    response.body()?.forEach { certified ->
-                        arrayCertification.add(certified)
-                    }
-                    adapter.notifyDataSetChanged()
-                } else {
-                    Toast.makeText(context, "Sem certificados", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<ArrayList<Certification>>, t: Throwable) {
-                t.printStackTrace()
-                var title = getString(R.string.attention)
-                var message = getString(R.string.api_error_message)
-                var btnText = getString(R.string.ok)
-                showAlertDialog(title, message, btnText)
-            }
-
-        })
-
-    }
-
-    fun getProductById(productId: Int) {
+    private fun getProductById(productId: Int) {
 
         val getProductById = ProductService.getInstance().getProductById(productId)
 
@@ -259,17 +209,45 @@ class ProductFragment : Fragment() {
 
             override fun onFailure(call: Call<Product>, t: Throwable) {
                 t.printStackTrace()
-                var title = getString(R.string.attention)
-                var message = getString(R.string.api_error_message)
-                var btnText = getString(R.string.ok)
-                showAlertDialog(title, message, btnText)
+                showAlertDialog()
             }
 
         })
 
     }
 
-    fun getSellerById(idSeller: Int) {
+    private fun getSellerCertified(idSeller: Int) {
+
+        val getSellerCertified = SellerCertifiedService.getInstance().getSellerCertified(idSeller)
+
+        getSellerCertified.enqueue(object : Callback<List<Certification>> {
+
+            override fun onResponse(call: Call<List<Certification>>, response: Response<List<Certification>>) {
+                if (response.isSuccessful) {
+                    if (response.code() == 204 || response.body() == null) {
+                        Toast.makeText(context, "Sem certificados", Toast.LENGTH_SHORT).show()
+                        return
+                    }
+                    if (arrayCertification.isNotEmpty()) arrayCertification.clear()
+                    response.body()?.forEach { certified ->
+                        arrayCertification.add(certified)
+                    }
+                    adapter.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(context, "Sem certificados", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Certification>>, t: Throwable) {
+                t.printStackTrace()
+                showAlertDialog()
+            }
+
+        })
+
+    }
+
+    private fun getSellerById(idSeller: Int) {
 
         val getSellerById = SellerService.getInstance().getSellerById(idSeller)
 
@@ -291,16 +269,13 @@ class ProductFragment : Fragment() {
 
             override fun onFailure(call: Call<Seller>, t: Throwable) {
                 t.printStackTrace()
-                var title = getString(R.string.attention)
-                var message = getString(R.string.api_error_message)
-                var btnText = getString(R.string.ok)
-                showAlertDialog(title, message, btnText)
+                showAlertDialog()
             }
 
         })
     }
 
-    fun createSubscription() {
+    private fun createSubscription() {
 
         var restockNotification = RestockNotification(
             null,
@@ -308,8 +283,8 @@ class ProductFragment : Fragment() {
             productId
         )
 
-        val createSubscription =
-            EventManagerRestockService.getInstance().createSubscription(restockNotification)
+        val createSubscription = EventManagerRestockService.getInstance().createSubscription(restockNotification)
+        val dialogBuilder = android.app.AlertDialog.Builder(context)
 
         createSubscription.enqueue(object : Callback<RestockNotification> {
             override fun onResponse(
@@ -317,11 +292,17 @@ class ProductFragment : Fragment() {
                 response: Response<RestockNotification>
             ) {
                 if (response.isSuccessful) {
-                    //Toast.makeText(context, "Quando chegarem novos produtos, notificaremos via e-mail.", Toast.LENGTH_SHORT).show()
-                    var title = "Notificação via e-mail"
-                    var message = "Quando chegarem novos produtos, notificaremos via e-mail."
-                    var btnText = "Ok, entendi!"
-                    showAlertDialog(title, message, btnText)
+
+                    dialogBuilder
+                        .setTitle(getString(R.string.notify_by_email_title))
+                        .setMessage(getString(R.string.notify_by_email_message))
+                        .setCancelable(true)
+                        .setPositiveButton(
+                            getString(R.string.ok_got_it),
+                            DialogInterface.OnClickListener { dialog, id ->
+                                dialog.cancel()
+                            }).show()
+
                 } else {
                     Toast.makeText(context, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT)
                         .show()
@@ -330,32 +311,9 @@ class ProductFragment : Fragment() {
 
             override fun onFailure(call: Call<RestockNotification>, t: Throwable) {
                 t.printStackTrace()
-                var title = getString(R.string.attention)
-                var message = getString(R.string.api_error_message)
-                var btnText = getString(R.string.ok)
-                showAlertDialog(title, message, btnText)
+                showAlertDialog()
             }
 
         })
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProductFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProductFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

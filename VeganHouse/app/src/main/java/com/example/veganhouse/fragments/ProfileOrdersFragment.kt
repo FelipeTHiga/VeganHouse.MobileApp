@@ -1,15 +1,16 @@
 package com.example.veganhouse.fragments
 
-import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.R
 import com.example.veganhouse.adapter.OrderAdapter
@@ -18,15 +19,16 @@ import com.example.veganhouse.service.OrderService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
-class ProfileOrders : Fragment() {
+class ProfileOrdersFragment : Fragment() {
 
     lateinit var orderCard: RecyclerView
     lateinit var progressBar: ProgressBar
+    lateinit var preferences: SharedPreferences
+    lateinit var tvDefaultMessage: TextView
 
-    var loggedUserId = 1
+    var loggedUserId = 0
+
     var arrayOrders: ArrayList<Order> = arrayListOf()
     var adapter = OrderAdapter(arrayOrders, this)
 
@@ -47,11 +49,16 @@ class ProfileOrders : Fragment() {
     override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
         super.onViewCreated(v, savedInstanceState)
 
+        preferences =
+            activity?.baseContext?.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)!!
+        loggedUserId = preferences.getInt("id", 0)
+
         orderCard = v.findViewById<RecyclerView>(R.id.orders_component)
         orderCard.adapter = adapter
         progressBar = v.findViewById(R.id.progress_bar)
+        tvDefaultMessage = v.findViewById(R.id.tv_default_message)
 
-        getUserOrder()
+        getUserOrder(loggedUserId)
 
         val transaction = activity?.supportFragmentManager?.beginTransaction()!!
         val arguments = Bundle()
@@ -65,9 +72,21 @@ class ProfileOrders : Fragment() {
         listBtnProfile.forEach { btn ->
             btn.setOnClickListener {
                 when (btn.id) {
-                    R.id.btn_profile_data -> transaction.replace(R.id.fl_wrapper, ProfilePersonalData::class.java, arguments)
-                    R.id.btn_profile_orders ->  transaction.replace(R.id.fl_wrapper, ProfileOrders::class.java, arguments)
-                    R.id.btn_profile_adress -> transaction.replace(R.id.fl_wrapper, ProfileAdressData::class.java, arguments)
+                    R.id.btn_profile_data -> transaction.replace(
+                        R.id.fl_wrapper,
+                        ProfilePersonalDataFragment::class.java,
+                        arguments
+                    )
+                    R.id.btn_profile_orders -> transaction.replace(
+                        R.id.fl_wrapper,
+                        ProfileOrdersFragment::class.java,
+                        arguments
+                    )
+                    R.id.btn_profile_adress -> transaction.replace(
+                        R.id.fl_wrapper,
+                        ProfileAdressDataFragment::class.java,
+                        arguments
+                    )
                 }
                 transaction.commit()
             }
@@ -77,21 +96,21 @@ class ProfileOrders : Fragment() {
 
     fun showAlertDialog() {
 
-        val dialogBuilder = AlertDialog.Builder(context)
+        val dialogBuilder = android.app.AlertDialog.Builder(context)
 
         dialogBuilder
-            .setMessage("Sistema indisponível no momento. Por favor, tente mais tarde.")
+            .setTitle(getString(R.string.attention))
+            .setMessage(getString(R.string.api_error_message))
             .setCancelable(true)
-            .setPositiveButton("Ok, entendi!", DialogInterface.OnClickListener { dialog, id ->
-                dialog.cancel()
-            })
+            .setPositiveButton(
+                getString(R.string.ok_got_it),
+                DialogInterface.OnClickListener { dialog, id ->
+                    dialog.cancel()
+                }).show()
 
-        val alert = dialogBuilder.create()
-        alert.setTitle("Atenção")
-        alert.show()
     }
 
-    private fun getUserOrder() {
+    private fun getUserOrder(idUser: Int) {
 
         val getUserOrder = OrderService.getInstance().getUserOrder(loggedUserId)
 
@@ -102,8 +121,7 @@ class ProfileOrders : Fragment() {
             override fun onResponse(call: Call<List<Order>>, response: Response<List<Order>>) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Usuário não tem pedidos", Toast.LENGTH_SHORT)
-                            .show()
+                        tvDefaultMessage.text = getString(R.string.without_orders)
                         progressBar.visibility = View.GONE
                         return
                     }
@@ -113,9 +131,10 @@ class ProfileOrders : Fragment() {
                         arrayOrders.add(order)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Usuário não tem pedidos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.without_orders)
                     progressBar.visibility = View.GONE
                 }
             }

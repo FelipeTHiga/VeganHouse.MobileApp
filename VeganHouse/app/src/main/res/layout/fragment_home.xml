@@ -118,6 +118,17 @@
                     android:layout_marginBottom="30dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
 
+                <TextView
+                    android:id="@+id/tv_default_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gridCategories"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    android:textColor="#604D4D"
+                    android:textSize="16sp"
+                    android:textStyle="bold"></TextView>
+
             </RelativeLayout>
             <!-- Body - end -->
 
@@ -146,9 +157,11 @@
                     </androidx.recyclerview.widget.RecyclerView>
 
                 </RelativeLayout>
+
             </HorizontalScrollView>
 
             <TextView
+                android:id="@+id/tv_news"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/container_main"
@@ -158,6 +171,17 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_default_message_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_news"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp"
+                android:textColor="#604D4D"
+                android:textSize="16sp"
+                android:textStyle="bold"></TextView>
 
         </RelativeLayout>
     </ScrollView>

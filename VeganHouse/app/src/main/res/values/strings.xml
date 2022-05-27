@@ -1,7 +1,32 @@
 <resources>
     <string name="app_name">Vegan House</string>
+
+    <!--    Modal      -->
+    <string name="no_result_found">Sua busca não teve resultados</string>
+    <string name="no_result_found_to">Nenhum resultado encontrado para %s</string>
+    <string name="ok_got_it">Ok, entendi</string>
+    <string name="ok">Ok</string>
+
+    <string name="notify_by_email_title">Notificação via e-mail</string>
+    <string name="notify_by_email_message">Quando chegarem novos produtos, notificaremos via e-mail.</string>
+
+    <string name="without_orders">Você ainda não fez nenhum pedido.</string>
+
+    <!-- Title, Message, btnText of Alerts   -->
+    <string name="attention">Atenção</string>
+    <string name="api_error_message">Sistema indisponível no momento. Por favor, tente mais tarde.</string>
+
+    <!--    Categories -->
+    <string name="acessories">Acessórios</string>
+    <string name="food">Alimentos</string>
+    <string name="cosmetics">Cosméticos</string>
+    <string name="health">Saúde</string>
+    <string name="clothes">Vestimenta</string>
+    <string name="all">Todos</string>
+
+
     <!--    IPs        -->
-    <string name="ip_api_local">http://10.0.2.2:8080/</string>
+    <string name="ip_api_local">http://10.0.2.2:8080/</string>http://10.0.2.2:8080/
     <string name="ip_api_vm1">http://52.207.48.19:8080/</string>
     <string name="ip_api_vm2">http://174.129.13.249:8080/</string>
 
@@ -39,12 +64,6 @@
     <string name="title_product_cart">Kit Banho Vegan Health</string>
     <string name="price_product_cart">R$ 75,00</string>
     <string name="select">Selos</string>
-
-    <!-- Title, Message, btnText of Alerts   -->
-    <string name="attention">Atenção</string>
-    <string name="api_error_message">Sistema indisponível no momento. Por favor, tente mais tarde.</string>
-    <string name="ok">Ok, entendi!</string>
-
 
     <!--    Main / Home        -->
     <string name="home_title">Home</string>
