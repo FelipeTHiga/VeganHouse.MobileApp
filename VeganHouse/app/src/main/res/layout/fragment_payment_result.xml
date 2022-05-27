@@ -8,8 +8,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#FAB4B4">
+        android:background="#FAB4B4"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_payment_result"
@@ -31,48 +31,50 @@
 
         <ImageView
             android:id="@+id/iv_result"
-            android:layout_centerHorizontal="true"
-            android:background="@mipmap/sucesso"
-            android:layout_marginTop="150dp"
-            android:layout_height="89dp"
             android:layout_width="89dp"
-            android:layout_below="@id/tv_payment_result"/>
+            android:layout_height="89dp"
+            android:layout_below="@id/tv_payment_result"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:background="@mipmap/sucesso" />
 
         <TextView
+            android:id="@+id/tv_payment_result_msg_resume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_result"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="@string/payment_result_msg_sucess_resume"
             android:textColor="@color/black"
-            android:layout_centerHorizontal="true"
-            android:textSize="21sp"
-            android:id="@+id/tv_payment_result_msg_resume"/>
+            android:textSize="21sp" />
 
         <TextView
+            android:id="@+id/tv_payment_result_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_payment_result_msg_resume"
-            android:text="@string/payment_result_msg_sucess"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
+            android:text="@string/payment_result_msg_sucess"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            android:id="@+id/tv_payment_result_msg"/>
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/btn_return_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_payment_result_msg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
             android:width="250dp"
             android:height="50dp"
             android:backgroundTint="#FAB4B4"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
             android:text="@string/payment_result_return"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             android:textSize="15sp"
-            android:textAllCaps="false"/>
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </FrameLayout>

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        >
+        android:layout_marginBottom="50dp">
 
         <RelativeLayout
             android:id="@+id/mainContainer"
@@ -52,6 +51,8 @@
                     android:drawableLeft="@drawable/icon_search"
                     android:drawablePadding="6dp"
                     android:hint="@string/hint_search_bar"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
                     android:paddingStart="10dp" />
 
 
@@ -69,23 +70,20 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="left"
-                        android:background="@drawable/btn_bg_acessories"
-                        android:onClick="telaCatalog" />
+                        android:background="@drawable/btn_bg_acessories" />
 
                     <ImageButton
                         android:id="@+id/btn_clothes"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/btn_bg_clothes"
-                        android:onClick="telaCatalog" />
+                        android:background="@drawable/btn_bg_clothes" />
 
                     <ImageButton
                         android:id="@+id/btn_cosmetics"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/btn_bg_cosmetics"
-                        android:onClick="telaCatalog" />
+                        android:background="@drawable/btn_bg_cosmetics" />
 
                     <ImageButton
                         android:id="@+id/btn_food"
@@ -93,8 +91,7 @@
                         android:layout_height="100dp"
                         android:layout_gravity="left"
                         android:layout_marginTop="30dp"
-                        android:background="@drawable/btn_bg_food"
-                        android:onClick="telaCatalog" />
+                        android:background="@drawable/btn_bg_food" />
 
                     <ImageButton
                         android:id="@+id/btn_health"
@@ -102,143 +99,89 @@
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="30dp"
-                        android:background="@drawable/btn_bg_health"
-                        android:onClick="telaCatalog" />
+                        android:background="@drawable/btn_bg_health" />
 
                     <ImageButton
                         android:id="@+id/btn_explore"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="30dp"
-                        android:background="@drawable/btn_bg_explore"
-                        android:onClick="telaCatalog" />
+                        android:background="@drawable/btn_bg_explore" />
                 </GridLayout>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/banner_product"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/featured_product_component"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/gridCategories"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="30dp"
-                    android:elevation="3dp"
-                    android:padding="5dp"
-                    android:weightSum="100"
-                    app:cardCornerRadius="20dp"
-                    app:strokeColor="#C1C0C0"
-                    app:strokeWidth="0.5dp">
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
 
-                    <RelativeLayout
-                        android:id="@+id/rl_product"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_default_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gridCategories"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    android:textColor="#604D4D"
+                    android:textSize="16sp"
+                    android:textStyle="bold"></TextView>
 
-                        <ImageView
-                            android:id="@+id/product_banner_img"
-                            android:layout_width="185dp"
-                            android:layout_height="180dp"
-                            android:background="@drawable/banner_product_img1"
-                            />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_toRightOf="@+id/product_banner_img">
-
-                            <TextView
-                                android:id="@+id/product_banner_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="10dp"
-                                android:paddingRight="15dp"
-                                android:text="Shampoo em barra"
-                                android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/product_banner_seller"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/product_banner_title"
-                                android:paddingLeft="15dp"
-                                android:paddingTop="3dp"
-                                android:paddingRight="15dp"
-                                android:text="Vendido por Azul Cosméticos"
-                                android:textColor="@color/black"
-                                android:textSize="10sp" />
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_below="@+id/product_banner_seller"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="10dp"
-                                android:background="@drawable/certificate_vegan" />
-                        </RelativeLayout>
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
             </RelativeLayout>
             <!-- Body - end -->
 
             <HorizontalScrollView
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:layout_below="@+id/container_main"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/banner_news_bg"
-                >
+                android:scrollbars="none">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingLeft="20dp"
-                    >
+                    android:paddingRight="20dp">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card1"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/new_products_component"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/banner_product_bg"></com.google.android.material.card.MaterialCardView>
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card2"
-                        android:layout_toRightOf="@+id/card1"
-                        android:layout_marginLeft="30dp"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:background="@drawable/banner_product_bg"
-                        android:layout_centerVertical="true"
-                        >
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card3"
-                        android:layout_toRightOf="@+id/card2"
-                        android:layout_marginLeft="30dp"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:background="@drawable/banner_product_bg"
-                        android:layout_centerVertical="true"
-                        >
-                    </com.google.android.material.card.MaterialCardView>
+                    </androidx.recyclerview.widget.RecyclerView>
 
                 </RelativeLayout>
+
             </HorizontalScrollView>
 
             <TextView
-                android:layout_marginLeft="20dp"
-                android:layout_below="@+id/container_main"
+                android:id="@+id/tv_news"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Novidades"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:layout_below="@+id/container_main"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="35dp"
+                android:text="@string/news"
                 android:textColor="@color/white"
-                />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_default_message_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_news"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp"
+                android:textColor="#604D4D"
+                android:textSize="16sp"
+                android:textStyle="bold"></TextView>
 
         </RelativeLayout>
     </ScrollView>
@@ -250,20 +193,12 @@
         android:layout_height="42dp"
         android:background="#BEF6A588">
 
-        <ImageButton
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/icon_menu"
-            android:onClick="showMenu" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:text="Home"
+            android:text="@string/home_title"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
