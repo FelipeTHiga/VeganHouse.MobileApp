@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.*
 import com.example.veganhouse.adapter.ProductCardAdapter
 import com.example.veganhouse.model.Product
+import com.example.veganhouse.service.ProductService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

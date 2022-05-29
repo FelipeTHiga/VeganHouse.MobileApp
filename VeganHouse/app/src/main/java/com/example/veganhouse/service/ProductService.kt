@@ -1,4 +1,4 @@
-package com.example.veganhouse
+package com.example.veganhouse.service
 
 import com.example.veganhouse.model.Product
 import retrofit2.Call
@@ -19,7 +19,7 @@ interface ProductService {
 
     companion object {
         //var BASE_URL = "http://10.0.2.2:8080/" // IP "Coringa", identifica o localhost do Notebook em que esta conectado
-        var BASE_URL = "http://174.129.13.249:8080/"
+        var BASE_URL = "http://52.207.48.19:8080/"
         //var BASE_URL = "http://10.0.2.2:8080/"
 
         fun getInstance() : ProductService {

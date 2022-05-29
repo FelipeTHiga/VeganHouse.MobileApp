@@ -15,8 +15,10 @@ import com.example.veganhouse.CertificationItemAdapter
 import com.example.veganhouse.adapter.ProductCardAdapter
 import com.example.veganhouse.R
 import com.example.veganhouse.api.ApiSellerCertified
+import com.example.veganhouse.model.CartItem
 import com.example.veganhouse.model.Certification
 import com.example.veganhouse.model.Product
+import com.example.veganhouse.service.CartItemService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -151,6 +153,24 @@ class ProductFragment : Fragment() {
             }
 
         })
+
+    }
+
+   fun addProductCart(v: View) {
+       val tvQtProduct = v.findViewById<TextView>(R.id.tv_product_quantity)
+
+       var qtSubtotal = tvQtProduct.text.toString().toInt()
+
+       val product1 = Product(1, "Torta de banana",
+           20.00, "Alimento", "Torta muito boa", 7, 1,
+           "", "", "", true)
+
+       val cartItem1 = CartItem(1, product1, 2,
+           product1.price * qtSubtotal, 1, 1)
+
+       val addProductCart = CartItemService.getInstance()
+           .addCartItem(1, cartItem1)
+
 
     }
 

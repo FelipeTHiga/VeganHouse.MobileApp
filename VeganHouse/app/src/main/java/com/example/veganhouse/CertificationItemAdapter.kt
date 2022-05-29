@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.veganhouse.data.Certification
+import com.example.veganhouse.model.Certification
 
 class CertificationItemAdapter(private val certifications: List<Certification>) :
     RecyclerView.Adapter<CertificationItemAdapter.CertificationViewHolder>() {
@@ -26,14 +26,14 @@ class CertificationItemAdapter(private val certifications: List<Certification>) 
 
     class CertificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(data: Certification) {
+        fun bind(model: Certification) {
             with(itemView) {
 
                 val imgCertification = findViewById<ImageView>(R.id.iv_certified_image)
                 val nameCertification = findViewById<TextView>(R.id.tv_certified_name)
 
                 imgCertification.setImageResource(R.drawable.selo1)
-                nameCertification.text = data.name
+                nameCertification.text = model.name
 
             }
         }
