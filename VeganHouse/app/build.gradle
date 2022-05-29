@@ -58,4 +58,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.android.material:material:1.1.0'
+
+    // Allows for hassle-free image loading in your application—often in one line of code!
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

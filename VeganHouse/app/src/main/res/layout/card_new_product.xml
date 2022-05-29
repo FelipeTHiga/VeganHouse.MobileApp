@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/product_card"
+        style="@style/ContainerCardsNews"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></View>
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/image_product_example"
+        app:layout_constraintLeft_toLeftOf="@id/product_card"
+        app:layout_constraintRight_toRightOf="@id/product_card"
+        app:layout_constraintTop_toTopOf="@id/product_card"></ImageView>
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/product_name_example"
+        android:textColor="@color/black"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/product_image"
+        app:layout_constraintRight_toRightOf="@id/product_image"
+        app:layout_constraintTop_toBottomOf="@id/product_image"></TextView>
+
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="@string/product_price_example"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/product_image"
+        app:layout_constraintRight_toRightOf="@id/product_image"
+        app:layout_constraintTop_toBottomOf="@id/product_name"></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

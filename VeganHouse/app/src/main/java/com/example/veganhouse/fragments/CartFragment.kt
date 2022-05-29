@@ -1,11 +1,11 @@
 package com.example.veganhouse.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.R
 import com.example.veganhouse.adapter.CardCartAdapter
-import com.example.veganhouse.adapter.ProductCardAdapter
+import com.example.veganhouse.adapter.ProductAdapter
 import com.example.veganhouse.model.CartItem
 import com.example.veganhouse.model.Product
 import com.example.veganhouse.service.CartItemService
@@ -21,27 +21,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
 
     var arrayCardCart: ArrayList<CartItem> = arrayListOf()
     var adapter = CardCartAdapter(arrayCardCart)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
     }
 
     override fun onCreateView(
@@ -50,6 +36,13 @@ class CartFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_cart, container, false)
+
+        return v
+    }
+
+    override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(v, savedInstanceState)
+
         val cartCard = v.findViewById<RecyclerView>(R.id.card_cart_products)
         cartCard.adapter = adapter
         val btnPayment: Button = v.findViewById(R.id.btn_payment)
@@ -61,13 +54,7 @@ class CartFragment : Fragment() {
             redirectPayment()
         }
 
-
-        return v
     }
-
-
-
-
 
     fun getUserCartItems() {
         val getUserCartItems = CartItemService.getInstance().getUserCartItems(1)
@@ -106,34 +93,11 @@ class CartFragment : Fragment() {
         )
     }
 
-
     fun redirectPayment() {
         val paymentFragment = PaymentFragment()
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.fl_wrapper, paymentFragment)
         transaction.commit()
     }
-
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
 
 }

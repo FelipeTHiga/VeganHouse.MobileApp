@@ -7,5 +7,4 @@ data class CartItem (
     var subTotal: Double,
     var fkUser: Int,
     var fkOrder: Int
-
 )
