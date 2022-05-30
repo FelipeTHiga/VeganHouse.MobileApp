@@ -24,8 +24,8 @@ class ProfileOrdersFragment : Fragment() {
 
     lateinit var orderCard: RecyclerView
     lateinit var progressBar: ProgressBar
-    lateinit var preferences: SharedPreferences
     lateinit var tvDefaultMessage: TextView
+    lateinit var preferences: SharedPreferences
 
     var loggedUserId = 0
 

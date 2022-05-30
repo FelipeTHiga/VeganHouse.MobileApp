@@ -12,7 +12,7 @@ interface SellerCertifiedService {
     fun getSellerCertified(@Path("fkSeller") fkSeller:Int) : Call<List<Certification>>
 
     companion object {
-        var BASE_URL = "http://52.207.48.19:8080/"
+        var BASE_URL = "http://174.129.13.249:8080/"
 
         fun getInstance() : SellerCertifiedService {
             val retrofit = Retrofit.Builder()

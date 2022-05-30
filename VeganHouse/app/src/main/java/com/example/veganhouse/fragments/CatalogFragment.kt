@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.*
 import com.example.veganhouse.adapter.ProductAdapter
 import com.example.veganhouse.model.Product
-import com.example.veganhouse.service.ProductService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -482,6 +481,8 @@ class CatalogFragment() : Fragment(), ProductAdapter.OnItemClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
+                        arrayProduct.clear()
+                        adapter.notifyDataSetChanged()
                         tvDefaultMessage.text = getString(R.string.no_result_found_to, productSearched)
                         progressBar.visibility = View.GONE
                         return
