@@ -45,6 +45,11 @@ class HomeFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_home, container, false)
 
         val btnProduct: RelativeLayout = v.findViewById(R.id.rl_product)
+        val btnPayment = v.findViewById<Button>(R.id.pagamento)
+
+        btnPayment.setOnClickListener{
+            direcionarParaPagamento()
+        }
 
         btnProduct.setOnClickListener {
             redirectProduct()
@@ -53,10 +58,19 @@ class HomeFragment : Fragment() {
         return v
     }
 
+
+
     fun redirectProduct(){
         val productFragment = ProductFragment()
         val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.fl_wrapper, productFragment)
+        transaction.commit()
+    }
+
+    fun direcionarParaPagamento(){
+        val paymentFragment = PaymentFragment()
+        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.fl_wrapper,paymentFragment)
         transaction.commit()
     }
 

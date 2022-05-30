@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.veganhouse.data.Certification
+import com.example.veganhouse.model.Certification
 
 class CertificationItemAdapter(private val certifications: List<Certification>) :
     RecyclerView.Adapter<CertificationItemAdapter.CertificationViewHolder>() {

@@ -15,7 +15,7 @@ interface SessionService {
 
 
         companion object {
-            var BASE_URL = Resources.getSystem().getString(R.string.ip_api_local)
+            var BASE_URL = "http://10.0.2.2:8080/"
 
         fun getInstace () : SessionService {
             val retrofit = Retrofit.Builder()
