@@ -42,7 +42,7 @@ class NewProductAdapter(private val products: List<Product>, homeFragment: HomeF
                 val tv_product_price = findViewById<TextView>(R.id.product_price)
 
                 tv_product_name.text = data.name
-                tv_product_price.text = data.price.toString()
+                tv_product_price.text = "R$ %.2f".format(data.price)
 
                 if (data.image_url1 == null) {
                     product_image.setImageResource(R.drawable.product_without_image)

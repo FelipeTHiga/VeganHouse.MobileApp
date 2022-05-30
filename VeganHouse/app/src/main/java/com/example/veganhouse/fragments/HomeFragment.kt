@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 
     lateinit var searchBar: EditText
     lateinit var newproductCard: RecyclerView
-    lateinit var featuredProductCard: RecyclerView
+    //lateinit var featuredProductCard: RecyclerView
     lateinit var tvDefaultMessage: TextView
     lateinit var tvDefaultMessage2: TextView
 
@@ -59,8 +59,8 @@ class HomeFragment : Fragment() {
         newproductCard = v.findViewById(R.id.new_products_component)
         newproductCard.adapter = adapterNewProducts
 
-        featuredProductCard = v.findViewById(R.id.featured_product_component)
-        featuredProductCard.adapter = adapterFeaturedProduct
+        //featuredProductCard = v.findViewById(R.id.featured_product_component)
+        //featuredProductCard.adapter = adapterFeaturedProduct
 
         var listBtnCategory: ArrayList<ImageButton> = arrayListOf(
             v.findViewById(R.id.btn_acessories),

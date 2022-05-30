@@ -2,6 +2,7 @@ package com.example.veganhouse.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Base64
@@ -9,17 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.ProductService
 import com.example.veganhouse.R
 import com.example.veganhouse.adapter.CertificationAdapter
 import com.example.veganhouse.api.SellerCertifiedService
-import com.example.veganhouse.model.Certification
-import com.example.veganhouse.model.Product
-import com.example.veganhouse.model.RestockNotification
-import com.example.veganhouse.model.Seller
+import com.example.veganhouse.model.*
+import com.example.veganhouse.service.CartItemService
 import com.example.veganhouse.service.EventManagerRestockService
 import com.example.veganhouse.service.SellerService
 import retrofit2.Call
@@ -36,7 +35,11 @@ class ProductFragment : Fragment() {
     lateinit var tvSellerInstagram: TextView
     lateinit var tvSellerFacebook: TextView
     lateinit var tvSellerWhatsapp: TextView
+    lateinit var preferences: SharedPreferences
+    lateinit var product: Product
+    lateinit var tvDefaultMessage: TextView
 
+    var loggedUserId = 0
     var productId = 1
     var productIsAvailable = true
 
@@ -60,6 +63,10 @@ class ProductFragment : Fragment() {
     override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
         super.onViewCreated(v, savedInstanceState)
 
+        preferences = activity?.baseContext?.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)!!
+        loggedUserId = preferences.getInt("id", 0)
+        tvDefaultMessage = v.findViewById(R.id.tv_default_message)
+
         if (arguments != null) {
             productId = arguments?.getInt("productId", 1)!!
             productIsAvailable = arguments?.getBoolean("productIsAvailable", true)!!
@@ -67,9 +74,10 @@ class ProductFragment : Fragment() {
 
         this.getProductById(productId)
 
-        val btnOpenContainerCertifications: ImageView = v.findViewById(R.id.arrow_container_certifications)
+        val btnOpenContainerCertifications: ImageView =
+            v.findViewById(R.id.arrow_container_certifications)
         val btnOpenContainerSeller: ImageView = v.findViewById(R.id.arrow_container_seller)
-        val btnRedirectCart: Button = v.findViewById(R.id.btn_add_cart)
+        val btnAddProductCart: Button = v.findViewById(R.id.btn_add_cart)
         val btnNotifyUser: Button = v.findViewById(R.id.btn_notify_user)
         val tvNotifyUser: TextView = v.findViewById(R.id.tv_notify_user)
 
@@ -82,8 +90,10 @@ class ProductFragment : Fragment() {
         tvSellerFacebook = v.findViewById(R.id.tv_seller_facebook)
         tvSellerWhatsapp = v.findViewById(R.id.tv_seller_whatsapp)
 
-        v.findViewById<ImageView>(R.id.arrow_container_certifications).setImageResource(R.drawable.ic_arrow_right)
-        v.findViewById<ImageView>(R.id.arrow_container_seller).setImageResource(R.drawable.ic_arrow_right)
+        v.findViewById<ImageView>(R.id.arrow_container_certifications)
+            .setImageResource(R.drawable.ic_arrow_right)
+        v.findViewById<ImageView>(R.id.arrow_container_seller)
+            .setImageResource(R.drawable.ic_arrow_right)
 
         val recyclerView = v.findViewById<RecyclerView>(R.id.certifications_component)
         recyclerView.adapter = adapter
@@ -96,8 +106,8 @@ class ProductFragment : Fragment() {
             btnOpenContainerSeller(v)
         }
 
-        btnRedirectCart.setOnClickListener {
-            redirectCart()
+        btnAddProductCart.setOnClickListener {
+            addProductCart()
         }
 
         tvNotifyUser.setOnClickListener {
@@ -105,13 +115,13 @@ class ProductFragment : Fragment() {
         }
 
         if (productIsAvailable) {
-            btnRedirectCart.visibility = View.VISIBLE
+            btnAddProductCart.visibility = View.VISIBLE
             btnNotifyUser.visibility = View.INVISIBLE
             tvNotifyUser.visibility = View.INVISIBLE
         } else {
             btnNotifyUser.visibility = View.VISIBLE
             tvNotifyUser.visibility = View.VISIBLE
-            btnRedirectCart.visibility = View.INVISIBLE
+            btnAddProductCart.visibility = View.INVISIBLE
         }
     }
 
@@ -146,13 +156,6 @@ class ProductFragment : Fragment() {
         }
     }
 
-    fun redirectCart() {
-        val cartFragment = CartFragment()
-        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fl_wrapper, cartFragment)
-        transaction.commit()
-    }
-
     fun showAlertDialog() {
 
         val dialogBuilder = AlertDialog.Builder(context)
@@ -160,9 +163,11 @@ class ProductFragment : Fragment() {
         dialogBuilder
             .setMessage(getString(R.string.api_error_message))
             .setCancelable(true)
-            .setPositiveButton(getString(R.string.ok_got_it), DialogInterface.OnClickListener { dialog, id ->
-                dialog.cancel()
-            })
+            .setPositiveButton(
+                getString(R.string.ok_got_it),
+                DialogInterface.OnClickListener { dialog, id ->
+                    dialog.cancel()
+                })
 
         val alert = dialogBuilder.create()
         alert.setTitle(getString(R.string.attention))
@@ -181,10 +186,10 @@ class ProductFragment : Fragment() {
                         return
                     }
 
-                    var product = response.body()
+                    product = response.body()!!
 
                     tvProductName.text = product?.name
-                    tvProductPrice.text = product?.price.toString()
+                    tvProductPrice.text = "R$ %.2f".format(product?.price)
                     tvProductDescription.text = product?.description
 
                     if (product?.image_url1 == null) {
@@ -222,19 +227,23 @@ class ProductFragment : Fragment() {
 
         getSellerCertified.enqueue(object : Callback<List<Certification>> {
 
-            override fun onResponse(call: Call<List<Certification>>, response: Response<List<Certification>>) {
+            override fun onResponse(
+                call: Call<List<Certification>>,
+                response: Response<List<Certification>>
+            ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem certificados", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.without_seller_certified)
                         return
                     }
                     if (arrayCertification.isNotEmpty()) arrayCertification.clear()
                     response.body()?.forEach { certified ->
                         arrayCertification.add(certified)
                     }
+                    tvDefaultMessage.text = ""
                     adapter.notifyDataSetChanged()
                 } else {
-                    Toast.makeText(context, "Sem certificados", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.without_seller_certified)
                 }
             }
 
@@ -283,7 +292,8 @@ class ProductFragment : Fragment() {
             productId
         )
 
-        val createSubscription = EventManagerRestockService.getInstance().createSubscription(restockNotification)
+        val createSubscription =
+            EventManagerRestockService.getInstance().createSubscription(restockNotification)
         val dialogBuilder = android.app.AlertDialog.Builder(context)
 
         createSubscription.enqueue(object : Callback<RestockNotification> {
@@ -302,7 +312,6 @@ class ProductFragment : Fragment() {
                             DialogInterface.OnClickListener { dialog, id ->
                                 dialog.cancel()
                             }).show()
-
                 } else {
                     Toast.makeText(context, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT)
                         .show()
@@ -313,7 +322,57 @@ class ProductFragment : Fragment() {
                 t.printStackTrace()
                 showAlertDialog()
             }
-
         })
     }
+
+    fun addProductCart() {
+
+        var productCartItem = CartItem(
+            null,
+            product,
+            1,
+            0.00,
+            null,
+            null
+        )
+
+        val addCartItem = CartItemService.getInstance().addCartItem(loggedUserId, productCartItem)
+        val dialogBuilder = android.app.AlertDialog.Builder(context)
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()!!
+        val arguments = Bundle()
+
+        addCartItem.enqueue(object : Callback<Void> {
+
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+
+                if (response.isSuccessful) {
+                    dialogBuilder
+                        .setTitle("Produto adicionado ao carrinho")
+                        .setCancelable(false)
+                        .setPositiveButton("Ver carrinho") { dialog, _ ->
+                            transaction.replace(R.id.fl_wrapper, CartFragment::class.java, arguments)
+                            transaction.commit()
+                        }.show()
+
+                } else {
+                    dialogBuilder
+                        .setTitle("Erro ao adicionar produto")
+                        .setMessage("Não foi possível adicionar o produto ao carrinho. \nPor favor, tente novamente mais tarde.")
+                        .setCancelable(true)
+                        .setPositiveButton("Ok, entendi") { dialog, _ ->
+                            dialog.cancel()
+                        }.show()
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                t.printStackTrace()
+                showAlertDialog()
+            }
+
+        })
+
+    }
+
 }

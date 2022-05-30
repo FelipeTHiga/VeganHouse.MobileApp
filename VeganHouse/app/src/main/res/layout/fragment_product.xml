@@ -235,6 +235,18 @@
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
 
+                    <TextView
+                        android:id="@+id/tv_default_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/separator_line_certification"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="75dp"
+                        android:textColor="#604D4D"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:ignore="NotSibling"></TextView>
+
                 </RelativeLayout>
 
                 <TextView
@@ -347,12 +359,9 @@
 
                         </RelativeLayout>
 
-
                     </GridLayout>
 
-
                 </HorizontalScrollView>
-
 
             </RelativeLayout>
 

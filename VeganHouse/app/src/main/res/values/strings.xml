@@ -139,6 +139,7 @@
     <string name="seller_instagram">_joaaoRoupas</string>
     <string name="seller_facebook">_joaaoRoupas</string>
     <string name="seller_whatsapp">(11)95877-5674</string>
+    <string name="without_seller_certified">Vendedor não possui certificados</string>
 
     <!-- Product example       -->
     <string name="product_name_example">Óleo Vegetal De Romã</string>
@@ -152,14 +153,14 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="subtotal_price">Subtotal: R$20,00</string>
+<!--    <string name="subtotal_price">Subtotal: R$%.2f</string>-->
     <string name="details">Detalhes</string>
     <string name="product">Produto</string>
     <string name="qtd">Qtd.</string>
     <string name="subtotal">Subtotal</string>
     <string name="product_desc">Tênis Rapé Trama em Lona de Garrafa PET</string>
     <string name="total">Total</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="empty_cart">Seu carrinho está vazio.</string>
 
     <!--    Profile Oders -->
     <string name="profile">Perfil</string>

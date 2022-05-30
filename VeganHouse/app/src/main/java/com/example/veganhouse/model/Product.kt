@@ -2,10 +2,10 @@ package com.example.veganhouse.model
 
 data class Product(
     var id: Int,
-    var name: String,
+    var name: String?,
     var price: Double,
-    var category: String,
-    var description: String,
+    var category: String?,
+    var description: String?,
     var inventory: Int,
     var fkSeller: Int,
     var image_url1: String,

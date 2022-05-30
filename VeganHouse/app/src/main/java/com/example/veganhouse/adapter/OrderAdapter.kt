@@ -39,7 +39,7 @@ class OrderAdapter(private val orders: List<Order>, profileOrders: ProfileOrders
 
                 tv_order_id.text = "#" + data.idOrder.toString()
                 tv_order_data.text = data.orderDate
-                tv_order_total.text = "R$" + data.total.toString()
+                tv_order_total.text = "R$ %.2f".format(data.total)
 
                 var color = when (data.orderStatus) {
                     "Pagamento aprovado" -> "#14E07E"
