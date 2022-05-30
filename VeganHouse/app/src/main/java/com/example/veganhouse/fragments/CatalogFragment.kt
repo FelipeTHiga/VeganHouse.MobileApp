@@ -1,5 +1,8 @@
 package com.example.veganhouse.fragments
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,24 +11,16 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.*
-import com.example.veganhouse.adapter.ProductCardAdapter
+import com.example.veganhouse.adapter.ProductAdapter
 import com.example.veganhouse.model.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.reflect.Field
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CatalogFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CatalogFragment : Fragment() {
+class CatalogFragment() : Fragment(), ProductAdapter.OnItemClickListener {
 
     lateinit var btnFilters: ImageButton
     lateinit var containerFilters: View
@@ -34,18 +29,23 @@ class CatalogFragment : Fragment() {
     lateinit var spinnerCategory: Spinner
     lateinit var spinnerOrderby: Spinner
     lateinit var progressBar: ProgressBar
+    lateinit var productCard: RecyclerView
+    lateinit var btnScroll: ImageView
+    lateinit var searchBar: EditText
+    lateinit var tvDefaultMessage: TextView
 
-    var categoryPosition = 0
-    var categoryValue = ""
+    var categoryPosition = 1
+    var categoryValue = "Todos"
+    var productSearched = ""
     var spinnerCategorySelected = ""
     var arrayProduct: ArrayList<Product> = arrayListOf()
-    var adapter = ProductCardAdapter(arrayProduct)
+    var adapter = ProductAdapter(arrayProduct, this)
+    var topViewRv = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
-
     }
 
     override fun onCreateView(
@@ -55,6 +55,12 @@ class CatalogFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_catalog, container, false)
 
+        return v
+    }
+
+    override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(v, savedInstanceState)
+
         btnFilters = v.findViewById(R.id.btn_filters)
         containerFilters = v.findViewById(R.id.container_filters)
         containerCategoryFilters = v.findViewById(R.id.container_category_filters)
@@ -62,25 +68,91 @@ class CatalogFragment : Fragment() {
         spinnerCategory = v.findViewById(R.id.spinner_category)
         spinnerOrderby = v.findViewById(R.id.spinner_orderBy)
         progressBar = v.findViewById(R.id.progress_bar)
+        btnScroll = v.findViewById(R.id.btn_scroll)
+        searchBar = v.findViewById(R.id.search_bar)
+        tvDefaultMessage = v.findViewById(R.id.tv_default_message)
 
-        categoryPosition = arguments?.getInt("categoryPosition", 1)!!
-        categoryValue = arguments?.getString("categoryValue", "acessorios").toString()
+        productCard = v.findViewById(R.id.products_component)
+        productCard.adapter = adapter
 
-        val product_card = v.findViewById<RecyclerView>(R.id.products_component)
-        product_card.adapter = adapter
+        var listBtnCategory: ArrayList<ImageButton> = arrayListOf(
+            v.findViewById(R.id.btn_acessories),
+            v.findViewById(R.id.btn_clothes),
+            v.findViewById(R.id.btn_cosmetics),
+            v.findViewById(R.id.btn_food),
+            v.findViewById(R.id.btn_health),
+            v.findViewById(R.id.btn_explore)
+        )
 
-        if (categoryValue == "Todos") this.getAllProducts() else this.getProductByCategory()
+        listBtnCategory.forEach { btnProduct ->
+            btnProduct.setOnClickListener {
+                this.getProductByCategory(it)
+            }
+        }
 
+        btnFilters.setOnClickListener {
+            this.showContainerFilters(it)
+        }
+
+        btnScroll.setOnClickListener {
+            this.scrollToTop(it)
+        }
+
+        searchBar.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                productSearched = searchBar.text.toString()
+                // hideKeyboard
+                searchBar.clearFocus()
+                val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(searchBar.getApplicationWindowToken(), 0)
+                this.getProduct()
+                searchBar.setText("")
+            }
+            true
+        }
+
+        this.getProduct()
         this.setupCategorySpinner()
         this.setupOrderbySpinner()
         this.limitDropDownHeight(spinnerCategory)
 
-        Toast.makeText(context, "$categoryValue", Toast.LENGTH_SHORT).show()
-
-        return v
     }
 
-    private fun setupOrderbySpinner() {
+     fun getProduct() {
+        if (productSearched != "") {
+            getProductByName(productSearched)
+            return
+        } else if (arguments != null) {
+            productSearched = arguments?.getString("productSearched", "")!!
+            categoryPosition = arguments?.getInt("categoryPosition", 1)!!
+            categoryValue = arguments?.getString("categoryValue", "Todos")!!
+        }
+        if (productSearched != "") {
+            getProductByName(productSearched)
+        } else if (categoryValue == "Todos") {
+            getAllProducts()
+        } else {
+            getProductByCategory()
+        }
+    }
+
+    fun showAlertDialog() {
+
+        val dialogBuilder = AlertDialog.Builder(context)
+
+        dialogBuilder
+            .setMessage(getString(R.string.api_error_message))
+            .setCancelable(true)
+            .setPositiveButton(getString(R.string.ok_got_it), DialogInterface.OnClickListener { dialog, id ->
+                dialog.cancel()
+            })
+
+        val alert = dialogBuilder.create()
+        alert.setTitle(getString(R.string.attention))
+        alert.show()
+    }
+
+    fun setupOrderbySpinner() {
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.order_by,
@@ -97,7 +169,7 @@ class CatalogFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                if(position > 0) {
+                if (position > 0) {
                     var selectedItem = parent!!.getItemAtPosition(position)
                     selectedItem = when {
                         position == 1 -> "lowest-price"
@@ -113,8 +185,7 @@ class CatalogFragment : Fragment() {
         }
     }
 
-
-    private fun setupCategorySpinner() {
+    fun setupCategorySpinner() {
 
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
@@ -132,7 +203,7 @@ class CatalogFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                if(position > 0){
+                if (position > 0) {
                     val selectedItem = parent!!.getItemAtPosition(position)
                     spinnerCategorySelected = selectedItem.toString()
                     getProductByCategory(spinnerCategorySelected)
@@ -165,7 +236,12 @@ class CatalogFragment : Fragment() {
         popupWindow.height = (5 * resources.displayMetrics.density).toInt()
     }
 
-    fun getAllProducts() {
+    fun scrollToTop(btn: View) {
+        productCard.smoothScrollToPosition(topViewRv)
+        //productCard.smoothScrollBy(topViewRv, topViewRv, null, 5000)
+    }
+
+    private fun getAllProducts() {
 
         val getAllProducts = ProductService.getInstance().getAllProducts()
         progressBar.visibility = View.VISIBLE
@@ -178,7 +254,8 @@ class CatalogFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
+                        progressBar.visibility = View.GONE
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -186,21 +263,23 @@ class CatalogFragment : Fragment() {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
+                showAlertDialog()
+                progressBar.visibility = View.GONE
             }
         })
-
     }
 
-    fun getProductByCategory() {
+    private fun getProductByCategory() {
 
         var category = categoryValue
         val getProductByCategory = ProductService.getInstance().getProductByCategory(category)
@@ -215,7 +294,8 @@ class CatalogFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
+                        progressBar.visibility = View.GONE
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -223,23 +303,24 @@ class CatalogFragment : Fragment() {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
+                showAlertDialog()
+                progressBar.visibility = View.GONE
             }
         })
+
     }
 
-    fun getProductByCategory(button: View) {
-
-        var categoryPosition = 0
-        var categoryValue = ""
+    private fun getProductByCategory(button: View) {
 
         when (button.id) {
             R.id.btn_acessories -> {
@@ -280,7 +361,8 @@ class CatalogFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
+                        progressBar.visibility = View.GONE
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -288,20 +370,23 @@ class CatalogFragment : Fragment() {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
+                showAlertDialog()
+                progressBar.visibility = View.GONE
             }
         })
     }
 
-    fun getProductByCategory(spinnerCategory: String) {
+    private fun getProductByCategory(spinnerCategory: String) {
 
         var category = spinnerCategory
         val getProductByCategory = ProductService.getInstance().getProductByCategory(category)
@@ -316,7 +401,8 @@ class CatalogFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
+                        progressBar.visibility = View.GONE
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -324,20 +410,23 @@ class CatalogFragment : Fragment() {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
+                showAlertDialog()
+                progressBar.visibility = View.GONE
             }
         })
     }
 
-    fun getProductOrderBy(orderBy: String) {
+    private fun getProductOrderBy(orderBy: String) {
         var orderBy = orderBy
         var category = spinnerCategorySelected
         //var category = if (spinnerCategorySelected != "name") spinnerCategorySelected else "Todos"
@@ -353,7 +442,8 @@ class CatalogFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
-                        Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                        tvDefaultMessage.text = getString(R.string.no_result_found)
+                        progressBar.visibility = View.GONE
                         return
                     }
                     if (arrayProduct.isNotEmpty()) arrayProduct.clear()
@@ -361,18 +451,79 @@ class CatalogFragment : Fragment() {
                         arrayProduct.add(product)
                     }
                     adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
                     progressBar.visibility = View.GONE
                 } else {
-                    Toast.makeText(context, "Sem produtos", Toast.LENGTH_SHORT).show()
+                    tvDefaultMessage.text = getString(R.string.no_result_found)
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(context, "Erro na API", Toast.LENGTH_SHORT).show()
+                showAlertDialog()
+                progressBar.visibility = View.GONE
             }
         })
     }
 
+    private fun getProductByName(productSearched: String) {
+
+        val getProductByName = ProductService.getInstance().getProductByName(productSearched)
+
+        progressBar.visibility = View.VISIBLE
+
+        getProductByName.enqueue(object : Callback<List<Product>> {
+
+            override fun onResponse(
+                call: Call<List<Product>>,
+                response: Response<List<Product>>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.code() == 204 || response.body() == null) {
+                        arrayProduct.clear()
+                        adapter.notifyDataSetChanged()
+                        tvDefaultMessage.text = getString(R.string.no_result_found_to, productSearched)
+                        progressBar.visibility = View.GONE
+                        return
+                    }
+
+                    var product = response.body()
+
+                    if (arrayProduct.isNotEmpty()) arrayProduct.clear()
+                    response.body()?.forEach { product ->
+                        arrayProduct.add(product)
+                    }
+                    adapter.notifyDataSetChanged()
+                    tvDefaultMessage.text = ""
+                    progressBar.visibility = View.GONE
+                } else {
+                    tvDefaultMessage.text = getString(R.string.no_result_found_to, productSearched)
+                    progressBar.visibility = View.GONE
+                }
+            }
+
+            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+                t.printStackTrace()
+                showAlertDialog()
+                progressBar.visibility = View.GONE
+            }
+        })
+    }
+
+    override fun onItemClick(position: Int) {
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()!!
+        val arguments = Bundle()
+        var productId = arrayProduct[position].id
+        var productIsAvailable: Boolean = arrayProduct[position].inventory > 0
+
+        arguments.putInt("productId", productId)
+        arguments.putBoolean("productIsAvailable", productIsAvailable)
+
+        transaction.replace(R.id.fl_wrapper, ProductFragment::class.java, arguments)
+        transaction.commit()
+
+    }
 
 }

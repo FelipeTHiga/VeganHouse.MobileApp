@@ -1,19 +1,79 @@
 <resources>
     <string name="app_name">Vegan House</string>
-    <!--    IPs        -->
-    <string name="ip_api_local">http://10.0.2.2:8080/</string>
-    <string name="ip_api_maquina1">http://52.207.48.19:8080/</string>
-    <string name="ip_api_maquina2">http://174.129.13.249:8080/</string>
 
+    <!--    Modal      -->
+    <string name="no_result_found">Sua busca não teve resultados</string>
+    <string name="no_result_found_to">Nenhum resultado encontrado para %s</string>
+    <string name="ok_got_it">Ok, entendi</string>
+    <string name="ok">Ok</string>
+
+    <string name="notify_by_email_title">Notificação via e-mail</string>
+    <string name="notify_by_email_message">Quando chegarem novos produtos, notificaremos via e-mail.</string>
+
+    <string name="without_orders">Você ainda não fez nenhum pedido.</string>
+
+    <!-- Title, Message, btnText of Alerts   -->
+    <string name="attention">Atenção</string>
+    <string name="api_error_message">Sistema indisponível no momento. Por favor, tente mais tarde.</string>
+
+    <!--    Categories -->
+    <string name="acessories">Acessórios</string>
+    <string name="food">Alimentos</string>
+    <string name="cosmetics">Cosméticos</string>
+    <string name="health">Saúde</string>
+    <string name="clothes">Vestimenta</string>
+    <string name="all">Todos</string>
+
+
+    <!--    IPs        -->
+    <string name="ip_api_local">http://10.0.2.2:8080/</string>http://10.0.2.2:8080/
+    <string name="ip_api_vm1">http://52.207.48.19:8080/</string>
+    <string name="ip_api_vm2">http://174.129.13.249:8080/</string>
+
+    <!--    Sign In -->
+    <string name="login_title">Login</string>
+    <string name="do_not_have_account">Não tem uma conta?</string>
+    <string name="click_to_sing_up"><u>Toque em Cadastrar</u></string>
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="btn_enter">Entrar</string>
+    <string name="btn_sing_up">Cadastrar</string>
+    <string name="required">Campo obrigatório *</string>
+
+    <!--   Sign Up -->
+    <string name="signup_title">Cadastro</string>
+    <string name="fill_the_form">Preencha seus dados para cadastro</string>
+    <string name="name">Nome</string>
+
+    <!--  Profile Personal Data  -->
+    <string name="profile_title">Perfil</string>
+    <string name="personal_data">Dados pessoais</string>
+    <string name="btn_update">Atualizar</string>
+
+    <!--    Profile Adress Data -->
+    <string name="adress">Endereço</string>
+    <string name="cep">CEP</string>
+    <string name="state">Estado</string>
+    <string name="city">Cidade</string>
+    <string name="district">Bairro</string>
+    <string name="street">Rua</string>
+    <string name="number">Número</string>
+    <string name="complement">Complemento</string>
 
     <string name="title_cart">Carrinho</string>
     <string name="title_product_cart">Kit Banho Vegan Health</string>
     <string name="price_product_cart">R$ 75,00</string>
     <string name="select">Selos</string>
 
-
-    <!--    Main        -->
+    <!--    Main / Home        -->
+    <string name="home_title">Home</string>
     <string name="hint_search_bar">Pesquise um produto aqui</string>
+    <string name="news">Novidades</string>
+
+    <!--    No Connection     -->
+    <string name="no_connection_title">Ops... algo deu errado</string>
+    <string name="no_connection_message">Verifique sua conexão</string>
+    <string name="btn_close">Fechar</string>
 
     <!-- Payment Result -->
     <string name="payment">Pagamento</string>
@@ -58,6 +118,8 @@
     <string name="product_title">Produto</string>
     <string name="description">Descrição</string>
     <string name="btn_add_cart">Adicionar ao carrinho</string>
+    <string name="btn_unavailable">Indisponível</string>
+    <string name="notify_user"><u>Avise-me quando chegar</u></string>
     <string name="product_name">Kit Banho Vegan Hëalth</string>
     <string name="product_seller">Vendido por Azul Cosméticos</string>
     <string name="product_price">R$ 75.00</string>
@@ -77,6 +139,7 @@
     <string name="seller_instagram">_joaaoRoupas</string>
     <string name="seller_facebook">_joaaoRoupas</string>
     <string name="seller_whatsapp">(11)95877-5674</string>
+    <string name="without_seller_certified">Vendedor não possui certificados</string>
 
     <!-- Product example       -->
     <string name="product_name_example">Óleo Vegetal De Romã</string>
@@ -90,13 +153,26 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="subtotal_price">Subtotal: R$20,00</string>
+<!--    <string name="subtotal_price">Subtotal: R$%.2f</string>-->
     <string name="details">Detalhes</string>
     <string name="product">Produto</string>
     <string name="qtd">Qtd.</string>
     <string name="subtotal">Subtotal</string>
     <string name="product_desc">Tênis Rapé Trama em Lona de Garrafa PET</string>
     <string name="total">Total</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="empty_cart">Seu carrinho está vazio.</string>
+
+    <!--    Profile Oders -->
+    <string name="profile">Perfil</string>
+    <string name="my_orders">Meus pedidos</string>
+    <string name="order">Pedido</string>
+    <string name="order_id">#2940</string>
+    <string name="order_data">05/10/2022</string>
+    <string name="order_total">Total: R$ 75.00</string>
+    <string name="order_status">PAGO</string>
+    <string name="btn_save">Salvar</string>
+    <string name="surname">Sobrenome</string>
+    <string name="cpf">CPF</string>
+
 
 </resources>
