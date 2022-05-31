@@ -1,6 +1,7 @@
 package com.example.veganhouse.adapter
 
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.R
 import com.example.veganhouse.model.Product
 import android.util.Base64
+import com.squareup.picasso.Picasso
 import com.example.veganhouse.fragments.CatalogFragment
 
 
@@ -43,15 +45,22 @@ class ProductAdapter(private val products: List<Product>, private val listener: 
                 tv_product_name.text = data.name
                 tv_product_price.text = "R$ %.2f".format(data.price)
                 tv_product_score.text = 4.5.toString()
+                val id = data.id
+                Picasso.get().load("https://veganhouseback.ddns.net/products/images/$id/1").error(R.drawable.product_without_image).into(product_image)
 
-                if (data.image_url1 == null) {
-                    product_image.setImageResource(R.drawable.product_without_image)
-                } else {
-                    val decodedString: ByteArray = Base64.decode(data.image_url1, Base64.DEFAULT)
-                    val decodedByte =
-                        BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-                    product_image.setImageBitmap(decodedByte)
-                }
+//                if (data.image_url1 == null) {
+//                    product_image.setImageResource(R.drawable.product_without_image)
+//                } else {
+//                    Picasso.get()
+//                        .load("http://localhost:8080/products/images/4/2")
+//                        .resize(50, 50)
+//                        .centerCrop()
+//                        .into(product_image)
+//                    val decodedString: ByteArray = Base64.decode(data.image_url1, Base64.DEFAULT)
+//                    val decodedByte =
+//                        BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+//                    product_image.setImageBitmap(decodedByte)
+//                }
             }
         }
 

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.R
 import com.example.veganhouse.fragments.HomeFragment
 import com.example.veganhouse.model.Product
+import com.squareup.picasso.Picasso
 
 class FeaturedProductAdapter(private val product: List<Product>, homeFragment: HomeFragment) :
         RecyclerView.Adapter<FeaturedProductAdapter.ProductViewHolder>() {
@@ -37,18 +38,20 @@ class FeaturedProductAdapter(private val product: List<Product>, homeFragment: H
                 val product_image = findViewById<ImageView>(R.id.product_image)
                 val tv_product_name = findViewById<TextView>(R.id.product_name)
                 val tv_product_price = findViewById<TextView>(R.id.product_price)
+                val id = data.id
 
+                Picasso.get().load("https://veganhouseback.ddns.net/products/images/$id/1").error(R.drawable.product_without_image).into(product_image)
                 tv_product_name.text = data.name
                 tv_product_price.text = "R$ %.2f".format(data.price)
 
-                if (data.image_url1 == null) {
-                    product_image.setImageResource(R.drawable.product_without_image)
-                } else {
-                    val decodedString: ByteArray = Base64.decode(data.image_url1, Base64.DEFAULT)
-                    val decodedByte =
-                        BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-                    product_image.setImageBitmap(decodedByte)
-                }
+//                if (data.image_url1 == null) {
+//                    product_image.setImageResource(R.drawable.product_without_image)
+//                } else {
+//                    val decodedString: ByteArray = Base64.decode(data.image_url1, Base64.DEFAULT)
+//                    val decodedByte =
+//                        BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+//                    product_image.setImageBitmap(decodedByte)
+//                }
             }
         }
     }

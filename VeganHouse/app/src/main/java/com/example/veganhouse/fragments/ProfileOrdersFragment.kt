@@ -49,6 +49,7 @@ class ProfileOrdersFragment : Fragment() {
     override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
         super.onViewCreated(v, savedInstanceState)
 
+
         preferences =
             activity?.baseContext?.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)!!
         loggedUserId = preferences.getInt("id", 0)

@@ -26,9 +26,15 @@
 
 
     <!--    IPs        -->
-    <string name="ip_api_local">http://10.0.2.2:8080/</string>http://10.0.2.2:8080/
+    <string name="ip_api_local">http://10.0.2.2:8080/</string>
     <string name="ip_api_vm1">http://52.207.48.19:8080/</string>
     <string name="ip_api_vm2">http://174.129.13.249:8080/</string>
+
+    <!--    Url Imgs        -->
+    <string name="img_url_localhost">http://10.0.2.2:8080/products/images/%1$d/%2$d</string>
+    <string name="img_url_maquina1">http://52.207.48.19:8080/%1$d/%2$d</string>
+    <string name="img_url_maquina2">http://174.129.13.249:8080/%1$d/%2$d</string>
+    <string name="img_url_maquina3">https://veganhouseback.ddns.net/products/images/%1$d/%2$d</string>
 
     <!--    Sign In -->
     <string name="login_title">Login</string>
