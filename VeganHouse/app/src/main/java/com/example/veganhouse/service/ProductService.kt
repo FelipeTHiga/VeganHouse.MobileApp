@@ -31,7 +31,8 @@ interface ProductService {
 
 
     companion object {
-        var BASE_URL = "http://174.129.13.249:8080/"
+//        var BASE_URL = "http://174.129.13.249:8080/"
+        var BASE_URL = "https://veganhouseback.ddns.net/"
 
         fun getInstance() : ProductService {
             val retrofit = Retrofit.Builder()
