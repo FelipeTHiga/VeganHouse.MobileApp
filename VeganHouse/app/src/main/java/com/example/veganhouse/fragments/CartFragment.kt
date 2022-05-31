@@ -17,7 +17,10 @@ import com.example.veganhouse.R
 import com.example.veganhouse.adapter.CartAdapter
 import com.example.veganhouse.adapter.ProductDetailAdapter
 import com.example.veganhouse.model.CartItem
+import com.example.veganhouse.model.User
 import com.example.veganhouse.service.CartItemService
+import com.example.veganhouse.service.OrderService
+import com.example.veganhouse.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,7 +72,7 @@ class CartFragment : Fragment() {
         val btnPayment: Button = v.findViewById(R.id.btn_payment)
 
         btnPayment.setOnClickListener {
-            redirectPayment()
+            getUser()
         }
 
     }
@@ -138,10 +141,52 @@ class CartFragment : Fragment() {
         )
     }
 
-    fun redirectPayment() {
-        val paymentFragment = PaymentFragment()
-        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fl_wrapper, paymentFragment)
+//    fun redirectPayment() {
+//        val paymentFragment = PaymentFragment()
+//        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+//        transaction.replace(R.id.fl_wrapper, paymentFragment)
+//        transaction.commit()
+//    }
+
+    fun createOrder(user : User ){
+        val postOrder = OrderService.getInstance().createOrder(user)
+
+        postOrder.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful){
+                    paymentRedirect()
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                t.printStackTrace()
+            }
+        })
+
+    }
+    fun getUser(){
+        val getUser = UserService.getInstance().getUserById(loggedUserId)
+
+        getUser.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful){
+                    createOrder(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun paymentRedirect(){
+        val transaction = activity?.supportFragmentManager?.beginTransaction()!!
+        val arguments = Bundle()
+
+        arguments.putDouble("totalCart", totalCart)
+
+        transaction.replace(R.id.fl_wrapper, PaymentFragment::class.java, arguments)
         transaction.commit()
     }
 
