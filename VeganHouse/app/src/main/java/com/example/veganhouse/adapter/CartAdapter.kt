@@ -8,26 +8,24 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.veganhouse.R
+import com.example.veganhouse.fragments.CartFragment
 import com.example.veganhouse.model.CartItem
 import com.example.veganhouse.service.CartItemService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CartAdapter(
-    private val cartItems: List<CartItem>,
-    var loggedUserId: Int
-) :
+class CartAdapter(private val cartItems: List<CartItem>, val cartFragment: CartFragment) :
     RecyclerView.Adapter<CartAdapter.CardCartViewHolder>() {
 
-    var number: Int = 1
+    lateinit var view: View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardCartViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.card_cart_item, parent, false)
+        view = layoutInflater.inflate(R.layout.card_cart_item, parent, false)
 
         return CardCartViewHolder(view)
 
@@ -37,15 +35,18 @@ class CartAdapter(
         holder.bind(cartItems[position])
 
         holder.itemView.findViewById<Button>(R.id.btn_plus).setOnClickListener {
-            number = number + 1
-            holder.itemView.findViewById<TextView>(R.id.tv_product_quantity).text = number.toString() // Apagar
-            holder.itemView.findViewById<TextView>(R.id.tv_subtotal).text = "Subtotal: R$ %.2f".format(number * cartItems[position].product.price) // Apagar
 
             val incrementCartItemQuantity = CartItemService.getInstance().incrementCartItemQuantity(cartItems[position].idCartItem)
 
             incrementCartItemQuantity.enqueue(object : Callback<Void> {
+
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    //getUserCartItems(loggedUserId) // TODO: chamar novamente a funcao, para atualizar
+                    if(response.isSuccessful) {
+                        val transaction = (view.context as FragmentActivity).supportFragmentManager?.beginTransaction()
+                        transaction.detach(cartFragment)
+                        transaction.attach(cartFragment)
+                        transaction.commit()
+                    }
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
@@ -56,17 +57,18 @@ class CartAdapter(
         }
 
         holder.itemView.findViewById<Button>(R.id.btn_minus).setOnClickListener {
-            if (number > 1) {
-                number = number - 1
-                holder.itemView.findViewById<TextView>(R.id.tv_product_quantity).text = number.toString() // Apagar
-                holder.itemView.findViewById<TextView>(R.id.tv_subtotal).text = "Subtotal: R$ %.2f".format(number * cartItems[position].product.price) // Apagar
-            }
 
             val decrementCartItemQuantity = CartItemService.getInstance().decrementCartItemQuantity(cartItems[position].idCartItem)
 
             decrementCartItemQuantity.enqueue(object : Callback<Void> {
+
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    //getUserCartItems(loggedUserId) // TODO: chamar novamente a funcao, para atualizar
+                    if(response.isSuccessful) {
+                        val transaction = (view.context as FragmentActivity).supportFragmentManager?.beginTransaction()
+                        transaction.detach(cartFragment)
+                        transaction.attach(cartFragment)
+                        transaction.commit()
+                    }
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
@@ -83,16 +85,18 @@ class CartAdapter(
                 CartItemService.getInstance().removeCartItem(cartItems[position].idCartItem)
 
             removeCartItem.enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
 
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
-                        //getUserCartItems(loggedUserId) // TODO: chamar novamente a funcao, para atualizar
+                        val transaction = (view.context as FragmentActivity).supportFragmentManager?.beginTransaction()
+                        transaction.detach(cartFragment)
+                        transaction.attach(cartFragment)
+                        transaction.commit()
                     }
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     t.printStackTrace()
-                    //showAlertDialog()
                 }
             })
 

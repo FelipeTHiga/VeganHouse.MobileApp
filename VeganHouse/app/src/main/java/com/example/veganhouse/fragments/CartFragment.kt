@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -36,8 +35,8 @@ class CartFragment : Fragment() {
     var totalCart: Double = 0.00
 
     var arrayCardCart: ArrayList<CartItem> = arrayListOf()
-    lateinit var adapter: CartAdapter
-    var adapterProductDetail = ProductDetailAdapter(arrayCardCart)
+    var adapter = CartAdapter(arrayCardCart, this)
+    var adapterProductDetail = ProductDetailAdapter(arrayCardCart, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +59,6 @@ class CartFragment : Fragment() {
             activity?.baseContext?.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)!!
         loggedUserId = preferences.getInt("id", 0)
 
-        adapter = CartAdapter(arrayCardCart, loggedUserId)
         tvTotalCart = v.findViewById(R.id.tv_total_cart)
         progressBar = v.findViewById(R.id.progress_bar)
         tvDefaultMessage = v.findViewById(R.id.tv_default_message)

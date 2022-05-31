@@ -286,9 +286,14 @@ class ProductFragment : Fragment() {
 
     private fun createSubscription() {
 
+        if(loggedUserId == 0) {
+            Toast.makeText(context, "Você precisa estar logado para acessar essa funcionalidade", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         var restockNotification = RestockNotification(
             null,
-            10,
+            loggedUserId,
             productId
         )
 
@@ -326,6 +331,11 @@ class ProductFragment : Fragment() {
     }
 
     fun addProductCart() {
+
+        if(loggedUserId == 0) {
+            Toast.makeText(context, "Você precisa estar logado para acessar essa funcionalidade", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         var productCartItem = CartItem(
             null,
