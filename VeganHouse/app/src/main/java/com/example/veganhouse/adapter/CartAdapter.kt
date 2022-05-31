@@ -14,6 +14,7 @@ import com.example.veganhouse.R
 import com.example.veganhouse.fragments.CartFragment
 import com.example.veganhouse.model.CartItem
 import com.example.veganhouse.service.CartItemService
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -119,15 +120,19 @@ class CartAdapter(private val cartItems: List<CartItem>, val cartFragment: CartF
                 val cardCartQt = findViewById<TextView>(R.id.tv_product_quantity)
                 val cardCartSubtotal = findViewById<TextView>(R.id.tv_subtotal)
 
-                if (data.product.image_url1 == null) {
-                    cardCartImg.setImageResource(R.drawable.product_without_image)
-                } else {
-                    val decodedString: ByteArray =
-                        Base64.decode(data.product.image_url1, Base64.DEFAULT)
-                    val decodedByte =
-                        BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-                    cardCartImg.setImageBitmap(decodedByte)
-                }
+//                if (data.product.image_url1 == null) {
+//                    cardCartImg.setImageResource(R.drawable.product_without_image)
+//                } else {
+//                    val decodedString: ByteArray =
+//                        Base64.decode(data.product.image_url1, Base64.DEFAULT)
+//                    val decodedByte =
+//                        BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+//                    cardCartImg.setImageBitmap(decodedByte)
+//                }
+
+                val id = data.product.id
+
+                Picasso.get().load("https://veganhouseback.ddns.net/products/images/$id/1").error(R.drawable.product_without_image).into(cardCartImg)
 
                 cardCartName.text = data.product.name
                 cardCartPrice.text = "R$ %.2f".format(data.product.price)
