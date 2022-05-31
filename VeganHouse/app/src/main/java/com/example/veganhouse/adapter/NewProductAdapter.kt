@@ -46,7 +46,7 @@ class NewProductAdapter(private val products: List<Product>, homeFragment: HomeF
                 Picasso.get().load("https://veganhouseback.ddns.net/products/images/$id/1").error(R.drawable.product_without_image).into(product_image)
 
                 tv_product_name.text = data.name
-                tv_product_price.text = data.price.toString()
+                tv_product_price.text = "R$ %.2f".format(data.price)
 
 //                if (data.image_url1 == null) {
 //                    product_image.setImageResource(R.drawable.product_without_image)

@@ -65,8 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginTop="10dp"
-                android:paddingBottom="100dp"
                 android:background="@drawable/rounded_container_white"
+                android:paddingBottom="100dp"
                 app:layout_constraintLeft_toLeftOf="@id/icon_back_arrow"
                 app:layout_constraintRight_toRightOf="@id/logo"
                 app:layout_constraintTop_toBottomOf="@id/product_image">
@@ -235,6 +235,18 @@
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
 
+                    <TextView
+                        android:id="@+id/tv_default_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/separator_line_certification"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="75dp"
+                        android:textColor="#604D4D"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:ignore="NotSibling"></TextView>
+
                 </RelativeLayout>
 
                 <TextView
@@ -267,92 +279,80 @@
                     android:layout_marginRight="38dp"
                     android:background="#C4C4C4"></View>
 
-                <HorizontalScrollView
-                    android:id="@+id/scrollView_container_seller_social_midia"
+                <GridLayout
+                    android:id="@+id/grid_container_seller_social_midia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/separator_line_seller"
-                    android:layout_marginLeft="40dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
-                    android:scrollbars="none">
+                    android:columnCount="1"
+                    android:visibility="gone">
 
-                    <GridLayout
-                        android:id="@+id/grid_container_seller_social_midia"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/scrollView_container_seller_social_midia"
-                        android:columnCount="3"
-                        android:visibility="gone">
+                    <RelativeLayout>
 
-                        <RelativeLayout>
+                        <ImageView
+                            android:id="@+id/iv_icon_instagram"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/instagram" />
 
-                            <ImageView
-                                android:id="@+id/iv_icon_instagram"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/instagram" />
+                        <TextView
+                            android:id="@+id/tv_seller_instagram"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_icon_instagram"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
 
-                            <TextView
-                                android:id="@+id/tv_seller_instagram"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/iv_icon_instagram"
-                                android:layout_marginTop="7dp"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
+                    </RelativeLayout>
 
-                        </RelativeLayout>
+                    <RelativeLayout android:layout_marginTop="10dp">
 
-                        <RelativeLayout
-                            android:layout_marginLeft="20dp">
+                        <ImageView
+                            android:id="@+id/iv_icon_facebook"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/facebook" />
 
-                            <ImageView
-                                android:id="@+id/iv_icon_facebook"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/facebook" />
+                        <TextView
+                            android:id="@+id/tv_seller_facebook"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/iv_icon_facebook"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
 
-                            <TextView
-                                android:id="@+id/tv_seller_facebook"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/iv_icon_facebook"
-                                android:layout_marginTop="7dp"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
+                    </RelativeLayout>
 
-                        </RelativeLayout>
+                    <RelativeLayout android:layout_marginTop="10dp">
 
-                        <RelativeLayout
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="30dp">
+                        <ImageView
+                            android:id="@+id/iv_icon_whatsapp"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/whatsapp" />
 
-                            <ImageView
-                                android:id="@+id/iv_icon_whatsapp"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/whatsapp" />
+                        <TextView
+                            android:id="@+id/tv_seller_whatsapp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_icon_whatsapp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
 
-                            <TextView
-                                android:id="@+id/tv_seller_whatsapp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/iv_icon_whatsapp"
-                                android:layout_marginTop="7dp"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
+                    </RelativeLayout>
 
-                        </RelativeLayout>
-
-
-                    </GridLayout>
-
-
-                </HorizontalScrollView>
-
+                </GridLayout>
 
             </RelativeLayout>
 

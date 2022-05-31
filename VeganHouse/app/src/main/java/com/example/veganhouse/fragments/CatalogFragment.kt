@@ -481,6 +481,8 @@ class CatalogFragment() : Fragment(), ProductAdapter.OnItemClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.code() == 204 || response.body() == null) {
+                        arrayProduct.clear()
+                        adapter.notifyDataSetChanged()
                         tvDefaultMessage.text = getString(R.string.no_result_found_to, productSearched)
                         progressBar.visibility = View.GONE
                         return

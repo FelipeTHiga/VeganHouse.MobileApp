@@ -109,14 +109,22 @@
                         android:background="@drawable/btn_bg_explore" />
                 </GridLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/featured_product_component"
-                    android:layout_width="wrap_content"
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/featured_product_component"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/gridCategories"-->
+<!--                    android:layout_marginTop="50dp"-->
+<!--                    android:layout_marginBottom="30dp"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>-->
+
+                <ImageView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/gridCategories"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="30dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
+                    android:src="@drawable/banner_featured_product_example"></ImageView>
 
                 <TextView
                     android:id="@+id/tv_default_message"

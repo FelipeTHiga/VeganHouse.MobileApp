@@ -12,9 +12,10 @@ import com.example.veganhouse.R
 import com.example.veganhouse.model.Product
 import android.util.Base64
 import com.squareup.picasso.Picasso
+import com.example.veganhouse.fragments.CatalogFragment
 
 
-class ProductAdapter(private val products: List<Product>, private val listener: OnItemClickListener) :
+class ProductAdapter(private val products: List<Product>, private val listener: CatalogFragment) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -42,7 +43,7 @@ class ProductAdapter(private val products: List<Product>, private val listener: 
                 val tv_product_score = findViewById<TextView>(R.id.product_score)
 
                 tv_product_name.text = data.name
-                tv_product_price.text = data.price.toString()
+                tv_product_price.text = "R$ %.2f".format(data.price)
                 tv_product_score.text = 4.5.toString()
                 val id = data.id
                 Picasso.get().load("https://veganhouseback.ddns.net/products/images/$id/1").error(R.drawable.product_without_image).into(product_image)
