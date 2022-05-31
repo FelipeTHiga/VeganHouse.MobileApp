@@ -15,8 +15,8 @@ interface SessionService {
 
 
         companion object {
-//            var BASE_URL = "http://174.129.13.249:8080/"
-              var BASE_URL = "https://veganhouseback.ddns.net/"
+            var BASE_URL = "https://veganhouseback.ddns.net/"
+
         fun getInstace () : SessionService {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())

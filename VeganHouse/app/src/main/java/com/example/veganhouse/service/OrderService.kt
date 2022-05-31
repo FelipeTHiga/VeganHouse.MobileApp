@@ -25,8 +25,7 @@ interface OrderService {
     fun pacthOrder(@Path("newStatus") newStatus: String, @Path("idOrder") idOrder : Int ) : Call<Void>
 
     companion object {
-//        var BASE_URL = "http://174.129.13.249:8080/"
-          var BASE_URL = "https://veganhouseback.ddns.net/"
+        var BASE_URL = "https://veganhouseback.ddns.net/"
 
         fun getInstance() : OrderService {
             val retrofit = Retrofit.Builder()

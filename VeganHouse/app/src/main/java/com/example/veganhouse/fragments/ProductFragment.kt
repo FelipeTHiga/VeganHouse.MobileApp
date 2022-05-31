@@ -21,6 +21,7 @@ import com.example.veganhouse.model.*
 import com.example.veganhouse.service.CartItemService
 import com.example.veganhouse.service.EventManagerRestockService
 import com.example.veganhouse.service.SellerService
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -191,16 +192,18 @@ class ProductFragment : Fragment() {
                     tvProductName.text = product?.name
                     tvProductPrice.text = "R$ %.2f".format(product?.price)
                     tvProductDescription.text = product?.description
+                    Picasso.get().load(getString(R.string.img_url_maquina3, productId, 1)).error(R.drawable.product_without_image).into(ivProductImage)
 
-                    if (product?.image_url1 == null) {
-                        ivProductImage.setImageResource(R.drawable.product_without_image)
-                    } else {
-                        val decodedString: ByteArray =
-                            Base64.decode(product?.image_url1, Base64.DEFAULT)
-                        val decodedByte =
-                            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-                        ivProductImage.setImageBitmap(decodedByte)
-                    }
+
+//                    if (product?.image_url1 == null) {
+//                        ivProductImage.setImageResource(R.drawable.product_without_image)
+//                    } else {
+//                        val decodedString: ByteArray =
+//                            Base64.decode(product?.image_url1, Base64.DEFAULT)
+//                        val decodedByte =
+//                            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+//                        ivProductImage.setImageBitmap(decodedByte)
+//                    }
 
                     var productSellerId = product?.fkSeller
                     if (productSellerId != null) {
