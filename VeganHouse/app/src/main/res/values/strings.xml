@@ -89,6 +89,24 @@
 
     <string name="payment_result_return">Voltar às compras</string>
 
+
+    <!--    Payment  -->
+    <string name="total_price">Preço total</string>
+    <string name="zero_price">R$ 00,00</string>
+    <string name="form_of_payment">Forma de pagamento</string>
+    <string name="credit">Crédito</string>
+    <string name="pix">Pix</string>
+    <string name="payment_slip">Boleto</string>
+    <string name="card_number">Número do cartão</string>
+    <string name="card_number_mask">**** **** **** ****</string>
+    <string name="validity">Validade</string>
+    <string name="cvv">CVV</string>
+    <string name="month_year">Mês/Ano</string>
+    <string name="cvv_mask">***</string>
+    <string name="name_on_card">Nome no cartão</string>
+    <string name="name_surname">Nome e sobrenome</string>
+    <string name="checkout">Finalizar compra</string>
+
     <!-- Catalog       -->
     <string name="catalog_title">Catálogo</string>
     <string name="categories">Categorias</string>
@@ -153,7 +171,7 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="subtotal_price">Subtotal: R$20,00</string>
-<!--    <string name="subtotal_price">Subtotal: R$%.2f</string>-->
+    <!--    <string name="subtotal_price">Subtotal: R$%.2f</string>-->
     <string name="details">Detalhes</string>
     <string name="product">Produto</string>
     <string name="qtd">Qtd.</string>

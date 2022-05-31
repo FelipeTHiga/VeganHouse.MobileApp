@@ -141,13 +141,6 @@ class CartFragment : Fragment() {
         )
     }
 
-//    fun redirectPayment() {
-//        val paymentFragment = PaymentFragment()
-//        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-//        transaction.replace(R.id.fl_wrapper, paymentFragment)
-//        transaction.commit()
-//    }
-
     fun createOrder(user : User ){
         val postOrder = OrderService.getInstance().createOrder(user)
 
