@@ -13,5 +13,6 @@ import com.example.veganhouse.fragments.PaymentFragment
 class Cart : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cart)
+//        setContentView(R.layout.activity_cart)
     }
+}

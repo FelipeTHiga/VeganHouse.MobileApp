@@ -9,7 +9,8 @@ interface CartService {
 
 
     companion object {
-        var BASE_URL = "http://10.0.2.2:8080/"
+//        var BASE_URL = "http://10.0.2.2:8080/"
+        var BASE_URL = "https://veganhouseback.ddns.net/"
 
         fun getInstace () : OrderService {
             val retrofit = Retrofit.Builder()

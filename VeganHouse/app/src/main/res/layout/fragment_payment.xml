@@ -16,15 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
+
             <RelativeLayout
-                android:paddingHorizontal="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/containerNavbar"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="70dp"
                 android:layout_marginRight="30dp"
-                >
+                android:paddingHorizontal="10dp">
 
                 <TextView
                     android:id="@+id/tv_price_total"
@@ -39,7 +39,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_price_total"
-                    android:text="R$ 75,00"
+                    android:onClick="aprovedPayment"
+                    android:text="00,00"
                     android:textColor="@color/pink_dark"
                     android:textSize="30sp" />
 
@@ -107,32 +108,33 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/custom_input_radius_5"
                     android:hint="**** **** **** ****"
-                    android:paddingHorizontal="10dp"
-                    />
+                    android:paddingHorizontal="10dp" />
 
                 <LinearLayout
                     android:id="@+id/ln_text_view"
-                    android:layout_below="@+id/et_card_number"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/et_card_number">
+
                     <TextView
                         android:id="@+id/tv_expire_date"
                         android:layout_width="0dp"
-                        android:layout_weight=".50"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/et_card_number"
                         android:layout_marginTop="20dp"
+                        android:layout_weight=".50"
                         android:text="Validade"
                         android:textSize="17sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tv_cvv"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="0dp"
-                        android:layout_weight=".50"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tv_expire_date"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="20dp"
+                        android:layout_toRightOf="@+id/tv_expire_date"
+                        android:layout_weight=".50"
                         android:text="CVV"
                         android:textSize="17sp"
                         android:textStyle="bold" />
@@ -141,32 +143,32 @@
 
                 <LinearLayout
                     android:id="@+id/ln_edit_text"
-                    android:layout_below="@+id/ln_text_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ln_text_view">
+
                     <EditText
                         android:id="@+id/et_expire_date"
-                        android:layout_marginTop="5dp"
                         android:layout_width="0dp"
-                        android:layout_weight=".50"
                         android:layout_height="35dp"
                         android:layout_below="@id/tv_expire_date"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight=".50"
                         android:background="@drawable/custom_input_radius_5"
-                        android:paddingHorizontal="10dp"
-
                         android:hint="Mês/Ano"
-                        />
+
+                        android:paddingHorizontal="10dp" />
 
                     <EditText
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
                         android:layout_width="0dp"
-                        android:layout_weight=".50"
                         android:layout_height="35dp"
                         android:layout_below="@id/tv_expire_date"
-                        android:paddingHorizontal="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight=".50"
+                        android:background="@drawable/custom_input_radius_5"
                         android:hint="000"
-                        android:background="@drawable/custom_input_radius_5"                />
+                        android:paddingHorizontal="10dp" />
                 </LinearLayout>
 
                 <TextView
@@ -181,13 +183,13 @@
 
                 <EditText
                     android:id="@+id/et_card_name"
-                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_below="@id/tv_card_name"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/custom_input_radius_5"
-                    android:paddingHorizontal="10dp"
-                    android:hint="Seu nome"/>
+                    android:hint="Seu nome"
+                    android:paddingHorizontal="10dp" />
 
                 <Button
                     android:id="@+id/btn_payment_result"
