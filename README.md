@@ -25,7 +25,7 @@ A solução é composta por uma aplicação web desenvolvida em React e uma apli
 [White Paper](https://github.com/FelipeTHiga/BandTec-3ADSA-2021-2-Grupo-05/blob/main/documentos/Sprint%203%20-%20Apresenta%C3%A7%C3%A3o%20Final.pdf) <br>
 [Apresentação final](https://github.com/FelipeTHiga/BandTec-3ADSA-2021-2-Grupo-05/blob/main/documentos/White%20Paper.pdf) <br>
 Site: https://veganhouse3.ddns.net <br>
-Repositório da App mobile: https://github.com/FelipeTHiga/VeganHouse.MobileApp
+Repositório da App web: https://github.com/FelipeTHiga/BandTec-3ADSA-2021-2-Grupo-05
 
 ## Sobre os desenvolvedores
 
